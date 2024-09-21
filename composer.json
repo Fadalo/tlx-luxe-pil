@@ -23,7 +23,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files":[
+            "app/Helpers/H1BHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

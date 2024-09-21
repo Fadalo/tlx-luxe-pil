@@ -1,0 +1,3 @@
+@extends('PanelAdmin.blank')
+
+history
