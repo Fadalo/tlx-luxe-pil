@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Illuminate\Support\Facades\Auth;
 class AuthMember
 {
     /**
@@ -15,8 +15,8 @@ class AuthMember
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->input('token') !== 'my-secret-token') {
-            return redirect('/member/dashboard');
+        if (!Auth::check()) {
+            return redirect('/member/login');
         }
         return $next($request);
     }

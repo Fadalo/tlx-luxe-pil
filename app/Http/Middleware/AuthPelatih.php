@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Illuminate\Support\Facades\Auth;
 class AuthPelatih
 {
     /**
@@ -15,8 +15,8 @@ class AuthPelatih
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->input('token') !== 'my-secret-token') {
-            return redirect('/couch/dashboard');
+        if (!Auth::check()) {
+            return redirect('/couch/login');
         }
         return $next($request);
     }
