@@ -4,9 +4,14 @@ namespace App\Http\Resources\Member;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\UserResource;
+use App\Models\User;
+
 
 class MemberResource extends JsonResource
 {
+    
+
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +19,7 @@ class MemberResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+       return parent::toArray($request);
     }
+    
 }

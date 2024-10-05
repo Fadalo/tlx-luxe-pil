@@ -11,7 +11,7 @@ class Member extends Authenticatable
 {
     use HasFactory;
     use HasFactory, Notifiable;
-
+    protected $authPasswordName = 'pin';
     protected $table = 'member';
 
     
@@ -21,12 +21,11 @@ class Member extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'phoneno',
-        'email',
-        'password',
-        
-        
+        'first_name',
+        'last_name',
+        'phone_no',
+        'birthday',
+        'pin',
     ];
 
     /**
@@ -35,8 +34,10 @@ class Member extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+     
+        'created_at',
+        'created_by',
+        
     ];
 
     /**
@@ -44,11 +45,18 @@ class Member extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+    
+     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            'birthday' => 'date',
+            'email_verified_at' => 'join_date',
+            'pin' => 'hashed',
             'password' => 'hashed',
+            
         ];
+    }
+    public function getMeta(){
+        return $this->meta;
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Models\Package\Package;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Package\PackageSeeder;
 use Database\Seeders\Member\MemberSeeder;
+use Database\Seeders\Instructor\InstructorSeeder;
 use Database\Seeders\UserSeeder;
 
 
@@ -32,6 +33,8 @@ class DatabaseSeeder extends Seeder
             PackageSeeder::class,
             UserSeeder::class,
             MemberSeeder::class,
+            InstructorSeeder::class,
+            
         ]);
 
     }

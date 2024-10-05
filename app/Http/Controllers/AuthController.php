@@ -5,19 +5,68 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\User;
+use App\Models\Instructor\Instructor;
+use App\Models\Member\Member;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Hashing\BcryptHasher;
+
 
 class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function loginAdminShow(request $request,response $response){
+           // print_r('sssss');
+            //exit();
+            return view('Auth.Newlogin');
+    }
+   
+    public function loginMember(request $request,response $response)
+    {
+        
+        $request->validate([
+            'phone_no'   => 'required',
+            'pin'        => 'required',
+        ]);
+       
+        $member = Member::where('phone_no', $request->phone_no)->first();
+
+       $credentials = $request->only('phone_no', 'pin');   
+       
+        if ($member && Hash::check($credentials['pin'], $member->pin)) {
+            
+           Auth::guard('member')->login($member);
+            return redirect()->intended('member/dashboard');
+        }
+       
+        // If login fails, redirect back with an error message
+        return redirect()->back()->withErrors(['msg' => 'Invalid credentials.']);
+    }
+    public function loginInstructor(request $request,response $response)
+    {
+        $request->validate([
+            'phone_no'   => 'required',
+            'pin'        => 'required',
+        ]);
+
+        // Attempt to authenticate using phone number and password
+        $instructor = Instructor::where('phone_no', $request->phone_no)->first();
+
+        if ($member && Hash::check($credentials['pin'], $member->pin)) {
+            
+            Auth::guard('instructor')->login($instructor);
+            return redirect()->intended('instructor/dashboard');
+        }
+
+        // If login fails, redirect back with an error message
+        return redirect()->back()->withErrors(['msg' => 'Invalid credentials.']);
+    }
     public function loginAdmin(request $request,response $response)
     {
-       
-
         $request->validate([
-            'name' => 'required',
-            'password'     => 'required',
+            'name'      => 'required',
+            'password'  => 'required',
         ]);
 
         // Attempt to authenticate using phone number and password

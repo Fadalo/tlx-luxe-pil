@@ -17,7 +17,7 @@ class AuthAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check()) {
-            return redirect('/login');
+           return redirect('/login-new');
         }
         return $next($request);
     }

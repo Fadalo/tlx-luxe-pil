@@ -15,7 +15,9 @@ class AuthMember
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+       
+        if (!Auth::guard('member')->check()) {
+            
             return redirect('/member/login');
         }
         return $next($request);

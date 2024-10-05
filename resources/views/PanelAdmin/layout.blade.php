@@ -31,8 +31,21 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    
+    @livewireStyles
     @yield('head-page')
+    <script>
+        document.addEventListener('livewire:load', function () {
+            // Initialize your datatable here
+            $('#datatable-buttons').DataTable();
+        });
+
+        document.addEventListener('livewire:update', function () {
+            // Reinitialize your datatable here after Livewire updates the DOM
+            $('#datatable-buttons').DataTable().destroy(); // Destroy old instance
+            $('#datatable-buttons').DataTable(); // Reinitialize
+        });
+
+    </script>
 </head>
 
 <body data-bs-theme="dark" data-topbar="dark" data-sidebar="dark" data-content="dark">
@@ -125,8 +138,7 @@
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
     <script src="assets/libs/node-waves/waves.min.js"></script>
     
-    <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+   
 
     <!-- jquery.vectormap map -->
     <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -140,16 +152,16 @@
     <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-     <!-- App js -->
-      
-     <script src="assets/js/pages/datatables.init.js"></script>
-     <script src="assets/js/app.js"></script>
-
-    @yield('script')
-    <script src="assets/js/pages/dashboard.init.js"></script> 
-
    
 
+    @yield('script')
+    
+  <!-- App js -->
+      
+  
+  <script src="assets/js/app.js"></script>
+  @livewireScripts
+  
 </body>
 
 </html>

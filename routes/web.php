@@ -3,15 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Helpers\H1BHelper;
+use App\Helpers\routeAdminHelper;
+
 use App\Http\Controllers;
 use App\routes\routeAdmin\AdminPanel;
 
 use App\Models\Package\Package;
 use App\Http\resources\Package\PackageResource;
+use App\Http\Controllers\Member\MemberController;
+use App\Http\Controllers\Instructor\InstructorController;
+use App\Http\Controllers\AuthController;
+
 
 
 $helper = new H1BHelper();
 $helper->adminRoute();
+
+//routeAdminHelper::getRoute();
+
 
 
 Route::get('/pp',function(){
@@ -30,11 +39,14 @@ Route::get('/token', function (Request $request) {
     // ...
 });
 
-# AUTH ADMIN
-Route::get('/login', function () {
-    return view('Auth.login');
-})->name('login');
+
+# AUTH ADMIN - Frontend
+
+
+
 Route::post('/login-auth', 'App\Http\Controllers\AuthController@loginAdmin')->name('login.auth');
+Route::get('/login-new', 'App\Http\Controllers\AuthController@loginAdminShow')->name('login');
+
 Route::get('/logout','App\Http\Controllers\AuthController@logoutAdmin')->name('logout');
 
 Route::get('/register', function () {
@@ -47,22 +59,28 @@ Route::get('/forgot-password', function () {
 })->name('forgotpassword');
 
 
-#AUTH MEMBER
+#AUTH MEMBER - Frontend
 Route::get('/member/login', function () {
     return view('Auth.member.login');
 })->name('member.login');
-Route::post('/member/login-auth', 'App\Http\Controllers\AuthController@loginAdmin')->name('member.login.auth');
-Route::get('/member/logout','App\Http\Controllers\AuthController@logoutAdmin')->name('member.logout');
+Route::post('/member/login-auth', 'App\Http\Controllers\AuthController@loginMember')->name('Auth.member.login.auth');
+Route::get('/member/logout','App\Http\Controllers\AuthController@logoutMember')->name('Auth.member.logout');
 
-Route::get('/register', function () {
-    return view('Auth.register');
-})->name('register');
-Route::post('/register-save', )->name('register.save');
-
-Route::get('/forgot-password', function () {
+Route::get('/member/forgot-password', function () {
     return view('Auth.forgotpassword');
-})->name('forgotpassword');
+})->name('member.forgotpassword');
 
+
+#AUTH MEMBER - Frontend
+Route::get('/instructor/login', function () {
+    return view('Auth.instructor.login');
+})->name('instructor.login');
+Route::post('/instructor/login-auth', 'App\Http\Controllers\AuthController@loginInstructor')->name('Auth.instructor.login.auth');
+Route::get('/instructor/logout','App\Http\Controllers\AuthController@logoutInstructor')->name('Auth.instructor.logout');
+
+Route::get('/instructor/forgot-password', function () {
+    return view('Auth.forgotpassword');
+})->name('instructor.forgotpassword');
 
 // PanelAdmin
 Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
@@ -71,25 +89,19 @@ Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('PanelAdmin.dashboard');
     })->name('admin.dashboard')->middleware('App\Http\Middleware\AuthAdmin');
-
-
-    # ADMIN - Manage Member
-    Route::get('/admin/member/list', function () {
-        return view('PanelAdmin.Members.list');
-    })->name('members.list');
     
-    Route::get('/admin/member/create', function () {
-        return view('PanelAdmin.Members.create');
-    })->name('members.create');
+    $h2 = new routeAdminHelper();
+    $h2->getRoute();
+    
+    
+    Route::get('/admin/member/scheadule/create', function () {
+        return view('PanelAdmin.Members.scheadule_create');
+    })->name('admin.member.scheadule.create');
 
-    Route::get('/admin/member/history', function () {
-        return view('PanelAdmin.Members.history');
-    })->name('members.history');
-
-    Route::get('/admin/member/scheadule', function () {
-        return view('PanelAdmin.Members.scheadule');
-    })->name('members.scheadule');
-
+    Route::get('/admin/member/scheadule/change', function () {
+        return view('PanelAdmin.Members.scheadule_change');
+    })->name('admin.member.scheadule.change');
+    
 });
 
 
@@ -112,6 +124,7 @@ Route::middleware(['App\Http\Middleware\AuthMember'])->group(function () {
     })->name('member.dashboard');
 
 });
+
 
 
 // Black

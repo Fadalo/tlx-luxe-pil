@@ -28,4 +28,49 @@ class H1BHelper
         });
     }
 
+    public function CamelCase($string){
+        
+            // Convert string to lowercase and then split it by underscores
+            $words = explode('_', strtolower($string));
+        
+            // Capitalize the first letter of each word
+            $words = array_map('ucfirst', $words);
+        
+            // Join the words back together
+            return implode('', $words);
+    }
+
+    public static function combine_based_on_second($first, $second) {
+        $NewFilter = [];
+        $combinedFull = array_merge_recursive($first,$second);
+        
+        foreach ($second as $key => $value) {    
+            if( array_key_exists($key,$combinedFull) ){
+                $NewFilter[$key] = $combinedFull[$key];
+            }
+        }
+
+        //print_r('<pre>');
+        //print_r($combinedFull);
+        //exit();
+        return $NewFilter;
+    }
+
+    function getStringFromCallback($item, $callback) {
+        // Start buffering the output
+        ob_start();
+        
+        // Call the callback function
+        $callback($item);
+        
+        // Get the content from the buffer and clean the buffer
+        $output = ob_get_clean();
+        
+        // Return the captured output as a string
+        return $output;
+    }
+
+    function callback($item){
+        return $item['first_name'];
+    }
 }
