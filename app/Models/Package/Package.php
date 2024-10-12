@@ -28,7 +28,7 @@ class Package extends Model
    
     public function PackageVariant()
     {
-        return $this->hasMany(PackageVariant::class);
+        return $this->hasMany(PackageVariant::class,'package_id');
     }
         
     

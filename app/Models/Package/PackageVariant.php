@@ -4,7 +4,9 @@ namespace App\Models\Package;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use App\Models\Package\Package;
+use App\Models\Member\MemberPackageOrder;
 use App\Models\Package\PackageVariantRule;
 
 class PackageVariant extends Model
@@ -33,12 +35,16 @@ class PackageVariant extends Model
 
     public function Package()
     {
-        return $this->belongsTo(Package::class);
+        return $this->belongsTo(Package::class,'package_id');
     }
 
+    public function PackageOrder()
+    {
+        return $this->belongsTo(MemberPackageOrder::class,'id');
+    }
     public function PackageVariantRule()
     {
-        return $this->hasMany(PackageVariantRule::class);
+        return $this->hasMany(PackageVariantRule::class,'package_variant_id');
     }
         
 }

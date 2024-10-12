@@ -153,7 +153,19 @@ class MemberController extends Controller
 
     public function list(request $request,response $response){
 
-       
+       $objMember = Member::find(1);
+       print_r('<pre>');
+      // print_r($objMember->PackageOrder);
+       foreach($objMember->PackageOrder as $objMemberPackageOrder){
+        //print_r($objMemberPackageOrder->id);
+        //print_r($objMemberPackageOrder->PackageVariant);
+        foreach($objMemberPackageOrder->PackageVariant as $objMemberPackageOrder_PackageVariant){
+            print_r($objMemberPackageOrder_PackageVariant->PackageVariantRule);
+    
+        }
+        print_r('<br>');
+       }
+       exit;
         $MemberResourse = MemberResource::collection(Member::All())->toArray($request);
         $data = $MemberResourse;
         $config = [
@@ -165,6 +177,7 @@ class MemberController extends Controller
                         'author' => 'Telcomixo',
                     ],
                     'module' => 'member',
+                    'objModule'=> Member::All(),
                     'route'  => 'member',
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->listShow),
                     'data' => $data,
@@ -173,12 +186,14 @@ class MemberController extends Controller
                         'Export Excel'=>[
                             'name'=>'Export Excel',
                             'route'=>'members/create',
-                            'icon'=>'ri-add-line'
+                            'icon'=>'ri-add-line',
+                            'onClick'=>''
                         ],
                         'Export PDF'=>[
                             'name'=>'Export Excel',
                             'route'=>'members/create',
-                            'icon'=>'ri-add-line'
+                            'icon'=>'ri-add-line',
+                            'onClick'=>''
                         ],
                     ],
                     

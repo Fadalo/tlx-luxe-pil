@@ -5,6 +5,10 @@ namespace App\Models\Package;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use App\Models\Package\PackageVariant;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
 class PackageVariantRule extends Pivot
 {
 
@@ -31,6 +35,6 @@ class PackageVariantRule extends Pivot
 
     public function PackageVariant()
     {
-        return $this->belongsTo(PackageVariant::class);
+        return $this->belongsTo(PackageVariant::class,'package_variant_id');
     }
 }

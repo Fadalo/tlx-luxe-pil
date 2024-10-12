@@ -19,3 +19,13 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+couch-app
+/app/Livewire/Category.php
+/app/Models/Category.php
+composer-setup.php
+composer.phar
+/database/migrations/2024_09_22_055840_create_categories_table.php
+/resources/views/home.blade.php
+/resources/views/livewire/category.blade.php
+/resources/views/livewire/create.blade.php
+/resources/views/livewire/update.blade.php
