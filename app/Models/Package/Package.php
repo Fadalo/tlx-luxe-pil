@@ -5,6 +5,7 @@ namespace App\Models\Package;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Package\PackageVariant;
 
 class Package extends Model
 {
@@ -23,6 +24,12 @@ class Package extends Model
         'created_by',
         'updated_by',
     ];
+
+   
+    public function PackageVariant()
+    {
+        return $this->hasMany(PackageVariant::class);
+    }
         
     
   

@@ -4,6 +4,7 @@ namespace App\Models\Instructor;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Instructor\InstructorContract;
 
 class Instructor extends Model
 {
@@ -49,4 +50,9 @@ class Instructor extends Model
             'pin' => 'hashed',
         ];
     }
+
+    public function InstructorContract()
+    {
+        return $this->belongsToMany(InstructorContract::class);
+    }   
 }

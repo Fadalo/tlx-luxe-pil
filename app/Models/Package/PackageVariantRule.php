@@ -3,6 +3,7 @@
 namespace App\Models\Package;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use App\Models\Package\PackageVariant;
 
 class PackageVariantRule extends Pivot
 {
@@ -27,4 +28,9 @@ class PackageVariantRule extends Pivot
         'updated_by'
 
     ];
+
+    public function PackageVariant()
+    {
+        return $this->belongsTo(PackageVariant::class);
+    }
 }

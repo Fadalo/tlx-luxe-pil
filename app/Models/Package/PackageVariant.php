@@ -4,6 +4,8 @@ namespace App\Models\Package;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Package\Package;
+use App\Models\Package\PackageVariantRule;
 
 class PackageVariant extends Model
 {
@@ -28,5 +30,15 @@ class PackageVariant extends Model
         'updated_by'
 
     ];
+
+    public function Package()
+    {
+        return $this->belongsTo(Package::class);
+    }
+
+    public function PackageVariantRule()
+    {
+        return $this->hasMany(PackageVariantRule::class);
+    }
         
 }
