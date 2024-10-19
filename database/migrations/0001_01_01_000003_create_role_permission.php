@@ -26,8 +26,7 @@ return new class extends Migration
             $table->string('rules_name'); 
             
             $table->text('remark')->nullable(); // Nullable remark field
-            $table->string('status_document');
-
+            
             // Timestamps
             $table->unsignedBigInteger('created_by')->nullable(); // Replaced `number` with `unsignedBigInteger`
             $table->unsignedBigInteger('updated_by')->nullable(); // Replaced `number` with `unsignedBigInteger`

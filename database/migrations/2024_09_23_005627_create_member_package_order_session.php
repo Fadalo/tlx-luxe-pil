@@ -19,14 +19,16 @@ return new class extends Migration
             $table->smallinteger('session_duration')->nullable();
             $table->smallinteger('qty_ticket_used')->default(0);
             $table->smallinteger('qty_ticket_available')->default(0);
-            $table->string('status_session');
-            $table->integer('is_member_created');
+            $table->string('status_session'); // OnScheadule,Closed,Cancel
+            $table->integer('is_member_created'); // 0,1
 
 
             // System
-            $table->string('status_document');
+            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

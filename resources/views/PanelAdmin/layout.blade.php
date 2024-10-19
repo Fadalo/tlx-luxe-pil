@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <title>@yield('meta_title','Default Title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="http://127.0.0.1:8000/admin/" />
     <meta content="@yield('meta_description', 'Default description')" name="description" />
     <meta content="@yield('meta_author', 'Default Author')" name="author" />
@@ -29,6 +29,8 @@
     <link href="assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Swall Css -->
+    <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
     @livewireStyles
@@ -46,6 +48,14 @@
         });
 
     </script>
+    <style>
+        .card{
+            border-radius:0px !important;
+            -webkit-box-shadow: none !important;
+             box-shadow: none !important;
+        }
+    </style>
+    <script src="assets/js/pages/ajaxable.min.js"></script>
 </head>
 
 <body data-bs-theme="dark" data-topbar="dark" data-sidebar="dark" data-content="dark">
@@ -152,10 +162,16 @@
     <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-   
-
-    @yield('script')
     
+<style>
+    input{
+        color-scheme: dark;
+    }
+    </style>
+   
+   <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    @yield('script')
+    @stack('script_ext')
   <!-- App js -->
       
   

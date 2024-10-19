@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // Primary key is automatically set as id()
             $table->string('phone_no')->unique(); // Ensure phone_no is unique
             $table->string('first_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->date('birthday')->nullable();
             $table->string('pin');
             $table->timestamp('join_date')->nullable();
@@ -23,9 +23,11 @@ return new class extends Migration
             $table->string('referal_by')->nullable();
 
             // System
-            $table->string('status_document');
+            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

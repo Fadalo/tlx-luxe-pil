@@ -17,14 +17,16 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('package')->onDelete('cascade');
             $table->text('desc')->nullable();
-            $table->integer('package_available2activated_duration');
-            $table->integer('package_ticket_duration');
-            $table->integer('package_qty_ticket');
+            //$table->integer('package_available2activated_duration')->default(7);
+            //$table->integer('package_ticket_duration')->default(45);
+            $table->integer('package_qty_ticket')->default(10);
 
             // System
-            $table->string('status_document');
+            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

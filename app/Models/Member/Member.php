@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Member\MemberPackageOrder;
-
+use Carbon\Carbon;
 class Member extends Authenticatable
 {
     use HasFactory;
@@ -16,6 +16,19 @@ class Member extends Authenticatable
     protected $table = 'member';
 
     
+   
+    protected static function booted()
+    {
+        static::creating(function ($member) {
+            if (is_null($member->join_date)) {
+                $member->join_date = Carbon::now();
+            }
+
+            if (is_null($member->activated_date)) {
+                $member->actived_date = Carbon::now();
+            }
+        });
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +40,9 @@ class Member extends Authenticatable
         'phone_no',
         'birthday',
         'pin',
+        'updated_by',
+        'created_by',
+        
     ];
 
     /**
@@ -36,8 +52,8 @@ class Member extends Authenticatable
      */
     protected $hidden = [
      
-        'created_at',
-        'created_by',
+        //'created_at',
+       // 'created_by',
         
     ];
 

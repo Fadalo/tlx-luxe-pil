@@ -5,12 +5,9 @@
         </div>
     @endif
 
-    <button wire:click="create()" class="btn btn-primary">Create Post</button>
+    <button wire:click="create()" class="btn btn-primary">+</button>
 
-    <button wire:click="edit_grid(70)"  class="btn btn-primary">Edit ss</button>
-    <button wire:click="edit_grid(70)" id="id_70_edit" name="70_edit" class="btn btn-primary">Edit</button>
-   
-   
+    
 
     <table id="datatable-buttons" class="table table-striped dt-responsive table-dark nowrap dataTable no-footer dtr-inline ">
         <thead>

@@ -15,17 +15,12 @@
 @section('content')
 
 @include('PanelAdmin.component.list-status.view')
-
+@include('PanelAdmin.Member.component.inline.create')
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                
-              
-
                 @include('PanelAdmin.component.datagrid.index',$config)
-
-
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->
@@ -48,6 +43,11 @@
 
 <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="assets/js/pages/datatables.init.js"></script>
+
+
+<!--<script src="assets/js/pages/datatables.init.js"></script>-->
 
 @endsection
+@push('script_ext')
+
+@endpush

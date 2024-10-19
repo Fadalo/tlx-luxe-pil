@@ -17,14 +17,15 @@ return new class extends Migration
             $table->foreign('package_variant_id')->references('id')->on('package_variant')->onDelete('cascade');
             $table->string('name');
             $table->text('desc')->nullable();
-            $table->string('module'); // Member Package
-            $table->string('field'); 
-            $table->string('type'); 
+            $table->text('formula_generator')->nullable(); // Member Package
+            
             
             // System
-            $table->string('status_document');
+            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -6,41 +6,97 @@
 @section('page-parent',$config['page']['parent'])
 
 @section('head-page')
-<link rel="stylesheet" href="assets/libs/@fullcalendar/core/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/daygrid/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/bootstrap/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/timegrid/main.min.css" type="text/css">
-
-
-
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 @endsection
 
 @section('content')
 
 <div class="row">
-    <div class="col-12">
-        @include('PanelAdmin.component.curd.detail')
-        
+    <div class="col-md-12">
+    
+    @include('PanelAdmin.component.crud.detail')
+    
     </div>
-    <div class="col-12">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 
-                @include('PanelAdmin.component.tab.index')
+                <?php
+                //print_r($config);
+                //exit();
+                $data = $config['relation'];
+                ?>
+                @include('PanelAdmin.component.tab.index',$data)
                 
             </div>
         </div>
     </div>
 
 </div>
+
+<!-- Canvas -->
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="visibility: hidden;" aria-hidden="true">
+                                            <div class="offcanvas-header">
+                                              <h5 id="offcanvasBottomLabel">Offcanvas Bottom</h5>
+                                              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                            <div class="table-responsive">
+                        <table class="table table-dark dt-table mb-0">
+
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Invoice No</th>
+                                    <th>Status</th>
+                                    <th>Paid By</th>
+                                    <th>Date</th>
+                                    <th>Package</th>
+                                    <th>Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>INV001011</td>
+                                    <td>PAID</td>
+                                    <td>CASH - Rp 550.000,00</td>
+                                    <td>19/09/2024</td>
+                                    <td>Private - Single</td>
+                                    <td><button class="btn btn-primary">Print</button></td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>INV001012</td>
+                                    <td>PAID</td>
+                                    <td>BCA -8293019339- Rp 550.000,00</td>
+                                    <td>20/10/2024</td>
+                                    <td>Private - Duo</td>
+                                    <td><button class="btn btn-primary">Print</button></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>INV001013</td>
+                                    <td>PAID</td>
+                                    <td>BRI -8293019349- Rp 550.000,00</td>
+                                    <td>31/11/2024</td>
+                                    <td>Private - Single</td>
+                                    <td><button class="btn btn-primary">Print</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                            </div>
+                                        </div>
 @endsection
 @section('script')
-<script src="assets/libs/@fullcalendar/core/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/bootstrap/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/daygrid/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/timegrid/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/interaction/main.min.js"></script>
+
+
+
+
 
 <!-- Calendar init -->
-<script src="assets/js/pages/calendar.init.js"></script>
+<!-- <script src="assets/js/pages/calendar.init.js"></script>-->
 @endsection

@@ -29,15 +29,19 @@
             <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
                 <i class="ri-menu-2-line align-middle"></i>
             </button>
-
+            <div class="d-inline-block d-lg-block ms-2">
+                <span style="position:relative;top:25px" >
+                <livewire:Component.Clock />
+                </span>
+            </div>
            
 
            
         </div>
 
         <div class="d-flex">
-
-            <div class="dropdown d-inline-block d-lg-none ms-2">
+           
+            <div class="dropdown d-none d-inline-block d-lg-block ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ri-search-line"></i>
@@ -219,11 +223,7 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> My Wallet</a>
-                    <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i
-                            class="ri-settings-2-line align-middle me-1"></i> Settings</a>
-                    <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock
-                        screen</a>
+                    
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout')}}"><i
                             class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>

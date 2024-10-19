@@ -27,8 +27,10 @@ return new class extends Migration
 
            // System
            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft');
-           $table->unsignedBigInteger('created_by')->nullable(); // Foreign key, admin/user who created
-           $table->unsignedBigInteger('updated_by')->nullable(); // Foreign key, admin/user who updated
+           $table->unsignedBigInteger('created_by')->nullable();
+           $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+           $table->unsignedBigInteger('updated_by')->nullable(); 
+           $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
            $table->timestamps();
         });
     }

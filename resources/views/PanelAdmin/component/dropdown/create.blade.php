@@ -1,10 +1,14 @@
-<div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Dropdown button <i class="mdi mdi-chevron-down"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                    </div>
-                                                </div>
+
+<div class="mb-3">
+    <label for="validationCustom01" class="form-label">{{ $MetaValue['label'] }}</label>
+    <div class="dropdown">
+    <select class="form-select">
+        <option>111</option>
+        <option>222</option>
+        
+</select>
+</div>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+</div>

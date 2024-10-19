@@ -5,16 +5,16 @@
 @section('page-name',$config['page']['name'])
 @section('page-parent',$config['page']['parent'])
 
+
 @section('head-page')
 <!-- DataTables -->
         <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        
-       
 @endsection
 
 @section('content')
 
 @include('PanelAdmin.component.list-status.view')
+@include('PanelAdmin.Instructor.component.inline.create')
 
 <div class="row">
     <div class="col-12">
@@ -48,6 +48,8 @@
 
 <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="assets/js/pages/datatables.init.js"></script>
 
 @endsection
+@push('script_ext')
+
+@endpush

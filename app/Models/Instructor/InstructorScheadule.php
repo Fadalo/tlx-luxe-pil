@@ -9,8 +9,9 @@ class InstructorScheadule extends Model
 {
     use HasFactory;
     protected $table = 'instructor_scheadule';
-    
+
     public function InstructorContract(){
         return $this->belongsTo(InstructorContract::class);
     }
 }
+

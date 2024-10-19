@@ -17,20 +17,11 @@
 @section('content')
 
 <div class="row">
-    <div class="col-6">
-        @include('PanelAdmin.component.curd.create')
-    </div>
-    <div class="col-6">
-        <livewire:InlineGrid   />
-    </div>
     <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                @include('PanelAdmin.component.tab.index')
-                
-            </div>
-        </div>
+        @include('PanelAdmin.component.crud.create')
     </div>
+    
+   
 
 </div>
 @endsection
@@ -43,7 +34,7 @@
 
 <!-- Calendar init -->
 <script src="assets/js/pages/calendar.init.js"></script>
-
+<script src="assets/js/pages/form-element.init.js"></script>
 
 <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>

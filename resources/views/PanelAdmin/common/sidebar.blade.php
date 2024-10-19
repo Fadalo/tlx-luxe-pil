@@ -52,11 +52,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-book-read-line"></i>
-                        <span>Manage Instuctor</span>
+                        <span>Manage Instructor</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="{{ route('admin.instructor.create') }}" class="waves-effect">Create Instuctor</a>
+                            <a href="{{ route('admin.instructor.create') }}" class="waves-effect">Create Instructor</a>
                         </li>
                         <li>
                             <a href="{{ route('admin.instructor.list') }}" class="waves-effect">Listing Instructor</a>
@@ -94,7 +94,7 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">
-                        <i class="ri-calendar-2-line"></i>
+                        <i class="ri-fingerprint-fill"></i>
                         <span>Manage Attendance</span>
                     </a>
                     
@@ -108,18 +108,18 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow">Role</a>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="ri-shield-user-fill"></i>Role</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="layouts-horizontal.html" class="waves-effect">Create Role</a></li>
-                                <li><a href="layouts-horizontal.html" class="waves-effect">Listing Role</a></li>
+                                <li><a href="{{ route('admin.role.create') }}" class="waves-effect">Create Role</a></li>
+                                <li><a href="{{ route('admin.role.list') }}" class="waves-effect">Listing Role</a></li>
                             </ul>
                         </li>
                         <li>
                             
                             <a href="javascript: void(0);" class="has-arrow"><i class="ri-user-add-line"></i>Users</a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="layouts-dark-sidebar.html" class="waves-effect">Create User</a></li>
-                                <li><a href="layouts-dark-sidebar.html" class="waves-effect">Listing User</a></li>
+                                <li><a href="{{ route('admin.user.create') }}" class="waves-effect">Create User</a></li>
+                                <li><a href="{{ route('admin.user.list') }}" class="waves-effect">Listing User</a></li>
                             </ul>
                         </li>                       
                     </ul>
@@ -132,19 +132,26 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow">Report A</a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
-                                
-                            </ul>
+                            <a href="javascript: void(0);" class="waves-effect">Qty Left Ticket Member</a>
+                         
                         </li>
 
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow">Report B</a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                              
-                            </ul>
+                            <a href="javascript: void(0);" class="waves-effect">Today Scheadule</a>
+                            
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">Member Attendance</a>
+                            
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">Package</a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">Instructor</a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="waves-effect">Insentif</a>
                         </li>
                     </ul>
                 </li>

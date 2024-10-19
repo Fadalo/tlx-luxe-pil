@@ -12,7 +12,8 @@ class routeAdminHelper
         'package',
         'batch',
         'menu',
-        'role'
+        'role',
+        'user'
     ];
 
     public  function getRoute(){
@@ -29,8 +30,13 @@ class routeAdminHelper
             
             Route::get("admin/".$module."/list", trim("App\Http\Controllers\\".$module."\\".$module."Controller@list"))
             ->name('admin.'.$module.'.list');
+            Route::get("admin/".$module."/list-$module", trim("App\Http\Controllers\\".$module."\\".$module."Controller@getData"))
+            ->name('admin.'.$module.'.list-'.$module);
     
             Route::get(trim("admin/".$module."/create"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@create"))
+            ->name('admin.'.$module.'.create');
+            
+            Route::post(trim("admin/".$module."/create"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@store"))
             ->name('admin.'.$module.'.create');
 
             Route::get(trim("admin/".$module."/{id}/edit"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@edit"))
@@ -39,11 +45,9 @@ class routeAdminHelper
             Route::get(trim("admin/".$module."/{id}"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@detail"))
             ->name('admin.'.$module.'.detail');
 
-            Route::get(trim("admin/".$module."/{id}/delete"), function () {
-                //print_r('PanelAdmin.'.ucfirst($module).'.create');
-                //exit();
-                return view('PanelAdmin.'.ucfirst($module).'.create');
-            })->name('admin.'.$module.'.delete');
+            Route::post(trim("admin/".$module."/{id}/delete"),trim("App\Http\Controllers\\".$module."\\".$module."Controller@delete"))
+            ->name('admin.'.$module.'.delete');
+
           
         }
        

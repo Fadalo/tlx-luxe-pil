@@ -8,6 +8,7 @@ use App\Models\Member\Member;
 use App\Models\Package\PackageVariant;
 use App\Models\Member\MemberPackageOrderSession;
 
+
 class MemberPackageOrder extends Model
 {
     use HasFactory;

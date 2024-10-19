@@ -22,7 +22,7 @@ class InstructorFactory extends Factory
     public function definition(): array
     {
         return [
-            'phone_no'=>fake()->phoneNumber(),
+            'phone_no'=> $this->generateFakePhone(),
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'birthday' => fake()->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),   
@@ -35,5 +35,12 @@ class InstructorFactory extends Factory
             "created_by" => $this->faker->randomElement(['1', '2']),
             "updated_by" => $this->faker->randomElement(['1', '2'])
         ];
+    }
+    private function generateFakePhone(): string
+    {
+        //$faker = Faker::create();
+        $phone_no = '+628' . fake()->numberBetween(1000000000, 9999999999);
+
+        return $phone_no;
     }
 }

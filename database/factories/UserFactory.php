@@ -25,7 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'phoneno'=>fake()->phoneNumber(),
+            'phoneno'=>$this->generateFakePhone(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '1234',
@@ -43,5 +43,13 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    private function generateFakePhone(): string
+    {
+        //$faker = Faker::create();
+        $phone_no = '+628' . fake()->numberBetween(1000000000, 9999999999);
+
+        return $phone_no;
     }
 }

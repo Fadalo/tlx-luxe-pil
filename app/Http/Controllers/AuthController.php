@@ -31,8 +31,7 @@ class AuthController extends Controller
         ]);
        
         $member = Member::where('phone_no', $request->phone_no)->first();
-
-       $credentials = $request->only('phone_no', 'pin');   
+        $credentials = $request->only('phone_no', 'pin');   
        
         if ($member && Hash::check($credentials['pin'], $member->pin)) {
             
@@ -53,7 +52,7 @@ class AuthController extends Controller
         // Attempt to authenticate using phone number and password
         $instructor = Instructor::where('phone_no', $request->phone_no)->first();
 
-        if ($member && Hash::check($credentials['pin'], $member->pin)) {
+        if ($member && Hash::check($request->pin, $member->pin)) {
             
             Auth::guard('instructor')->login($instructor);
             return redirect()->intended('instructor/dashboard');
@@ -70,9 +69,10 @@ class AuthController extends Controller
         ]);
 
         // Attempt to authenticate using phone number and password
-        $user = User::where('name', $request->name)->where('password', $request->password)->first();
+        $user = User::where('name', $request->name)->first();
 
-        if ($user ) {
+        if ($user && Hash::check($request->password, $user->password)) {
+        //if ($user ) {
             Auth::login($user);
             return redirect()->intended('admin/dashboard');
         }

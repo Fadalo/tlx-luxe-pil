@@ -1,92 +1,60 @@
  <!-- Nav tabs -->
- <ul class="nav nav-tabs" role="tablist">
-     <li class="nav-item">
-         <a class="nav-link active" data-bs-toggle="tab" href="#my-package" role="tab">
-             <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-             <span class="d-none d-sm-block">My Package</span>
+ <span class="d-block d-sm-none">
+ <ul class="nav nav-tabs" role="tablist" style="display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;">
+    @foreach ($config['relation'] as $key => $value) 
+    <li class="nav-item">
+        @if ($loop->first)
+         <a class="nav-link active" data-bs-toggle="tab" href="#{{ $value['id'] }}" role="tab">
+             <span class="d-block d-sm-none">{!! $value['icon'] !!} </span>
+             <span class="d-none d-sm-block">{!! $value['icon'] !!} {{ $value['name'] }}</span>
          </a>
-     </li>
-     <li class="nav-item">
-         <a class="nav-link" data-bs-toggle="tab" href="#my-scheadule" role="tab">
-             <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-             <span class="d-none d-sm-block">Scheadule</span>
+        @else
+        <a class="nav-link " data-bs-toggle="tab" href="#{{ $value['id'] }}" role="tab">
+             <span class="d-block d-sm-none">{!! $value['icon'] !!} </span>
+             <span class="d-none d-sm-block">{!! $value['icon'] !!} {{ $value['name'] }}</span>
          </a>
+         @endif
      </li>
-
-     <li class="nav-item">
-         <a class="nav-link" data-bs-toggle="tab" href="#my-invoice" role="tab">
-             <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
-             <span class="d-none d-sm-block">History Payment</span>
-         </a>
-     </li>
-     <li class="nav-item">
-         <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab">
-             <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
-             <span class="d-none d-sm-block">Settings</span>
-         </a>
-     </li>
+     @endforeach
  </ul>
-
+</span>
+<span class="d-none d-sm-block">
+ <ul class="nav nav-tabs" role="tablist" >
+    @foreach ($config['relation'] as $key => $value) 
+    <li class="nav-item">
+        @if ($loop->first)
+         <a class="nav-link active" id="tavb_{{ $value['id'] }}" data-bs-toggle="tab" href="#{{ $value['id'] }}" role="tab">
+             <span class="d-block d-sm-none">{!! $value['icon'] !!} </span>
+             <span class="d-none d-sm-block">{!! $value['icon'] !!} {{ $value['name'] }}</span>
+         </a>
+        @else
+        <a class="nav-link " id="tavb_{{ $value['id'] }}" data-bs-toggle="tab" href="#{{ $value['id'] }}" role="tab">
+             <span class="d-block d-sm-none">{!! $value['icon'] !!} </span>
+             <span class="d-none d-sm-block">{!! $value['icon'] !!} {{ $value['name'] }}</span>
+         </a>
+         @endif
+     </li>
+     @endforeach
+ </ul>
+</span>
  <!-- Tab panes -->
  <div class="tab-content p-3 text-muted">
 
-     <div class="tab-pane active" id="my-package" role="tabpanel">
+    @foreach ($config['relation'] as $key => $value) 
+     @if($loop->first)
+     <div class="tab-pane active" id="{{$value['id']}}" role="tabpanel">
          <p class="mb-0">
-          
-            <livewire:Instructor.InlineCreate />
-            <livewire:Component.GridWithCrud.InlineGridCreate />
+            @include($value['render'])
          </p>
      </div>
-     <div class="tab-pane" id="my-scheadule" role="tabpanel">
+     @else
+     <div class="tab-pane " id="{{$value['id']}}" role="tabpanel">
          <p class="mb-0">
-             @include('PanelAdmin.component.calendar.index')
+            @include($value['render'])
          </p>
      </div>
-     <div class="tab-pane" id="my-invoice" role="tabpanel">
-         <p class="mb-0">
-         <div class="table-responsive">
-             <table  class="table table-dark dt-table mb-0">
-
-                 <thead>
-                     <tr>
-                         <th>#</th>
-                         <th>Invoice No</th>
-                         <th>Date</th>
-                         <th>Package</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                     <tr>
-                         <th scope="row">1</th>
-                         <td>Mark</td>
-                         <td>Otto</td>
-                         <td>@mdo</td>
-                     </tr>
-                     <tr>
-                         <th scope="row">2</th>
-                         <td>Jacob</td>
-                         <td>Thornton</td>
-                         <td>@fat</td>
-                     </tr>
-                     <tr>
-                         <th scope="row">3</th>
-                         <td>Larry</td>
-                         <td>the Bird</td>
-                         <td>@twitter</td>
-                     </tr>
-                 </tbody>
-             </table>
-         </div>
-         </p>
-     </div>
-     <div class="tab-pane" id="settings" role="tabpanel">
-         <p class="mb-0">
-             Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
-             art party before they sold out master cleanse gluten-free squid
-             scenester freegan cosby sweater. Fanny pack portland seitan DIY,
-             art party locavore wolf cliche high life echo park Austin. Cred
-             vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-             farm-to-table VHS.
-         </p>
-     </div>
+     @endif
+     @endforeach
  </div>

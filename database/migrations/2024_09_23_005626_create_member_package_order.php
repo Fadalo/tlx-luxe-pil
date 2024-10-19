@@ -20,20 +20,22 @@ return new class extends Migration
             $table->foreign('package_variant_id')->references('id')->on('package_variant')->onDelete('cascade');
             
             $table->timestamp('activated_package_started_datetime')->nullable();
-            $table->integer('activated_package_due_date');
+            $table->smallInteger('activated_package_due_date')->default(0);
             $table->timestamp('activated_ticket_started_datetime')->nullable();
-            $table->integer('activated_ticket_due_date');
+            $table->smallInteger('activated_ticket_due_date')->default(0);
             $table->smallInteger('qty_ticket_used')->default(0);
             $table->smallInteger('qty_ticket_available')->default(0);
            
-            $table->string('status_package');
-            $table->string('status_payment');
-            $table->integer('is_member_created');
+            $table->string('status_package'); // Available,Actived,Expired
+            $table->string('status_payment'); // NotPaid,Paid,PaidPartialy 
+            $table->integer('is_member_created'); // 0,1 
           
             // System
-            $table->string('status_document');
+            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
