@@ -18,6 +18,7 @@
 
 <div class="row">
     <div class="col-12">
+        @livewire('WaQrCode');
         @include('PanelAdmin.component.crud.create')
     </div>
     
@@ -26,6 +27,7 @@
 </div>
 @endsection
 @section('script')
+
 <script src="assets/libs/@fullcalendar/core/main.min.js"></script>
 <script src="assets/libs/@fullcalendar/bootstrap/main.min.js"></script>
 <script src="assets/libs/@fullcalendar/daygrid/main.min.js"></script>
@@ -33,8 +35,6 @@
 <script src="assets/libs/@fullcalendar/interaction/main.min.js"></script>
 
 <!-- Calendar init -->
-<script src="assets/js/pages/calendar.init.js"></script>
-<script src="assets/js/pages/form-element.init.js"></script>
 
 <script src="assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 <script src="assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
@@ -47,5 +47,5 @@
 
 <script src="assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="assets/js/pages/datatables.init.js"></script>
+
 @endsection
