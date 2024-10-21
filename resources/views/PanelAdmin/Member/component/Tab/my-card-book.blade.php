@@ -14,7 +14,7 @@
                 <div class="col-md-4">
                 <div style="height:200px">
                     <div class="mt-3" style="display: flex;justify-content: flex-end;margin-right: 10px;">
-                        <button class="btn btn-success rounded-0">Payment</button>
+                        <button name="btnPayment" data="{{$i}}" class="btn btn-success rounded-0">Payment</button>
                     </div>
                     </div>
                 </div>

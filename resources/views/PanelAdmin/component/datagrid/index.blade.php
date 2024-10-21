@@ -55,7 +55,7 @@ table>td {
 
 <script>
 $(document).ready(function() {
-    var a = $("#datatable-{{ $config['module'] }}").DataTable({
+    const a = $("#datatable-{{ $config['module'] }}").DataTable({
         stateSave: !0,
         lengthChange: false,
         processing: false,

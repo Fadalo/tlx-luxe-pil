@@ -31,9 +31,9 @@
             </div>
         </div>
     </div>
-
 </div>
 
+@include('PanelAdmin.Member.component.modal.modalPayment');
 <!-- Canvas -->
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="visibility: hidden;" aria-hidden="true">
                                             <div class="offcanvas-header">
@@ -99,4 +99,30 @@
 
 <!-- Calendar init -->
 <!-- <script src="assets/js/pages/calendar.init.js"></script>-->
+
+<script>
+// Select the container with the ID 'list_by_status_book'
+const listByStatusBook = document.querySelector('#list_by_status_book');
+
+// Check if the container exists
+if (listByStatusBook) {
+    // Get all buttons with the name 'btnPayment' within this container
+    const paymentButtons = listByStatusBook.querySelectorAll('button[name="btnPayment"]');
+
+    // Loop through each button and add a click event listener
+    paymentButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Get the data attribute from the button
+            const dataValue = this.getAttribute('data');
+            $('#modalPayment #spanID').text(dataValue);
+            $('#modalPayment').modal('show');
+            // Perform your action here, e.g., log the data or send a request
+            console.log('Button clicked with data:', dataValue);
+        });
+    });
+}
+
+
+</script>
+
 @endsection

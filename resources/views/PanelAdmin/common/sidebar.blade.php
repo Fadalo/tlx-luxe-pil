@@ -99,32 +99,6 @@
                     </a>
                     
                 </li>
-                
-                <li class="menu-title">SETTINGS</li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-settings-5-line"></i>
-                        <span>Settings</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow"><i class="ri-shield-user-fill"></i>Role</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('admin.role.create') }}" class="waves-effect">Create Role</a></li>
-                                <li><a href="{{ route('admin.role.list') }}" class="waves-effect">Listing Role</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            
-                            <a href="javascript: void(0);" class="has-arrow"><i class="ri-user-add-line"></i>Users</a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('admin.user.create') }}" class="waves-effect">Create User</a></li>
-                                <li><a href="{{ route('admin.user.list') }}" class="waves-effect">Listing User</a></li>
-                            </ul>
-                        </li>                       
-                    </ul>
-                </li>
-                
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-layout-3-line"></i>
@@ -155,6 +129,37 @@
                         </li>
                     </ul>
                 </li>
+                <li class="menu-title">SETTINGS</li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-settings-5-line"></i>
+                        <span>Settings</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="ri-shield-user-fill"></i>Role</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ route('admin.role.create') }}" class="waves-effect">Create Role</a></li>
+                                <li><a href="{{ route('admin.role.list') }}" class="waves-effect">Listing Role</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            
+                            <a href="javascript: void(0);" class="has-arrow"><i class="ri-user-add-line"></i>Users</a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('admin.user.create') }}" class="waves-effect">Create User</a></li>
+                                <li><a href="{{ route('admin.user.list') }}" class="waves-effect">Listing User</a></li>
+                            </ul>
+                        </li>   
+                        <li>
+                            
+                            <a href="{{ route('admin.wa.settings') }}" class="waves-effect"><i class="ri-whatsapp-line"></i>WA Settings</a>
+                            
+                        </li>                    
+                    </ul>
+                </li>
+                
+                
                 
 
             </ul>

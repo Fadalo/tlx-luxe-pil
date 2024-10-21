@@ -31,19 +31,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/token', function (Request $request) {
     $token = $request->session()->token();
- 
     $token = csrf_token();
- 
-    // ...
+
 });
 
-
 # AUTH ADMIN - Frontend
-
-
-
 Route::post('/login-auth', 'App\Http\Controllers\AuthController@loginAdmin')->name('login.auth');
 Route::get('/login-new', 'App\Http\Controllers\AuthController@loginAdminShow')->name('login');
 
@@ -85,22 +80,13 @@ Route::get('/instructor/forgot-password', function () {
 // PanelAdmin
 Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
 
-    # Admin Dashboard
-    Route::get('/admin/dashboard', function () {
-        return view('PanelAdmin.dashboard');
-    })->name('admin.dashboard')->middleware('App\Http\Middleware\AuthAdmin');
+    
     
     $h2 = new routeAdminHelper();
     $h2->getRoute();
     
     
-    Route::get('/admin/member/scheadule/create', function () {
-        return view('PanelAdmin.Members.scheadule_create');
-    })->name('admin.member.scheadule.create');
-
-    Route::get('/admin/member/scheadule/change', function () {
-        return view('PanelAdmin.Members.scheadule_change');
-    })->name('admin.member.scheadule.change');
+   
     
 });
 

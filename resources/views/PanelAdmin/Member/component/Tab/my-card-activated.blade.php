@@ -6,7 +6,8 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Package<br>Private - Single</h5>
-                        <p class="card-text">Start At [ 19-09-2024 ]<br>Expired In 450 Days<br>Auto Actived In 7 Days<br>Used Ticket 1/10</p>
+                        <p class="card-text">Start At [ 19-09-2024 ]<br>Expired In 450 Days<br>Auto Actived In 7
+                            Days<br>Used Ticket 1/10</p>
                         <p class="card-text "><small class=" text-white">Last updated 3 mins ago</small></p>
                         <p>
 
@@ -16,18 +17,20 @@
                 <div class="col-md-4">
                     <div style="height:200px">
                         <div class="mt-3" style="display: flex;justify-content: flex-end;margin-right: 10px;">
-                            <button class="btn btn-success rounded-0">BOOK SESSION</button><br>
-                            <button class="btn btn-info rounded-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">DETAIL SESSION</button>
+                            <button name="btnBook" class="btn btn-success rounded-0">BOOK SESSION</button><br>
+                            <button name="btnDetailBook" class="btn btn-info rounded-0" type="button"
+                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+                                aria-controls="offcanvasBottom">DETAIL SESSION</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-12" style="display:none">
-                    
+
                 </div>
-                <div class="col-md-12 " >
+                <div class="col-md-12 ">
                     &nbsp;
-</div>
+                </div>
                 <div class="col-md-12 " style="display:none">
 
 

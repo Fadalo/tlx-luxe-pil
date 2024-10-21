@@ -11,7 +11,7 @@
                         <i class="ri-user-add-line"></i> Create {{ $config['module'] }}</a>
                        
                 </div>
-                <div class="d-grid">
+                <!--<div class="d-grid">
 
                     <div class="dropdown">
                         <a href="#" class="btn btn-success rounded-0 " type="button" style="width:100%">
@@ -19,7 +19,7 @@
                         </a>
 
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>

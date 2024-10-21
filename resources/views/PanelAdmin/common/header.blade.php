@@ -222,7 +222,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="#"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('admin.User.profile')}}"><i class="ri-user-line align-middle me-1"></i> Profile</a>
                     
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{{ route('logout')}}"><i

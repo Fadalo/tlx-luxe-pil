@@ -48,11 +48,8 @@
     </div>
 </div>
 
-
+@push('script_ext')
 <script type="text/javascript">
-  
-  
-
 document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener to the document
     const saveButton = document.querySelector('#formMember button[name="btnSave"]');
@@ -70,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .onResponse(function(res, params) {
             // Make stuff after on response of each request
-            
+           
             var result = JSON.parse(params.req.response);
             $('#offcanvasMember .btn-close').click();
             Swal.fire({
@@ -96,3 +93,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 </script>
+@endpush
