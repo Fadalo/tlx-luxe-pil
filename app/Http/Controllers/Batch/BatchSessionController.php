@@ -1,10 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Batch;
 
 use Illuminate\Http\Request;
 
-class BatchSession extends Controller
+use App\Http\Controllers\Controller; 
+class BatchSessionController extends Controller
 {
     //
+    public function index()
+    {
+
+    }
 }

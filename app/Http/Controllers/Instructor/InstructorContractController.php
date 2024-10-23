@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Instructor;
 
 use Illuminate\Http\Request;
 
-class InstructorContract extends Controller
+use App\Http\Controllers\Controller; 
+class InstructorContractController extends Controller
 {
     //
+    public function index(){
+
+    }
 }

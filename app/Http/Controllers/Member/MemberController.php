@@ -175,29 +175,42 @@ class MemberController extends Controller
     {
         //print_r(Auth::user()->id);
         //exit();
+        
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone_no' => 'required|string|max:255',
-            'pin' => 'required|integer|min:4', // Adjust max length as needed
-            'birthday' => 'required|date',
+            'phone_no'   => 'required|string|max:15', // Phone numbers usually have a max length limit
+            'pin'        => 'required|digits:4', // Ensures exactly 4 digits are allowed
+            'birthday'   => 'required|date|before:today',
         ]);
         
-        $member = Member::create([
-            'first_name' => $validatedData['first_name'],
-            'last_name' => $validatedData['last_name'],
-            'phone_no' => $validatedData['phone_no'],
-            'pin' => $validatedData['pin'],
-            'birthday' => $validatedData['birthday'],
-            'updated_by'=> Auth::user()->id,
-            'created_by'=> Auth::user()->id
-        ]);
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'Member created successfully!',
-            'member' => $member,
-        ]);
+        $m = Member::where('phone_no',$validatedData['phone_no'])->first();
+        //print_r(isset($m->id));
+        //exit();
+        if(!isset($m->id)){
+            $member = Member::create([
+                'first_name' => $validatedData['first_name'],
+                'last_name' => $validatedData['last_name'],
+                'phone_no' => $validatedData['phone_no'],
+                'pin' => $validatedData['pin'],
+                'birthday' => $validatedData['birthday'],
+                'updated_by'=> Auth::user()->id,
+                'created_by'=> Auth::user()->id
+            ]);
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Member created successfully!',
+                //'member' => $member,
+            ]);
+        }
+        else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Member Already Exits',
+                //'member' => $member,
+            ]);
+        }
     }
     public function create(request $request,response $response,$id=''){
         //$MemberResourse = MemberResource::collection(Member::find($id)->get())->toArray($request);

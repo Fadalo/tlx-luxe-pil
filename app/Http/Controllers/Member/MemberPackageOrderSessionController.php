@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Member;
 
 use Illuminate\Http\Request;
 
-class MemberPackageOrderSession extends Controller
+use App\Http\Controllers\Controller; 
+class MemberPackageOrderSessionController extends Controller
 {
     //
 }

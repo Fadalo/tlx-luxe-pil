@@ -30,11 +30,23 @@ table>td {
     style="width:100% !important">
     <thead>
         <tr>
+            
             @foreach (array_keys($config['meta']) as $key)
             @if ($loop->first)
             <th width="5%"></th>
             @endif
-            <th>{{ $help->CamelCase($key) }}</th> <!-- Display the keys as table headers -->
+            <?php 
+               // print_r($config['meta'][$key]);
+                //exit();
+                if (isset($config['meta'][$key]['label'])){
+                    $label = $config['meta'][$key]['label'];
+                }
+                else {
+                    $label = $help->CamelCase($key);
+                }
+            ?>
+           
+            <th>{{  $label }}</th> <!-- Display the keys as table headers -->
 
             @endforeach
 

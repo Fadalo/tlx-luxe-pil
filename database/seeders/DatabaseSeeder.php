@@ -10,6 +10,9 @@ use Database\Seeders\Package\PackageSeeder;
 use Database\Seeders\Member\MemberSeeder;
 use Database\Seeders\Instructor\InstructorSeeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\RoleSeeder;
+
+
 
 
 
@@ -30,6 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
         */
         $this->call([
+            RoleSeeder::class,
             UserSeeder::class,
             PackageSeeder::class,
             

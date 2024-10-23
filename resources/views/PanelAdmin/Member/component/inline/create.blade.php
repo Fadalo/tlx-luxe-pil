@@ -70,12 +70,24 @@ document.addEventListener('DOMContentLoaded', function () {
            
             var result = JSON.parse(params.req.response);
             $('#offcanvasMember .btn-close').click();
-            Swal.fire({
-                title: 'Success',
-                text: result.message,
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
+            if(result.success){
+
+                Swal.fire({
+                 title: 'Success',
+                 text: result.message,
+                 icon: 'success',
+                 confirmButtonText: 'OK'
+                });
+            }
+            else{
+                Swal.fire({
+                 title: 'Error',
+                 text: result.message,
+                 icon: 'warning',
+                 confirmButtonText: 'OK'
+                });
+            }
+            
            // alert(result.message);
             //console.log(result);
         })

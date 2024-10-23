@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Member;
 
 use App\Models\Member\Member;
 use Livewire\Component;

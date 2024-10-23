@@ -14,6 +14,7 @@ class UserController extends Controller
 {
     public $columns = [
         ['data' => 'action', 'width' => '5%'],
+        ['data' => 'role_id', 'width' => '35%'],
         ['data' => 'name', 'width' => '35%'],
         ['data' => 'phoneno', 'width' => '10%'],
         ['data' => 'email', 'width' => '25%'],
@@ -22,6 +23,7 @@ class UserController extends Controller
 
     public  $meta = [ 
         'id'              => ['type'=> 'text' ,'label' => 'ID'],
+        'role_id'            => ['type'=> 'select2' ,'label' => 'RoleName'],
         'name'            => ['type'=> 'text' ,'label' => 'Name'],
         'phoneno'        => ['type'=> 'text' ,'label' => 'PhoneNo'],
         'email'          => ['type'=> 'text','label' => 'Email'],
@@ -35,6 +37,7 @@ class UserController extends Controller
 
     public $listShow = [
         //'id'=>[] ,
+        'role_id'=>[],
         'name'=>[], 
         'phoneno'=>[],
         'email'=>[],
@@ -52,6 +55,7 @@ class UserController extends Controller
 
     public $detailShow=[
         //'id'=>['width'=>'col-md-0']  ,
+        'role_id'=>['width'=> 'col-md-12','related_table'=>'App\Models\Role\Role','related_value'=>'role_name'],
         'name'=>['width'=>'col-md-4'] , 
         'phoneno'=>['width'=>'col-md-4'],
         //'password'=>['width'=>'col-md-6'],
@@ -74,6 +78,7 @@ class UserController extends Controller
         // $members = Member::all(); // Adjust according to your needs
         $Users = User::select([
             'id',
+            'role_id',
             'name', // Combine first and last name
             'phoneno',
             'email',
@@ -86,6 +91,13 @@ class UserController extends Controller
         ->get();
 
         $s = datatables()->of($Users)
+            ->editColumn('role_id', function ($user) {
+                //$valueCol = $user->role_id;
+                $id =  $user->role_id;
+                $field = 'role_name';
+                $MetaValue['related_table'] = 'App\Models\Role\Role';
+                return view('PanelAdmin.component.select2.view',compact('id','field','MetaValue'));
+            })
             ->editColumn('updated_at', function ($user) {
                 $valueCol = $user->updated_at;
             
@@ -258,6 +270,8 @@ class UserController extends Controller
     public function profile(request $request,response $response){
 
         $id = Auth::User()->id;
+        $UserResourse = UserResource::collection(User::find($id)->get())->toArray($request);
+        $data = $UserResourse;
         $config = [
                     'page'   => [
                         'title' => 'User Profile',
@@ -269,9 +283,13 @@ class UserController extends Controller
                     'module' => 'user',
                     'columns' => json_encode($this->columns,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                     'objModule'=> User::find($id),
-                    'route'  => 'user'
+                    'route'  => 'user',
+                    'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
+                    'data' => $data,
         ];
 
+
+       
         return view('PanelAdmin.User.profile',compact('config'));
     }
 }
