@@ -13,13 +13,17 @@ use App\Http\resources\Package\PackageResource;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\Instructor\InstructorController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\scheadule\scheaduleController;
 
 
 $helper = new H1BHelper();
 $helper->adminRoute();
 
 //routeAdminHelper::getRoute();
+
+
+Route::get('/pdf','App\Http\Controllers\PdfController@viewPDF')->name('pdf');
 
 
 
@@ -87,7 +91,7 @@ Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
     
     
    
-    
+     
 });
 
 

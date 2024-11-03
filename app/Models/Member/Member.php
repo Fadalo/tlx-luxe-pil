@@ -39,6 +39,8 @@ class Member extends Authenticatable
         'last_name',
         'phone_no',
         'birthday',
+        'join_date',
+        'activated_date',
         'pin',
         'updated_by',
         'created_by',

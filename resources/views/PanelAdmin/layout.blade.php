@@ -14,6 +14,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+
+
     <!-- jquery.vectormap css -->
     <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet"
         type="text/css" />
@@ -33,6 +35,8 @@
     <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     @livewireStyles
     @yield('head-page')
     <script>
@@ -168,7 +172,7 @@
         color-scheme: dark;
     }
     </style>
-   
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
     @yield('script')
     @stack('script_ext')

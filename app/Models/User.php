@@ -27,6 +27,7 @@ class User extends Authenticatable
         'password',
         'updated_by',
         'created_by',
+        'role_id'
         
         
     ];

@@ -129,7 +129,26 @@ class UserController extends Controller
             ], 404);
         }
     }
-
+    public function edit(request $request,response $response,$id){
+        $param = $request->input();
+        unset($param['_token']);
+        $param['id'] = $id;
+        $param['updated_by']=Auth::User()->id;
+        $user = User::find($id);
+        
+        if ($user) {
+            // Update the instructor's attributes
+            $user->update($param);
+            return response()->json([
+                'success' => true,
+                'message' => 'field update successfully!'
+               
+            ]);
+        } else {
+            return response()->json(['success'=>false,'message' => 'field failed']);
+        }
+        
+    }
     public function store(request $request,response $response)
     {
         
@@ -194,7 +213,7 @@ class UserController extends Controller
 
     public function detail(request $request,response $response,$id){
         
-        $UserResourse = UserResource::collection(User::find($id)->get())->toArray($request);
+        $UserResourse = UserResource::collection(User::where('id',$id)->get())->toArray($request);
         $data = $UserResourse;
         $config = [
             'page'   => [
@@ -204,6 +223,7 @@ class UserController extends Controller
                 'parent' => 'User',
                 'author' => 'Telcomixo',
             ],
+            'id'=>$id,
             'module' => 'user',
             'route'  => 'user',
             'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),

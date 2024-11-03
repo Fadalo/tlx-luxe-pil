@@ -21,6 +21,11 @@
 //print_r($config);
 //exit();
 ?>
+<div class="row mb-3">
+    <div class="col-md-12">
+    <a href="{{ route('admin.role.list') }}" class="btn btn-info rounded-0">Back</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         @include('PanelAdmin.component.crud.detail')

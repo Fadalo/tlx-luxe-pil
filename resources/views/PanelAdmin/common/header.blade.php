@@ -41,7 +41,7 @@
 
         <div class="d-flex">
            
-            <div class="dropdown d-none d-inline-block d-lg-block ms-2">
+            <div class="dropdown d-none d-inline-none d-lg-none ms-2">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="ri-search-line"></i>
@@ -65,7 +65,7 @@
 
           
 
-            <div class="dropdown d-none d-lg-inline-block ms-1">
+            <div class="dropdown d-none d-lg-inline-none ms-1">
                 <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="ri-apps-2-line"></i>

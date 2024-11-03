@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('batch', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('remark')->nullable(); // Nullable if remark is optional
-            $table->string('status');
+            $table->text('remark')->nullable(); // Nullable if remark is optional
+            $table->integer('status');
             
             // Foreign key for instructor_id (fixed the table name)
             $table->unsignedBigInteger('instructor_id');
@@ -25,10 +25,10 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('package')->onDelete('cascade');
             
-            $table->timestamp('start_datetime')->nullable();
-            $table->timestamp('end_datetime')->nullable();
+            $table->date('start_datetime')->nullable();
+            $table->date('end_datetime')->nullable();
             
-            $table->string('status_document');
+            $table->enum('status', ['draft', 'locked'])->nullable()->default('draft');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 

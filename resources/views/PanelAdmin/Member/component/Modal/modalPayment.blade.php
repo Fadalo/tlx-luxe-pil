@@ -7,7 +7,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <span id="spanID"></span>
+                <div class="row">
+                    @foreach($config['metaTabPayment'] as $MetaKey=>$MetaValue )
+                        <div class="{{$MetaValue['width']}}">
+                            @switch($MetaValue['type'])
+                            @case('label')
+                                @include('PanelAdmin.component.label.create',['MetaKey',$MetaValue])
+                                @break
+                            @case('dropdown')
+                                @include('PanelAdmin.component.dropdown.create',['MetaKey',$MetaValue])
+                                @break
+                            @case('text')
+                                @include('PanelAdmin.component.text.create',['MetaKey',$MetaValue])
+                                @break
+                            @case('currency')
+                                @include('PanelAdmin.component.currency.create',['MetaKey',$MetaValue])
+                                @break
+                            @case('fileUpload')
+                                @include('PanelAdmin.component.fileUpload.create',['MetaKey',$MetaValue])
+                                @break
+                            @endswitch
+                        </div>
+                    @endforeach
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>

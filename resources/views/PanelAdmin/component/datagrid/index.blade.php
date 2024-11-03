@@ -35,11 +35,22 @@ table>td {
             @if ($loop->first)
             <th width="5%"></th>
             @endif
+            @if($loop->iteration==4)
             <?php 
-               // print_r($config['meta'][$key]);
-                //exit();
-                if (isset($config['meta'][$key]['label'])){
+           // print_r($config['meta'][$key]);
+               // $label = 1;
+            ?>
+            @endif
+            <?php 
+              // print_r($config['meta'][$key]);
+               // $label = 1;
+                   
+                if (is_array($config['meta'][$key]['label'])==1){
+                    $label = $config['meta'][$key]['label'][1];
+                }
+                elseif (isset($config['meta'][$key]['label'])){
                     $label = $config['meta'][$key]['label'];
+                    
                 }
                 else {
                     $label = $help->CamelCase($key);

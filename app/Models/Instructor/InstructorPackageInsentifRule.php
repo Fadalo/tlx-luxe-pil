@@ -13,7 +13,7 @@ class InstructorPackageInsentifRule extends Model
     protected $table = 'instructor_package_insentif_rule';
 
     public function InstructorContract(){
-        return $this->belongsTo(InstructorContract::class);
+        return $this->belongsTo(InstructorContract::class,'instructor_contract_id');
     }
     public function InstructorPackageInsentifRuleMulti()
     {

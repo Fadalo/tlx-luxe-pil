@@ -20,6 +20,9 @@
     <link type="text/css" rel="stylesheet" href="login/assets/css/style.css">
     <link rel="stylesheet" type="text/css" id="style_sheet" href="login/assets/css/skins/default.css">
 
+    <style>
+    
+    </style>
 </head>
 <body id="top">
 <!-- Google Tag Manager (noscript) -->
@@ -92,14 +95,14 @@
                             <i class="flaticon-password"></i>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="checkbox form-group form-box">
+                        <div class="checkbox form-group form-box" style="display:none">
                             <div class="form-check float-start">
                                 <input class="form-check-input" type="checkbox" id="rememberme">
                                 <label class="form-check-label" for="rememberme">
                                     Remember me
                                 </label>
                             </div>
-                            <a href="forgot-password-19.html" class="link-light float-end forgot-password">Forgot your password?</a>
+                            <a  href="forgot-password-19.html" class="link-light float-end forgot-password">Forgot your password?</a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group">

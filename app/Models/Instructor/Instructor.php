@@ -77,6 +77,6 @@ class Instructor extends Model
 
     public function InstructorContract()
     {
-        return $this->belongsToMany(InstructorContract::class);
+        return $this->belongsToMany(InstructorContract::class,'instructor_id');
     }   
 }

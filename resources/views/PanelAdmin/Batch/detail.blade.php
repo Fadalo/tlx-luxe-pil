@@ -16,12 +16,17 @@
 @endsection
 
 @section('content')
-
+<div class="row mb-3">
+    <div class="col-md-12">
+    <a href="{{ route('admin.batch.list') }}" class="btn btn-info rounded-0">Back</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         @include('PanelAdmin.component.crud.detail')
         
     </div>
+    @if(is_array($config['relation']) && !empty($config['related']))
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -31,7 +36,7 @@
             </div>
         </div>
     </div>
-
+    @endif
 </div>
 @endsection
 @section('script')

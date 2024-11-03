@@ -6,8 +6,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Package<br>Private - Single</h5>
-                        <p class="card-text">Start At [ 19-09-2024 ]<br>Expired In 450 Days<br>Auto Actived In 7
-                            Days<br>Used Ticket 1/10</p>
+                        <span class="card-text">Start At [ 19-09-2024 ]<br><livewire:CountdownTimer :prefix="'Expired In:'"  :targetTime="'2025-02-01 18:00:00'" :id="'ss'"/><livewire:CountdownTimer :prefix="'Auto Actived In'" :id="'dd'" :format="'days'" :targetTime="'2024-11-01 18:00:00'"/><br>Used Ticket 1/10</span>
                         <p class="card-text "><small class=" text-white">Last updated 3 mins ago</small></p>
                         <p>
 

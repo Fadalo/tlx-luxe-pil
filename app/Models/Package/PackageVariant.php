@@ -24,8 +24,6 @@ class PackageVariant extends Model
         'name',
         'package_id',
         'desc',
-        'package_available2activated_duration',
-        'package_ticket_duration',
         'package_qty_ticket',
         'status_document',
         'created_by',

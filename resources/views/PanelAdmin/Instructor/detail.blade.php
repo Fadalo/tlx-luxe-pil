@@ -6,17 +6,15 @@
 @section('page-parent',$config['page']['parent'])
 
 @section('head-page')
-<link rel="stylesheet" href="assets/libs/@fullcalendar/core/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/daygrid/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/bootstrap/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/timegrid/main.min.css" type="text/css">
-
-
-
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 @endsection
 
 @section('content')
-
+<div class="row mb-3">
+    <div class="col-md-12">
+    <a href="{{ route('admin.instructor.list') }}" class="btn btn-info rounded-0">Back</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         @include('PanelAdmin.component.crud.detail')
@@ -37,6 +35,7 @@
         </div>
     </div>
 
+    
 </div>
 @endsection
 @section('script')

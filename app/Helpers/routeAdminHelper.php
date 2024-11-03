@@ -14,7 +14,9 @@ class routeAdminHelper
         'menu',
         'role',
         'user',
-        'scheadule'
+        'scheadule',
+        'rule',
+        'role_rule'
     ];
 
     public  function getRoute(){
@@ -41,6 +43,9 @@ class routeAdminHelper
             ->name('admin.'.$module.'.create');
 
             Route::get(trim("admin/".$module."/{id}/edit"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@edit"))
+            ->name('admin.'.$module.'.edit');
+
+            Route::post(trim("admin/".$module."/{id}/edit2"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@edit"))
             ->name('admin.'.$module.'.edit');
 
             Route::get(trim("admin/".$module."/{id}"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@detail"))
@@ -80,6 +85,20 @@ class routeAdminHelper
 
         Route::post(trim("admin/wa/getContacts"),trim("App\Http\Controllers\\WA\\WaController@getContacts"))
         ->name('admin.wa.getContacts');
+
+        
+        //Attendance 
+        Route::get(trim("admin/attendance"),trim("App\Http\Controllers\\AttendanceController@attendance"))
+        ->name('admin.attendance');
+
+         //Attendance 
+         Route::get(trim("admin/reports"),trim("App\Http\Controllers\\ReportsController@index"))
+         ->name('admin.reports');
+         Route::get(trim("admin/{reports}/reports"),trim("App\Http\Controllers\\ReportsController@index"))
+         ->name('admin.reports.page');
+         //Edit Field
+
+         
     }
 }
 

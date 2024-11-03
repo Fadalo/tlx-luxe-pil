@@ -117,6 +117,26 @@ class RoleController extends Controller
             ], 404);
         }
     }
+    public function edit(request $request,response $response,$id){
+        $param = $request->input();
+        unset($param['_token']);
+        $param['id'] = $id;
+        $param['updated_by']=Auth::User()->id;
+        $role = Role::find($id);
+        
+        if ($role) {
+            // Update the instructor's attributes
+            $role->update($param);
+            return response()->json([
+                'success' => true,
+                'message' => 'field update successfully!'
+               
+            ]);
+        } else {
+            return response()->json(['success'=>false,'message' => 'field failed']);
+        }
+        
+    }
     public function store(request $request,response $response)
     {
         //print_r(Auth::user()->id);
@@ -186,6 +206,7 @@ class RoleController extends Controller
                         'parent' => 'Role',
                         'author' => 'Telcomixo',
                     ],
+                    
                     'module' => 'role',
                     'route'  => 'role',
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),

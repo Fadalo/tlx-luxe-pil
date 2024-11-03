@@ -119,6 +119,26 @@ class packageController extends Controller
             ], 404);
         }
     }
+    public function edit(request $request,response $response,$id){
+        $param = $request->input();
+        unset($param['_token']);
+        $param['id'] = $id;
+        $param['updated_by']=Auth::User()->id;
+        $package = Package::find($id);
+        
+        if ($package) {
+            // Update the instructor's attributes
+            $package->update($param);
+            return response()->json([
+                'success' => true,
+                'message' => 'field update successfully!'
+               
+            ]);
+        } else {
+            return response()->json(['success'=>false,'message' => 'field failed']);
+        }
+        
+    }
     public function store(request $request,response $response)
     {
         //print_r(Auth::user()->id);
@@ -178,7 +198,7 @@ class packageController extends Controller
     }
 
     public function detail(request $request,response $response,$id){
-        $PackageResource = PackageResource::collection(Package::find($id)->get())->toArray($request);
+        $PackageResource = PackageResource::collection(Package::where('id',$id)->get())->toArray($request);
         $data = $PackageResource;
         $config = [
                     'page'   => [
@@ -188,6 +208,7 @@ class packageController extends Controller
                         'parent' => 'Package',
                         'author' => 'Telcomixo',
                     ],
+                    'id'=>$id,
                     'module' => 'package',
                     'route'  => 'package',
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
@@ -207,7 +228,7 @@ class packageController extends Controller
                     ]
 
                 ];
-        return view('PanelAdmin.Member.detail',compact('config'));
+        return view('PanelAdmin.Package.detail',compact('config'));
     }
     
     public function list(request $request,response $response){

@@ -14,6 +14,26 @@ class MemberPackageOrder extends Model
     use HasFactory;
     protected $table = 'member_package_order';
 
+    protected $fillable = [
+        'member_id',
+        'package_variant_id',
+        'batch_id',
+        'activated_package_started_datetime',
+        'activated_package_due_date',
+        'activated_ticket_started_datetime',
+        'activated_ticket_due_date',
+        'qty_ticket_used',
+        'qty_ticket_available',
+        'status_package',
+        'status_payment',
+        'is_member_created',
+        'status_document',
+        'created_by',
+        'updated_by',
+        
+        
+        
+    ];
     public function Member(){
         return $this->belongsTo(Member::class, 'member_id');
     }
@@ -25,5 +45,23 @@ class MemberPackageOrder extends Model
         return $this->hasMany(MemberPackageOrderSession::class);
     }   
     
+    public function scopeBook($query)
+    {
+        return $query->where('status_package', 'book');
+    }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('status_package', 'available');
+    }
+
+    public function scopeActived($query)
+    {
+        return $query->where('status_package', 'actived');
+    }
     
+    public function scopeExpired($query)
+    {
+        return $query->where('status_package', 'expired');
+    }
 }

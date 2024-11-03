@@ -10,6 +10,18 @@
 @endsection
 
 @section('content')
+
+<!-- end row -->
+@endsection
+
+@section('script')
+ <!-- apexcharts -->
+ <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+ <script src="assets/js/pages/dashboard.init.js"></script> 
+@endsection
+
+<?php
+/*
 <div class="row">
     <div class="col-xl-3 col-md-12">
         <div class="card">
@@ -423,11 +435,5 @@
         </div><!-- end card -->
     </div><!-- end col -->
 </div>
-<!-- end row -->
-@endsection
-
-@section('script')
- <!-- apexcharts -->
- <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
- <script src="assets/js/pages/dashboard.init.js"></script> 
-@endsection
+*/
+?>

@@ -18,12 +18,8 @@
 
 <div class="row">
     <div class="col-12">
-        @livewire('WaQrCode');
         @include('PanelAdmin.component.crud.create')
     </div>
-    
-   
-
 </div>
 @endsection
 @section('script')

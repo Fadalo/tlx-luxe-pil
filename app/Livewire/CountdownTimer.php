@@ -12,6 +12,9 @@ class CountdownTimer extends Component
         return view('livewire.countdown-timer');
     }
 */
+    public $format;
+    public $id;
+    public $prefix;
     public $targetTime;
     public $remainingTime;
     public $currentTime;
@@ -21,9 +24,6 @@ class CountdownTimer extends Component
     public $diffInMinutes;
     public $diffInSeconds;
     
-    
-    
-
 
     public function mount($targetTime)
     {
@@ -33,15 +33,16 @@ class CountdownTimer extends Component
 
     public function updateRemainingTime()
     {
+        if($this->remainingTime != 'Expired'){
         $now = Carbon::now();
         $this->currentTime = $now;
         $diff = $this->targetTime->diff($now);
         
 
-        $diffInDays = $now->diff($this->targetTime);
-        $diffInHours = $now->copy()->addDays($diffInDays)->diffInHours($this->targetTime);
-        $diffInMinutes = $now->copy()->addDays($diffInDays)->addHours($diffInHours)->diffInMinutes($this->targetTime);
-        $diffInSeconds = $now->copy()->addDays($diffInDays)->addHours($diffInHours)->addMinutes($diffInMinutes)->diffInSeconds($this->targetTime);
+        $diffInDays = $now->diffInDays($this->targetTime);
+        $diffInHours = $now->diffInHours($this->targetTime);
+        $diffInMinutes = $now->diffInMinutes($this->targetTime);
+        $diffInSeconds = $now->diffInSeconds($this->targetTime);
 
 
 
@@ -54,11 +55,49 @@ class CountdownTimer extends Component
             $diff->s   // Difference in seconds
         );
         */
-        $this->remainingTime = "Difference: $diff->m months- $diff->d days |$diff->h : $diff->i : $diff->s    ";
+        switch($this->format)
+        {
+            case 'days':
+                     $this->remainingTime = sprintf(
+    $this->prefix." %d days",
+    round($diffInDays)
+);
+                break;
+            case 'hours':
+                    $this->remainingTime = rounded($diffInHours);
+                break;
+            default:
+                    if ($diff->m == 0 && $diff->d == 0 && $diff->h == 0 && $diff->i == 0 && $diff->s == 0) {
+                        $this->remainingTime = "Expired";
+                    } elseif ($diff->m == 0 && $diff->d > 0) {
+                        $this->remainingTime = sprintf(
+                            "%s %d days %02d:%02d:%02d", 
+                            $this->prefix, 
+                            round($diff->d), 
+                            round($diff->h), 
+                            round($diff->i), 
+                            round($diff->s)
+                        );
+                        
+                    } elseif ($diff->m == 0 && $diff->d == 0 && $diff->h > 0) {
+                        $this->remainingTime = $this->prefix."$diff->h : $diff->i : $diff->s";
+                    } elseif ($diff->m == 0 && $diff->d == 0 && $diff->h == 0) {
+                        $this->remainingTime = $this->prefix."$diff->i : $diff->s";
+                    } else {
+                        $this->remainingTime = $this->prefix." $diff->m months - $diff->d days $diff->h:$diff->i:$diff->s";
+                    }
+                break;
+        }
+        
+        
+    }
+
+       
     }
 
     public function render()
     {
+        
         $this->updateRemainingTime();
         return view('livewire.countdown-timer');
     }

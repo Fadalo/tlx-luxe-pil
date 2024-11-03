@@ -21,7 +21,7 @@
                          <td>CASH - Rp 550.000,00</td>
                          <td>19/09/2024</td>
                          <td>Private - Single</td>
-                         <td><button class="btn btn-primary">Print</button></td>
+                         <td><a target="_blank" href="{{ route('pdf')}}" class="btn btn-primary">Print</a></td>
                          
                      </tr>
                      <tr>
@@ -31,7 +31,7 @@
                          <td>BCA -8293019339- Rp 550.000,00</td>
                          <td>20/10/2024</td>
                          <td>Private - Duo</td>
-                         <td><button class="btn btn-primary">Print</button></td>
+                         <td><a target="_blank" href="{{ route('pdf')}}" class="btn btn-primary">Print</a></td>
                      </tr>
                      <tr>
                          <th scope="row">3</th>
@@ -40,7 +40,7 @@
                          <td>BRI -8293019349- Rp 550.000,00</td>
                          <td>31/11/2024</td>
                          <td>Private - Single</td>
-                         <td><button class="btn btn-primary">Print</button></td>
+                         <td><a target="_blank" href="{{ route('pdf')}}" class="btn btn-primary">Print</a></td>
                      </tr>
                  </tbody>
              </table>

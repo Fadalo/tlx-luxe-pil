@@ -1,4 +1,4 @@
-<div wire:poll.1000ms>
-    Countdown: {{ $remainingTime }}
-  || {{ $currentTime }}  | {{ $targetTime }}
+<div id="{{$id}}" wire:poll.1000ms>
+    {{ $remainingTime }}
+  
 </div>

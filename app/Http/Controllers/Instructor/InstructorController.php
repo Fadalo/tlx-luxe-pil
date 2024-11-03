@@ -48,7 +48,7 @@ class InstructorController extends Controller
 
     public $listShow = [
         //'id'=>[] ,
-        'name'=>['type'=>'custom','call_m'=> 'name_callback' ,'callback_execute'=>'name_callback($item)','callback_function'=>'function name_callback($item)
+        'name'=>['label'=>'Name','type'=>'custom','call_m'=> 'name_callback' ,'callback_execute'=>'name_callback($item)','callback_function'=>'function name_callback($item)
         {
             return $item["first_name"].\' \'.$item["last_name"];
         }'], 
@@ -173,6 +173,27 @@ class InstructorController extends Controller
             ], 404);
         }
     }
+    public function edit(request $request,response $response,$id){
+        $param = $request->input();
+        unset($param['_token']);
+        $param['id'] = $id;
+        $param['updated_by']=Auth::User()->id;
+        $instructor = Instructor::find($id);
+        
+        if ($instructor) {
+            // Update the instructor's attributes
+            $instructor->update($param);
+            return response()->json([
+                'success' => true,
+                'message' => 'field update successfully!'
+               
+            ]);
+        } else {
+            return response()->json(['success'=>false,'message' => 'field failed']);
+        }
+        
+    }
+    
     public function store(request $request,response $response)
     {
         //print_r(Auth::user()->id);
@@ -197,7 +218,7 @@ class InstructorController extends Controller
         
         return response()->json([
             'success' => true,
-            'message' => 'Member created successfully!',
+            'message' => 'Instructor created successfully!',
             'member' => $member,
         ]);
     }
@@ -233,8 +254,9 @@ class InstructorController extends Controller
                         'parent' => 'Intructors',
                         'author' => 'Telcomixo',
                     ],
-                    'module' => 'instuctor',
-                    'route'  => 'instuctor',
+                    'id'=>$id,
+                    'module' => 'instructor',
+                    'route'  => 'instructor',
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
                     'data' => $data,
                     'relation'=>[
@@ -244,7 +266,7 @@ class InstructorController extends Controller
                             'name'=> 'My Contract',
                             'type'=> 'crud',
                             'module'=> 'member_order',
-                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-package',
+                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-contract',
                         ],
                         '2' => [
                             'id'=> 'my-scheadule',

@@ -7,10 +7,23 @@
 
 @section('head-page')
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css">
+    <style>
+        .dropzone {
+    min-height: 150px;
+    border: 2px solid rgb(80 80 80 / 30%);
+    background: #292f3f;
+    padding: 20px 20px;
+}
+    </style>
 @endsection
 
 @section('content')
-
+<div class="row mb-3">
+    <div class="col-md-12">
+    <a href="{{ route('admin.member.list') }}" class="btn btn-info rounded-0">Back</a>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
     
@@ -33,7 +46,7 @@
     </div>
 </div>
 
-@include('PanelAdmin.Member.component.modal.modalPayment');
+@include('PanelAdmin.Member.component.modal.modalPayment')
 <!-- Canvas -->
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="visibility: hidden;" aria-hidden="true">
                                             <div class="offcanvas-header">
@@ -94,8 +107,9 @@
 @section('script')
 
 
-
-
+<script src="assets/libs/inputmask/jquery.inputmask.min.js"></script>
+<script src="assets/js/pages/form-mask.init.js"></script>
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
 
 <!-- Calendar init -->
 <!-- <script src="assets/js/pages/calendar.init.js"></script>-->
@@ -123,6 +137,22 @@ if (listByStatusBook) {
 }
 
 
+window.addEventListener('swal:payment', event => {
+        
+     $('#modalPayment').modal('show');
+           console.log(event.detail[0]); 
+          
+});
+
 </script>
+<?php
+/*
+ Swal.fire({
+               icon: event.detail[0].icon,
+               title: event.detail[0].title,
+               text: event.detail[0].text,
+           });
+*/
+?>
 
 @endsection

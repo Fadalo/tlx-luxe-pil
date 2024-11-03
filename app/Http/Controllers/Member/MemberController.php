@@ -46,7 +46,7 @@ class MemberController extends Controller
     
     public $listShow = [
         //'id'=>[] ,
-        'name'=>['type'=>'custom','call_m'=> 'name_callback' ,'callback_execute'=>'name_callback($item)','callback_function'=>'function name_callback($item)
+        'name'=>['type'=>'custom','label'=>'name','call_m'=> 'name_callback' ,'callback_execute'=>'name_callback($item)','callback_function'=>'function name_callback($item)
         {
             return $item["first_name"].\' \'.$item["last_name"];
         }'], 
@@ -93,6 +93,18 @@ class MemberController extends Controller
         'created_by'=>['width'=>'col-md-3','related_table'=>'App\Models\User','related_value'=>'name'],
         'updated_at'=>['width'=>'col-md-3'],
         'updated_by'=>['width'=>'col-md-3','related_table'=>'App\Models\User','related_value'=>'name']
+    ];
+
+    public $paymentTab=[
+        'id'=>['label'=>'id','type'=>'hidden','width'=>'col-md-0'],
+        'package_order_id'=>['label'=>'Package Order','type'=>'hidden','width'=>'col-md-0'],
+        'order_no'=>['label'=>'Order No','type'=>'label','width'=>'col-md-6'],
+        'package_id'=>['label'=>'Package','type'=>'label','width'=>'col-md-6'],
+        'payment_type'=>['label'=>'Type','type'=>'dropdown','width'=>'col-md-12','enum'=>['CASH','TRANSFER'],'enum_default'=>'CASH'],
+        'bank_account'=>['label'=>'Bank Account','type'=>'text','width'=>'col-md-12'],
+        'payment'=>['label'=>'Payment','type'=>'currency','width'=>'col-md-12'],
+        'payment_prof'=>['label'=>'Payment Proff','type'=>'fileUpload','width'=>'col-md-12'],
+        'payment_date'=>['label'=>'Payment Date','type'=>'date','width'=>'col-md-6']
     ];
 
     public function index()
@@ -170,6 +182,30 @@ class MemberController extends Controller
                 'message' => 'Member not found!',
             ], 404);
         }
+    }
+    public function edit(request $request,response $response,$id){
+        $param = $request->input();
+       //print_r($param);
+     
+       //exit();
+
+        unset($param['_token']);
+        $param['id'] = $id;
+        $param['updated_by']=Auth::User()->id;
+        $member = Member::find($id);
+        
+        if ($member) {
+            // Update the instructor's attributes
+            $member->update($param);
+            return response()->json([
+                'success' => true,
+                'message' => 'field update successfully!'
+               
+            ]);
+        } else {
+            return response()->json(['success'=>false,'message' => 'field failed']);
+        }
+        
     }
     public function store(request $request,response $response)
     {
@@ -249,10 +285,12 @@ class MemberController extends Controller
                         'parent' => 'Members',
                         'author' => 'Telcomixo',
                     ],
+                    'id'=>$id,
                     'module'  => 'member',
                     'route'   => 'member',
                     
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
+                    'metaTabPayment' =>$this->paymentTab,
                     'data' => $data,
                     'relation'=>[
                         '0'   => [

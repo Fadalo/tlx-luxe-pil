@@ -8,24 +8,18 @@
 @section('head-page')
 <!-- DataTables -->
         <link href="assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        
-       
 @endsection
 
 @section('content')
-
 @include('PanelAdmin.component.list-status.view')
+@include('PanelAdmin.Batch.component.inline.create')
+
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                
-                
-
                 @include('PanelAdmin.component.datagrid.index',$config)
-
-
             </div> <!-- end card body-->
         </div> <!-- end card -->
     </div><!-- end col-->

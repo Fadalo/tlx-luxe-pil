@@ -1,0 +1,1 @@
+<livewire:DynamicGrid  :config="$config" />

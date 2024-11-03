@@ -11,7 +11,7 @@ class InstructorScheadule extends Model
     protected $table = 'instructor_scheadule';
 
     public function InstructorContract(){
-        return $this->belongsTo(InstructorContract::class);
+        return $this->belongsTo(InstructorContract::class,'instructor_contract_id');
     }
 }
 
