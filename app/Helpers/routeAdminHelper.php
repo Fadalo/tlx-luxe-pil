@@ -11,12 +11,12 @@ class routeAdminHelper
         'instructor',
         'package',
         'batch',
-        'menu',
+        'MenuAdmin',
         'role',
         'user',
         'scheadule',
         'rule',
-        'role_rule'
+        'RoleRule'
     ];
 
     public  function getRoute(){
@@ -31,27 +31,27 @@ class routeAdminHelper
 
             //print_r("App\Http\Controllers\\".$module."\\".$module."Controller@list");
             
-            Route::get("admin/".$module."/list", trim("App\Http\Controllers\\".$module."\\".$module."Controller@list"))
+            Route::get("admin/".$module."/list", trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@list"))
             ->name('admin.'.$module.'.list');
-            Route::get("admin/".$module."/list-$module", trim("App\Http\Controllers\\".$module."\\".$module."Controller@getData"))
+            Route::get("admin/".$module."/list-$module", trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@getData"))
             ->name('admin.'.$module.'.list-'.$module);
     
-            Route::get(trim("admin/".$module."/create"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@create"))
+            Route::get(trim("admin/".$module."/create"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@create"))
             ->name('admin.'.$module.'.create');
             
-            Route::post(trim("admin/".$module."/create"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@store"))
+            Route::post(trim("admin/".$module."/create"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@store"))
             ->name('admin.'.$module.'.create');
 
-            Route::get(trim("admin/".$module."/{id}/edit"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@edit"))
+            Route::get(trim("admin/".$module."/{id}/edit"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@edit"))
             ->name('admin.'.$module.'.edit');
 
-            Route::post(trim("admin/".$module."/{id}/edit2"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@edit"))
+            Route::post(trim("admin/".$module."/{id}/edit2"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@edit"))
             ->name('admin.'.$module.'.edit');
 
-            Route::get(trim("admin/".$module."/{id}"), trim("App\Http\Controllers\\".$module."\\".$module."Controller@detail"))
+            Route::get(trim("admin/".$module."/{id}"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@detail"))
             ->name('admin.'.$module.'.detail');
 
-            Route::post(trim("admin/".$module."/{id}/delete"),trim("App\Http\Controllers\\".$module."\\".$module."Controller@delete"))
+            Route::post(trim("admin/".$module."/{id}/delete"),trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@delete"))
             ->name('admin.'.$module.'.delete');
 
           
@@ -98,7 +98,9 @@ class routeAdminHelper
          ->name('admin.reports.page');
          //Edit Field
 
-         
+         Route::post("admin/member/upload", trim("App\Http\Controllers\\Member\\MemberController@upload"))
+         ->name('admin.member.upload');
+ 
     }
 }
 

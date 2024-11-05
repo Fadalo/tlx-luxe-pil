@@ -112,6 +112,18 @@ class MemberController extends Controller
         $members = Member::all(); // Get all members
         return MemberResource::collection($members); // Return resource collection
     }
+    public function upload(Request $request , Response $response){
+        
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads', $filename, 'public');
+
+            return response()->json(['success' => true, 'file_path' => '/storage/' . $filePath]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'File upload failed']);
+    }
     public function getData(Request $request)
     {
         // Fetch the data from the model

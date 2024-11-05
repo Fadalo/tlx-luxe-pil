@@ -4,10 +4,19 @@
         Action <i class="mdi mdi-chevron-down"></i>
     </button>
     <div class="dropdown-menu rounded-0" style="">
-        
+       
+        @if($route =='MenuAdmin' || $route =='RoleRule')
+       
+        <a class="dropdown-item"
+            href="{{ route('admin.'.$route.'.detail', $module_data['id']) }}">Edit
+        </a>
+        @else
+    
         <a class="dropdown-item"
             href="{{ route('admin.'.strtolower($route).'.detail', $module_data['id']) }}">Edit
         </a>
+        @endif
+        
         <div class="dropdown-divider"></div>
         <form name="formDelete_{{ $route }}">
         <a class="dropdown-item" name="btnDelete" data-id="{{$module_data['id']}}"

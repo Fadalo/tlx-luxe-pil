@@ -1,33 +1,52 @@
 version: '3.8'
 
 services:
-  app:
+  luxe-app:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - APP_URL=http://localhost
     ports:
-      - "9000:9000"
+      - "5443:443"
+      - "5000:80"
+      - "5001:5001"
+      
     volumes:
-      - .:/var/www
+      - luxe_http_data:/var/www/html
     networks:
-      - app-network
+      - luxe-network
+      
+  luxe-qr:
+    build:
+      context: .
+      dockerfile: /whatsapp/Dockerfile
+    environment:
+      - APP_URL=http://localhost
+    ports:
+      - "3000:3000"
+    volumes:
+      - luxe_wa_data:/var/www/html
+    networks:
+      - luxe-network
 
-  mysql:
-    image: mysql:5.7
-    restart: always
+  luxe-mysql:
+    image: mysql:latest
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
+      MYSQL_DATABASE: em_db
+      MYSQL_USER: em-user
       MYSQL_PASSWORD: secret
     volumes:
-      - db_data:/var/lib/mysql
+      - luxe_db_data:/var/lib/mysql
     networks:
-      - app-network
+      - luxe-network
 
 networks:
-  app-network:
+  luxe-network:
     driver: bridge
 
 volumes:
-  db_data:
+  luxe_db_data:
+  luxe_http_data:

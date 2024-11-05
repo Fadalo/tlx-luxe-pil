@@ -1,5 +1,6 @@
 <div>
-    <form action="#" class="dropzone">
+    <form action="{{ route('admin.member.upload')}}" class="dropzone">
+         @csrf
         <div class="fallback">
             <input name="file" type="file" multiple="multiple">
         </div>

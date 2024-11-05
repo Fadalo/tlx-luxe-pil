@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Package\PackageVariantRule;
+
 class Rule extends Model
 {
     use HasFactory, Notifiable;
@@ -26,6 +27,10 @@ class Rule extends Model
         'updated_by',
     ];
 
+    protected static function newFactory()
+    {
+        return \Database\Factories\Rule\RuleFactory::new();
+    }
     public function PackageVariantRule()
     {
         return $this->hasMany(PackageVariantRule::class,'rule_id');

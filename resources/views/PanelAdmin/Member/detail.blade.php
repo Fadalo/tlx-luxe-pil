@@ -46,7 +46,7 @@
     </div>
 </div>
 
-@include('PanelAdmin.Member.component.modal.modalPayment')
+@include('PanelAdmin.Member.component.Modal.modalPayment')
 <!-- Canvas -->
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="visibility: hidden;" aria-hidden="true">
                                             <div class="offcanvas-header">

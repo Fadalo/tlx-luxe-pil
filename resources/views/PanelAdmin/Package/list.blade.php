@@ -16,7 +16,7 @@
 
 @include('PanelAdmin.component.list-status.view')
 
-@include('PanelAdmin.Package.component.inline.create')
+@include('PanelAdmin.Package.Component.inline.create')
 <div class="row">
     <div class="col-12">
         <div class="card">

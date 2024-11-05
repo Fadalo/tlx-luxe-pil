@@ -4,6 +4,7 @@ namespace App\Models\Settings;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class MenuAdmin extends Model
 {
@@ -22,8 +23,10 @@ class MenuAdmin extends Model
         'menu_controller',
         'menu_route',
         'menu_icon',
-        'menu_parent',
-        'remark'
+        'parent_id',
+        'remark',
+        'updated_by',
+        'created_by',
     ];
         
     

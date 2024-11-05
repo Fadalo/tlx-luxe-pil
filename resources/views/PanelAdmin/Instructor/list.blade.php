@@ -14,7 +14,7 @@
 @section('content')
 
 @include('PanelAdmin.component.list-status.view')
-@include('PanelAdmin.Instructor.component.inline.create')
+@include('PanelAdmin.Instructor.Component.inline.create')
 
 <div class="row">
     <div class="col-12">

@@ -43,7 +43,7 @@ class BatchController extends Controller
         'start_datetime'       => ['type'=> 'datetime','label'=> 'Start Date'],
         'end_datetime'     => ['type'=> 'datetime','label'=> 'End Date'],
         'status_document' => ['type'=> 'dropdown','label'=> 'Status Document'],
-        'qty_book'     => ['type'=> 'number','label'=> 'QtyAvailable'],
+        'qty_book'     => ['type'=> 'number','label'=> 'QtyBook'],
         'qty_max' => ['type'=> 'number','label'=> 'QtyMax'],
         
         'created_at' => ['type'=> 'datetime','label'=> 'Created At'],

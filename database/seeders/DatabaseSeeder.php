@@ -11,8 +11,8 @@ use Database\Seeders\Member\MemberSeeder;
 use Database\Seeders\Instructor\InstructorSeeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\RoleSeeder;
-
-
+use Database\Seeders\RuleSeeder;
+use Database\Seeders\BatchSeeder;
 
 
 
@@ -39,7 +39,8 @@ class DatabaseSeeder extends Seeder
             
             MemberSeeder::class,
             InstructorSeeder::class,
-            
+            RuleSeeder::class,
+            BatchSeeder::class
         ]);
 
     }

@@ -85,11 +85,11 @@
                             
                         </li>
                         <li>
-                            <a href="{{ route('admin.menu.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Menu</a>
+                            <a href="{{ route('admin.MenuAdmin.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Menu</a>
                             
                         </li>
                         <li>
-                            <a href="{{ route('admin.role_rule.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Role Rule</a>
+                            <a href="{{ route('admin.RoleRule.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Role Rule</a>
                             
                         </li>
                         <li>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('remark')->nullable(); // Nullable if remark is optional
-            $table->integer('status');
+            $table->integer('status')->nullable(); 
             
             // Foreign key for instructor_id (fixed the table name)
             $table->unsignedBigInteger('instructor_id');
@@ -27,8 +27,11 @@ return new class extends Migration
             
             $table->date('start_datetime')->nullable();
             $table->date('end_datetime')->nullable();
+            $table->integer('qty_book')->default(0); 
+            $table->integer('qty_max')->default(8); 
             
-            $table->enum('status', ['draft', 'locked'])->nullable()->default('draft');
+
+            $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 

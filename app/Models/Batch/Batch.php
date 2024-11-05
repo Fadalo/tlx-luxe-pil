@@ -2,8 +2,10 @@
 
 namespace App\Models\Batch;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use App\Models\Batch\BatchSession;
 
 class Batch extends Model
@@ -24,6 +26,7 @@ class Batch extends Model
         'qty_max'
     ];
     
+  
     public function BatchSession()
     {
         return $this->hasMany(BatchSession::class);

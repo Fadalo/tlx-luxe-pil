@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('package_variant_id');
             $table->foreign('package_variant_id')->references('id')->on('package_variant')->onDelete('cascade');
             
+            $table->unsignedBigInteger('batch_id');
+            //$table->foreign('batch_id')->references('id')->on('batch')->onDelete('cascade');
+            
             $table->timestamp('activated_package_started_datetime')->nullable();
             $table->smallInteger('activated_package_due_date')->default(0);
             $table->timestamp('activated_ticket_started_datetime')->nullable();

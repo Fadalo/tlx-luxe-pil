@@ -12,7 +12,7 @@
 
 @section('content')
 @include('PanelAdmin.component.list-status.view')
-@include('PanelAdmin.Batch.component.inline.create')
+@include('PanelAdmin.Batch.Component.inline.create')
 
 
 <div class="row">

@@ -15,7 +15,7 @@
 @section('content')
 
 @include('PanelAdmin.component.list-status.view')
-@include('PanelAdmin.Member.component.inline.create')
+@include('PanelAdmin.Member.Component.inline.create')
 <div class="row">
     <div class="col-12">
         <div class="card">

@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('package_variant_id');
             $table->foreign('package_variant_id')->references('id')->on('package_variant')->onDelete('cascade');
-            $table->string('name');
-            $table->text('desc')->nullable();
-            $table->text('formula_generator')->nullable(); // Member Package
-            
-            
+            $table->string('events')->nullable();
+            $table->string('apply4')->nullable();
+            $table->unsignedBigInteger('rule_id') ;
+            $table->foreign('rule_id')->references('id')->on('rule')->onDelete('cascade');
             // System
             $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();

@@ -10,6 +10,7 @@ $restricted = ['created_at','created_by','updated_at','updated_by'];
     <label for="{{ $MetaKey }}" class="form-label">{{ $MetaValue['label'] }}</label><br>
     <div >
     <select id="{{ $MetaKey }}" name="{{ $MetaKey }}" class="form-select">
+        <option value="" >-- Select --</option>
             @foreach($enum as $value)
             
             <option value="{{$value->id}}" >{{ucfirst($value->$relatedValue )}}</option>

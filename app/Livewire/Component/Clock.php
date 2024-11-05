@@ -23,6 +23,6 @@ class Clock extends Component
    
     public function render()
     {
-        return view('livewire.component.clock');
+        return view('livewire.Component.clock');
     }
 }

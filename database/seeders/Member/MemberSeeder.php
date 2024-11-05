@@ -34,7 +34,20 @@ class MemberSeeder extends Seeder
             'updated_by' => $faker->randomElement(['1', '2']),
         ]);
 
+        Member::factory()->create([
+            'phone_no' => '+6282177522261',
+            'first_name' => 'Member 02',
+            'last_name' => 'Tono',
+            'birthday' => $faker->dateTimeBetween('-60 years', '-18 years')->format('Y-m-d'),
+            'pin' => Hash::make('1234'),
+            'join_date' => $faker->date(),
+            'actived_date' => $faker->date(),
+            'referal_by' => Str::random(5),
+            'status_document' => $faker->randomElement(['draft', 'locked']),
+            'created_by' => $faker->randomElement(['1', '2']),
+            'updated_by' => $faker->randomElement(['1', '2']),
+        ]);
         // Generate 10 additional members
-        Member::factory()->count(10)->create();
+        //Member::factory()->count(10)->create();
     }
 }

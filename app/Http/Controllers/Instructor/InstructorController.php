@@ -328,6 +328,7 @@ class InstructorController extends Controller
                     'stat'=>[
                         'Total Instructor'   => [
                             'name'=> 'Total Instructor',
+                            'width'=> 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'instructor',
                             'count-value'=> '100',
@@ -336,33 +337,8 @@ class InstructorController extends Controller
                             'onClick'=> ''
                         ],
                        
-                        'Today Session' => [
-                            'name'=> 'Today Session',
-                            'icon'=> 'ri-user-3-line font-size-24',
-                            'module'=> 'instructor',
-                            'count-value'=> '30',
-                            'percentage-value'=> '15%',
-                            'render'=> '',
-                            'onClick'=> ''
-                        ],
-                        'Active Member'   => [
-                            'name'=> 'Total instructor',
-                            'icon'=> 'ri-user-3-line font-size-24',
-                            'module'=> 'instructor',
-                            'count-value'=> '100',
-                            'percentage-value'=> '20%',                            
-                            'render'=> '',
-                            'onClick'=> ''
-                        ],
-                        'Not Active Member'   => [
-                            'name'=> 'Total instructor',
-                            'icon'=> 'ri-user-3-line font-size-24',
-                            'module'=> 'member',
-                            'count-value'=> '100',
-                            'percentage-value'=> '20%',                            
-                            'render'=> '',
-                            'onClick'=> ''
-                        ],
+                       
+                       
                         
                     ]
                 ];

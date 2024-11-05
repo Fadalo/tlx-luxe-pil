@@ -35,6 +35,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/upload',function(){
+
+})->name('upload');
 
 Route::get('/token', function (Request $request) {
     $token = $request->session()->token();

@@ -17,7 +17,8 @@ class RoleRule extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'role_name',
+        'menu_id',
+        'role_rule_name',
         'remark',
         'created_by',
         'updated_by',

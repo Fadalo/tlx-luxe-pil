@@ -12,7 +12,7 @@ use App\Helpers\H1BHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class packageController extends Controller
+class PackageController extends Controller
 {            
     public $columns = [
         ['data' => 'action', 'width' => '5%'],
@@ -220,7 +220,7 @@ class packageController extends Controller
                             'name'=> 'Variant',
                             'type'=> 'crud',
                             'module'=> 'package_variant',
-                            'render'=> 'PanelAdmin.Package.component.Tab.packageVariant',
+                            'render'=> 'PanelAdmin.Package.Component.Tab.packageVariant',
                         ],
                        
                         
