@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('member_package_order', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id')->nullable();
             $table->unsignedBigInteger('member_id');
             $table->foreign('member_id')->references('id')->on('member')->onDelete('cascade');
            
@@ -22,10 +23,12 @@ return new class extends Migration
             $table->unsignedBigInteger('batch_id');
             //$table->foreign('batch_id')->references('id')->on('batch')->onDelete('cascade');
             
+            $table->timestamp('available_package_started_datetime')->nullable();
+            $table->smallInteger('available_package_due_date')->default(0);
+
             $table->timestamp('activated_package_started_datetime')->nullable();
             $table->smallInteger('activated_package_due_date')->default(0);
-            $table->timestamp('activated_ticket_started_datetime')->nullable();
-            $table->smallInteger('activated_ticket_due_date')->default(0);
+
             $table->smallInteger('qty_ticket_used')->default(0);
             $table->smallInteger('qty_ticket_available')->default(0);
            
