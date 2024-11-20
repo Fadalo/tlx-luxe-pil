@@ -15,7 +15,7 @@ class routeAdminHelper
         'role',
         'user',
         'scheadule',
-        'rule',
+        'rule', 
         'RoleRule'
     ];
 
