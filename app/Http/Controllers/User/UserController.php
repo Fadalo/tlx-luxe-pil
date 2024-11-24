@@ -300,6 +300,7 @@ class UserController extends Controller
                         'parent' => 'users',
                         'author' => 'Telcomixo',
                     ],
+                    'id'=>$id,
                     'module' => 'user',
                     'columns' => json_encode($this->columns,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                     'objModule'=> User::find($id),
@@ -307,9 +308,8 @@ class UserController extends Controller
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
                     'data' => $data,
         ];
-
-
-       
+      
+     
         return view('PanelAdmin.User.profile',compact('config'));
     }
 }

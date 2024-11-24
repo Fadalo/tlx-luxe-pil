@@ -73,4 +73,32 @@ class WaController extends Controller
         }
 
     }
+
+    public function getChatHistory($phoneNumber)
+    {
+        $apiUrl = env('WA_API')."/chat-history/{$phoneNumber}";
+
+        try {
+            // Send GET request to the external API
+            $response = Http::get($apiUrl);
+
+            // Check for successful response
+            if ($response->successful()) {
+                $this->data =  response()->json([
+                    'success' => true,
+                    'data' => $response->json(),
+                ]);
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch chat history.',
+            ], $response->status());
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

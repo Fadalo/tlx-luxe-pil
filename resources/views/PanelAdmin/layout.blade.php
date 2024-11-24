@@ -180,6 +180,22 @@
       
   
   <script src="assets/js/app.js"></script>
+
+  <script>
+    window.addEventListener('swal:alert', event => {
+        
+        console.log(event);
+        /*
+        Swal.fire({
+                 title: ,
+                 text: result.message,
+                 icon: 'success',
+                 confirmButtonText: 'OK'
+                });
+                */
+             
+   });
+  </script>
   @livewireScripts
   
 </body>

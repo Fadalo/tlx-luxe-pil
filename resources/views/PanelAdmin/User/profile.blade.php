@@ -19,36 +19,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-            <div class="card-title "><h6>Change Password</h6></div>
-            <div class="card-desc">
-                <div class="mb-3">
-                    <label for="new-password" class="form-label">New Password</label>
-                    <input type="text" class="form-control"  autocomplete="off" id="new-password" name="new-password" placeholder=""  
-                        required="">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-
-                </div>
-                <div class="mb-3">
-                    <label for="confirm-password" class="form-label">Confirm Password</label>
-                    <input type="text" class="form-control"  autocomplete="off" id="confirm-password" name="confirm-password" placeholder=""  
-                        required="">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    
-                </div>
-                <div class="mb-3">
-                    <button class="btn btn-success">Save</button>
-                </div>
-            </div>
-
-            </div>
-        
-        </div>
+        <livewire:ProfileChangePassword :config="$config" :user_id="$config['id']"/>
     </div>
 </div>
 @endsection
