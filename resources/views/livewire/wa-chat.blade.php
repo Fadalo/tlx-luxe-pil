@@ -1,10 +1,10 @@
 <div>
     <style>
         .chat-container {
-            max-width: 600px;
+            max-width: 100%;
             margin: auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border: 1px solid #303749;
+            background-image: url('{{env('BASE_URL_ADMIN')}}/images/background-wa.jpg');
             display: flex;
             flex-direction: column;
             height: 80vh;
@@ -42,14 +42,7 @@
             border: none;
             outline: none;
         }
-        .message-input button {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+       
     </style>
     
     
@@ -62,10 +55,23 @@
                 </div>
             @endforeach
         </div>
-    
+        
         <form wire:submit.prevent="sendMessage" class="message-input">
-            <input type="text" wire:model="newMessage" placeholder="Type a message..." />
-            <button type="submit">Send</button>
+            
+            <a class="btn btn-info rounded-0" ><span style="
+    position: absolute;
+   bottom: 68px;
+    left: 53px;
+"><i class=" ri-attachment-2"></i></span></a>
+<a class="btn btn-warning rounded-0" ><span style="
+  
+    position: absolute;
+    bottom: 68px;
+    left: 79px;
+
+"><i class=" ri-emotion-happy-line"></i></span></a>
+            <input class="form-control rounded-0" type="text" wire:model="newMessage" placeholder="Type a message..." />
+            <button class="btn btn-info rounded-0" type="submit">Send</button>
         </form>
     </div>
     

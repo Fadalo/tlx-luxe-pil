@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-md-2">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link mb-2  rounded-0" id="v-pills-create-tab" data-bs-toggle="pill" href="#v-pills-create"
+                <a class="nav-link mb-2  rounded-0" id="v-pills-contract-create-tab" data-bs-toggle="pill" href="#v-pills-create"
                     role="tab" aria-controls="v-pills-create" aria-selected="false">Create Contract</a>
-                <a class="nav-link mb-2 active rounded-0" id="v-pills-list-tab" data-bs-toggle="pill" href="#v-pills-list"
+                <a class="nav-link mb-2 active rounded-0" id="v-pills-contract-list-tab" data-bs-toggle="pill" href="#v-pills-list"
                     role="tab" aria-controls="v-pills-list" aria-selected="true">Listing Contract</a>
             </div>
         </div>
@@ -27,5 +27,5 @@
         </div>
     </div>
 
-
+    
 </div>

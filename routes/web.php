@@ -21,11 +21,7 @@ $helper = new H1BHelper();
 $helper->adminRoute();
 
 //routeAdminHelper::getRoute();
-
-
 Route::get('/pdf','App\Http\Controllers\PdfController@viewPDF')->name('pdf');
-
-
 
 Route::get('/pp',function(){
     print_r( PackageResource::collection(Package::All()));
@@ -84,17 +80,11 @@ Route::get('/instructor/forgot-password', function () {
     return view('Auth.forgotpassword');
 })->name('instructor.forgotpassword');
 
-// PanelAdmin
-Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
 
-    
-    
+// PanelAdmin
+Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {    
     $h2 = new routeAdminHelper();
     $h2->getRoute();
-    
-    
-   
-     
 });
 
 
@@ -111,13 +101,10 @@ Route::middleware(['App\Http\Middleware\AuthPelatih'])->group(function () {
 
 // PanelMember
 Route::middleware(['App\Http\Middleware\AuthMember'])->group(function () {
-
     Route::get('/member/dashboard', function () {
         return view('PanelMember.dashboard');
     })->name('member.dashboard');
-
 });
-
 
 
 // Black
@@ -125,11 +112,9 @@ Route::get('/admin/blank', function () {
     return view('PanelAdmin.blank');
 });
 
-
 Route::get('/notfound', function () {
     return view('notfound');
 })->name('notfound');
-
 
 Route::fallback(function () {
     return redirect()->route('notfound');

@@ -184,15 +184,15 @@
   <script>
     window.addEventListener('swal:alert', event => {
         
-        console.log(event);
-        /*
+        //console.log(event.detail[0]);
+        
         Swal.fire({
-                 title: ,
-                 text: result.message,
-                 icon: 'success',
+                 title: event.detail[0].title,
+                 text: event.detail[0].text,
+                 icon: event.detail[0].icon,
                  confirmButtonText: 'OK'
                 });
-                */
+                
              
    });
   </script>

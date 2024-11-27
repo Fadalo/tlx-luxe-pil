@@ -1,7 +1,7 @@
 <?php
  $list_contract_showpage=[
-    'list_contract'=>false,
-    'list_contract_scheadule'=>true,
+    'list_contract'=>true,
+    'list_contract_scheadule'=>false,
     'list_contract_insentif'=>false,
     
  ];
@@ -63,7 +63,7 @@
 @elseif($list_contract_showpage['list_contract_scheadule'])
 <div class="row">
         <div class="col-12">
-            <button wire:click="createVariant()" class="btn btn-info rounded-0" style="float:left">Back</button>
+            <button wire:click="createVariant()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
             <div style="float:right">
             <a style="color:white">Instructor</a> ><a style="color:white">Contract :sss</a>&nbsp; > Scheadule 
             </div>

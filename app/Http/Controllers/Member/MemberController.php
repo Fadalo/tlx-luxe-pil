@@ -373,36 +373,20 @@ class MemberController extends Controller
                             
                             
                         ],
+                        
                         '2' => [
-                            'id'=> 'my-scheadule',
-                            'icon'=> '<i class="ri-calendar-2-line"></i>',
-                            'name'=> 'My Scheadule',
-                            'module'=> 'member',
-                            'moduleClass'=>'App\Models\Member\Member',
-                            'render'=> 'PanelAdmin.Member.component.Tab.my-scheadule',
-                            'submodule'=>[
-                                'tabs'=> [
-                                    'title'=> 'MY PACKAGE',
-                                    'desc'=> 'PACKAGE ORDER',
-                                    'data'=> [
-                                        '0' => [
-                                                'title'=>'Create Scheadule',
-                                                'render'=> 'PanelAdmin.Member.component.Tab.my-card',
-                                        ],
-                                        '1' => [
-                                                'title'=>'Scheadule',
-                                                'render'=> 'PanelAdmin.Member.component.Tab.my-card',
-                                        ]
-                                    ]
-                                ],
-                            ],
-                        ],
-                        '3' => [
                             'id'=> 'my-invoice',
                             'icon'=> '<i class="ri-currency-fill"></i>',
                             'name'=> 'My History Payment',
                             'module'=> 'member_order_payment',
                             'render'=> 'PanelAdmin.Member.component.Tab.my-invoice',
+                        ],
+                        '3' => [
+                            'id'=> 'my-chat',
+                            'icon'=> '<i class="ri-whatsapp-fill"></i>',
+                            'name'=> 'My Chat',
+                            'module'=> 'member',
+                            'render'=> 'PanelAdmin.Member.component.Tab.my-chat',
                         ],
                         '4' => [
                             'id'=> 'my-settings',

@@ -244,7 +244,7 @@ class InstructorController extends Controller
 
     public function detail(request $request,response $response,$id){
         
-        $InstructorResource = InstructorResource::collection(Instructor::find($id)->get())->toArray($request);
+        $InstructorResource = InstructorResource::collection(Instructor::where('id',$id)->get())->toArray($request);
         $data = $InstructorResource;
         $config = [
                     'page'   => [
@@ -262,7 +262,7 @@ class InstructorController extends Controller
                     'relation'=>[
                         '0'   => [
                             'id'=> 'my-contract',
-                            'icon'=> '<i class="far fa-envelope"></i>',
+                            'icon'=> '<i class="ri-file-paper-2-line"></i>',
                             'name'=> 'My Contract',
                             'type'=> 'crud',
                             'module'=> 'member_order',
@@ -270,15 +270,21 @@ class InstructorController extends Controller
                         ],
                         '2' => [
                             'id'=> 'my-scheadule',
-                            'icon'=> '<i class="far fa-envelope"></i>',
+                            'icon'=> '<i class="ri-calendar-event-line"></i>',
                             'name'=> 'My Scheadule',
                             'module'=> 'batch',
                             'render'=> 'PanelAdmin.Instructor.component.Tab.my-scheadule',
                         ],
-                       
+                       '3' => [
+                            'id'=> 'my-chat',
+                            'icon'=> '<i class="ri-whatsapp-fill"></i>',
+                            'name'=> 'My Chat',
+                            'module'=> 'member',
+                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-chat',
+                        ],
                         '4' => [
                             'id'=> 'my-settings',
-                            'icon'=> '<i class="far fa-envelope"></i>',
+                            'icon'=> '<i class="ri-settings-2-line"></i>',
                             'name'=> 'My Settings',
                             'module'=> 'member',
                             'render'=> 'PanelAdmin.Instructor.component.Tab.my-settings',

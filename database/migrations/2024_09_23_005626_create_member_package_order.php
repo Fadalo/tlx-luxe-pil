@@ -34,7 +34,9 @@ return new class extends Migration
            
             $table->string('status_package'); // Available,Actived,Expired
             $table->string('status_payment'); // NotPaid,Paid,PaidPartialy 
-            $table->integer('is_member_created'); // 0,1 
+            $table->unsignedBigInteger('payment_id')->nullable();
+
+            $table->integer('is_member_created')->default(0)->nullable(); // 0,1 
           
             // System
             $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked

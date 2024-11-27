@@ -1,0 +1,1 @@
+<livewire:WAChat :config="$config" :instructor_id="$config['id']" />

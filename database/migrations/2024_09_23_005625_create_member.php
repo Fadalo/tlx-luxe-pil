@@ -22,6 +22,10 @@ return new class extends Migration
             $table->timestamp('actived_date')->nullable();
             $table->string('referal_by')->nullable();
 
+            $table->smallint('is_verify')->default(0)->nullable();
+            $table->smallint('is_notify')->default(1)->nullable();
+            $table->smallint('is_news')->default(1)->nullable();
+
             // System
             $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();

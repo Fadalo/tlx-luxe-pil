@@ -44,7 +44,14 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'WA' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/wa'),
+            'url' => env('APP_URL').'/storage/wa',
+            'visibility' => 'public',
+            'throw' => false,
+        ]
+,
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

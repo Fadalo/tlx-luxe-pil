@@ -18,7 +18,7 @@ class InstructorContract extends Model
     use HasFactory;
     protected $table = 'instructor_contract';
     protected $fillable = [
-        
+        'name',
         'instructor_id',
         'package_id',
         'contract_activated_date',

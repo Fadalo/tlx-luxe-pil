@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
 
 
 class ProfileChangePassword extends Component
@@ -20,25 +20,26 @@ class ProfileChangePassword extends Component
     public function doSave()
     {
     
+       // dd($this->old_password);
         if($this->old_password != '' && $this->new_password != '' && $this->confirm_password != '' )
         {
 
             $user = User::find($this->user_id);
-            dd($user);
+           
             if ($user) {
-                if (Hash::check($request->password, $user->password)) {
-                    if ($request->new_password == $request->confirm_password) {
-                        $user->password = Hash::make($request->new_password);
+                if (Hash::check($this->old_password, $user->password)) {
+                    if ($this->new_password == $this->confirm_password) {
+                        $user->password = Hash::make($this->new_password);
                         $user->save();
                         $this->triggerAlert('New Password Save');
                     } else {
-                        return redirect()->route('profile')->with('error', 'New password and confirm password does not match');
+                        $this->triggerAlert('new password and confirm not same','Error !!','error');
                     }
                 } else {
-                    return redirect()->route('profile')->with('error', 'Current password is incorrect');
+                    $this->triggerAlert('old password incorrect','Error !!','error');
                 }
             } else {
-                return redirect()->route('profile')->with('error', 'User not found');
+                $this->triggerAlert('User Not Found','Error !!','error');
             }
         }
 

@@ -1,7 +1,7 @@
 <div>
     <h6>Create Contract</h6>
     <hr>
-<form wire:submit.prevent="{{ $isEditMode ? 'update' : 'store' }}">
+<form >
         <div class="row" style="display:flex;">
         <div class="col-md-8 mb-3">
             <label>Name</label>
@@ -46,15 +46,23 @@
         </div>
 
 
-        <div class="col-md-4">
-        <livewire:ScheduleInput />
-</div>
+       
 
         <div class="col-md-12 mt-3">
-        <button type="submit" class="btn btn-info rounded-0">
-            {{ $isEditMode ? 'Update' : 'Save' }}
-        </button>
-        <button type="reset" class="btn btn-info rounded-0">Clear</button>
+        @if($isEditMode == 'Update')
+            <button wire:click="doContractUpdate" type="submit" class="btn btn-info rounded-0">
+                Update
+            </button>
+            <button type="button" wire:click="back2List" class="btn btn-info rounded-0">back</button>
+        @else
+            <button  wire:click="doContractSave" type="submit" class="btn btn-info rounded-0">
+               Save
+            </button>
+            <button type="reset" class="btn btn-info rounded-0">Clear</button>
+        @endif
+        
+        
+       
         
         </div>
         </div>

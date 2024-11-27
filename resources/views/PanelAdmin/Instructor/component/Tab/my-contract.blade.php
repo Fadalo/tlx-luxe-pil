@@ -13,4 +13,4 @@
 ?>
 
 
-<livewire:InstructorContractPackage  />
+<livewire:InstructorContractPackage :config="$config" :instructor_id="$config['id']" />

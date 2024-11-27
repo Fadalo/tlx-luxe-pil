@@ -42,6 +42,9 @@ class Member extends Authenticatable
         'join_date',
         'activated_date',
         'pin',
+        'is_verify',
+        'is_notify',
+        'is_news',
         'updated_by',
         'created_by',
         

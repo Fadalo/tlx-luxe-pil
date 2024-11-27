@@ -63,14 +63,15 @@ class AuthController extends Controller
     }
     public function loginAdmin(request $request,response $response)
     {
-        $request->validate([
+        $a = $request->validate([
             'name'      => 'required',
             'password'  => 'required',
         ]);
 
+       
         // Attempt to authenticate using phone number and password
         $user = User::where('name', $request->name)->first();
-
+        //dd($user);
         if ($user && Hash::check($request->password, $user->password)) {
         //if ($user ) {
             Auth::login($user);
