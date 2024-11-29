@@ -55,7 +55,7 @@
                 <li>
                     <a href="{{ route('admin.batch.list') }}" class="waves-effect">
                         <i class="ri-calendar-2-line"></i>
-                        <span>Manage Scheadule</span>
+                        <span>Manage Schedule</span>
                     </a>
                     
                 </li>

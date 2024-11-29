@@ -1,15 +1,17 @@
 <div>
     <form wire:submit.prevent="submit">
         @foreach ($schedules as $weekIndex => $week)
-            <div class="week-section mb-4">
-                <h6>Week {{ $weekIndex + 1 }}</h6>
+            <div class="col-12 week-section mb-4">
+                
 
                 @foreach ($week['days'] as $dayIndex => $day)
                     <div class="day-section mb-3">
-                        <input type="text" 
-                               wire:model="schedules.{{ $weekIndex }}.days.{{ $dayIndex }}.name" 
-                               placeholder="Day Name (e.g., Monday)" 
-                               class="form-control mb-2">
+                       
+                        <select  wire:model="schedules.{{ $weekIndex }}.days.{{ $dayIndex }}.name"  class="form-select mb-2" >
+                            @foreach($list_weekday as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
 
                         @foreach ($day['time_ranges'] as $rangeIndex => $timeRange)
                             <div class="time-range-section d-flex mb-2">
@@ -28,24 +30,23 @@
                             </div>
                         @endforeach
 
-                        <button type="button" class="btn btn-secondary rounded-0" 
+                        <button type="button" class="btn btn-primary rounded-0" 
                                 wire:click="addTimeRange({{ $weekIndex }}, {{ $dayIndex }})">
                             Add Time Range
                         </button>
-                    </div>
-                @endforeach
-
-                <button type="button" class="btn btn-secondary rounded-0" 
+                        <button type="button" class="btn btn-warning rounded-0" 
                         wire:click="addDay({{ $weekIndex }})">
                     Add Day
                 </button>
+                    </div>
+                @endforeach
+
+               
             </div>
         @endforeach
 
-        <button type="button" class="btn btn-primary rounded-0" wire:click="addWeek">
-            Add Week
-        </button>
+       
 
-        <button type="submit" class="btn btn-success rounded-0 ">Submit</button>
+        <button type="submit" class="btn btn-info rounded-0 ">Submit</button>
     </form>
 </div>

@@ -10,6 +10,8 @@ class InstructorContractPackage extends Component
 {
     
     public $instructorContractPackages;
+    public $contract_name = '';
+    public $contract_id = '';
     public $config = [];
     public $instructor_id = '';
     public $form = [
@@ -23,20 +25,30 @@ class InstructorContractPackage extends Component
             'status_document'=> ''
             
     ];
+    public  $list_contract_showpage=[
+        'list_contract'=>true,
+        'list_contract_scheadule'=>false,
+        'list_contract_insentif'=>false,
+        
+     ];
     public $isEditMode = false, $selectedId;
+
+    // Schedule
+  
 
     public function mount()
     {
        // dd($this->instructor_id);
         $this->instructorContractPackages = InstructorContract::where('instructor_id',$this->instructor_id)->get();
     }
-
+    public function update()
+    {
+        $this->instructorContractPackages = InstructorContract::where('instructor_id',$this->instructor_id)->get();
+    }
     public function render()
     {
         return view('livewire.instructor-contract');
     }
-
-   
 
     public function edit($id)
     {
@@ -51,7 +63,7 @@ class InstructorContractPackage extends Component
         $this->form['contract_start_date'] = $instructorPackage->contract_start_date;
         $this->form['contract_end_date'] = $instructorPackage->contract_end_date;
         $this->form['remark'] = $instructorPackage->remark;
-        $this->form['status_document'] = $instructorPackage->status_document;
+        $this->form['status_document'] = 1;
 
         $this->dispatch('InstructorContract:createClick',['instructor_id' => $id]);
 
@@ -59,10 +71,10 @@ class InstructorContractPackage extends Component
 
     public function delete($id)
     {
-        dd('s3');
+       
         InstructorContract::find($id)->delete();
-        session()->flash('message', 'Instructor Package Deleted Successfully.');
-        $this->instructorContractPackages = InstructorContract::all();
+        $this->triggerAlert('Instructor Package Deleted Successfully.');
+        $this->update();
     }
 
     public function doContractUpdate()
@@ -87,7 +99,7 @@ class InstructorContractPackage extends Component
                 'contract_start_date' => $this->form['contract_start_date'],
                 'contract_end_date' => $this->form['contract_end_date'],
                 'remark' => $this->form['remark'],
-                'status_document' => $this->form['status_document'],
+                'status_document' => 1,
                 'updated_by' => AUTH::user()->id
     
             ]);
@@ -102,9 +114,9 @@ class InstructorContractPackage extends Component
         }
         catch(Exception $e){
 
-            //$this->triggerAlert('Please Check Your Data','Error !!!','error');
+            $this->triggerAlert('Please Check Your Data','Error !!!','error');
         }
-       
+        $this->update();
     }
     public function doContractSave(){
        
@@ -122,7 +134,7 @@ class InstructorContractPackage extends Component
             $instructorPackage->contract_start_date =  $a['form']['contract_start_date'];
             $instructorPackage->contract_end_date =  $a['form']['contract_end_date'];
             $instructorPackage->remark =  $this->form['remark'];
-            $instructorPackage->status_document =  $this->form['status_document'];
+            $instructorPackage->status_document =  1;
             $instructorPackage->created_by = AUTH::user()->id;
             $instructorPackage->updated_by = AUTH::user()->id;
             
@@ -134,12 +146,11 @@ class InstructorContractPackage extends Component
             $this->triggerAlert('Please Check Your Data','Error !!!','error');
 
         }
-        
-
-        
+        $this->update();
     }
     public function back2List(){
-
+        $this->resetFields();
+        $this->isEditMode = 'false';
     }
     public function triggerAlert($msg,$title='Success!',$icon='success')
     {
@@ -163,8 +174,40 @@ class InstructorContractPackage extends Component
         $this->isEditMode = false;
         $this->selectedId = null;
     }
-}
 
+
+    // Do Scheadule
+    public function doShowSchedule($id){
+
+        $contract = InstructorContract::find($id);
+        $this->contract_name =  $contract->name;
+        $this->contract_id = $id;
+
+        $this->list_contract_showpage=[
+            'list_contract'=>false,
+            'list_contract_scheadule'=>true,
+            'list_contract_insentif'=>false
+         ];
+
+    }
+    public function doShowInsentif($id){
+
+        $contract = InstructorContract::find($id);
+        $this->contract_name =  $contract->name;
+        $this->list_contract_showpage=[
+            'list_contract'=>false,
+            'list_contract_scheadule'=>false,
+            'list_contract_insentif'=>true
+         ];
+    }
+    public function doListBack(){
+        $this->list_contract_showpage=[
+            'list_contract'=>true,
+            'list_contract_scheadule'=>false,
+            'list_contract_insentif'=>true
+         ];
+    }
+}
 /*
  public function store()
     {

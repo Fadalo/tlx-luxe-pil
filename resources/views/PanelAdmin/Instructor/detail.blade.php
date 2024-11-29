@@ -6,7 +6,10 @@
 @section('page-parent',$config['page']['parent'])
 
 @section('head-page')
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+<script >
+    let eventP = [];
+</script>
+
 @endsection
 
 @section('content')
@@ -45,21 +48,15 @@
             window.addEventListener('InstructorContract:createClick', event => {
                 
                 setTimeout(function() {
-                const tab = $('#v-pills-contract-create-tab');
-                const tab2 = $('#v-pills-contract-list-tab');
-                const createTab = new bootstrap.Tab(document.getElementById('v-pills-contract-create-tab'));
-                const listTab   = new bootstrap.Tab(document.getElementById('v-pills-contract-list-tab'));
+                //const tab = $('#v-pills-contract-create-tab');
+                //const tab2 = $('#v-pills-contract-list-tab');
+                //const createTab = new bootstrap.Tab(document.getElementById('v-pills-contract-create-tab'));
+                //const listTab   = new bootstrap.Tab(document.getElementById('v-pills-contract-list-tab'));
 
                 
                 //createTab.show();
                 $('#v-pills-contract-create-tab').tab('show');
-                $('#v-pills-create').addClass('show active');
-                $('#v-pills-list').removeClass('show active');
                 
-                $('#v-pills-contract-create-tab').addClass("active");
-                $('#v-pills-contract-list-tab').removeClass("active");
-                $('#v-pills-contract-create-tab').attr('aria-selected', 'true');
-                $('#v-pills-contract-list-tab').attr('aria-selected', 'false');
                 
                 },100);
                 

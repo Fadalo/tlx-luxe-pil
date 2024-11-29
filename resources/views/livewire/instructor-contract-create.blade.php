@@ -36,26 +36,19 @@
             <textarea wire:model="form.remark" class="form-control"></textarea>
         </div>
 
-        <div class="col-md-4 mb-3">
-            <label>Status Document</label>
-            <select wire:model="form.status_document" class="form-select" required>
-                <option value="">Select Status</option>
-                <option value="draft">Draft</option>
-                <option value="locked">Locked</option>
-            </select>
-        </div>
+       
 
 
        
 
         <div class="col-md-12 mt-3">
         @if($isEditMode == 'Update')
-            <button wire:click="doContractUpdate" type="submit" class="btn btn-info rounded-0">
+            <button wire:click="doContractUpdate" type="button" class="btn btn-info rounded-0">
                 Update
             </button>
             <button type="button" wire:click="back2List" class="btn btn-info rounded-0">back</button>
         @else
-            <button  wire:click="doContractSave" type="submit" class="btn btn-info rounded-0">
+            <button  wire:click="doContractSave" type="button" class="btn btn-info rounded-0">
                Save
             </button>
             <button type="reset" class="btn btn-info rounded-0">Clear</button>

@@ -57,68 +57,11 @@
         </div>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Livewire is loaded!');
-        var calendarEl = document.getElementById('full-calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'timeGridWeek',
-            headerToolbar: {
-        left: 'today prev,next',
-        center: 'title',
-        right: 'timeGridWeek,dayGridMonth'
-      },
-            events: @json($events), // Load events from Livewire
-
-            // Capture event clicks or interactions
-            /*
-            dateClick: function(info) {
-                var eventTitle = prompt('Enter event title:');
-                if (eventTitle) {
-                    // Emit event to Livewire to add
-                    Livewire.emit('addEvent', {
-                        title: eventTitle,
-                        start: info.dateStr
-                    });
-                }
-            },*/
-            eventClick: function(info) {
-                // Prevent the default browser action (optional)
-                info.jsEvent.preventDefault();
-
-                const options = {
-                    day: '2-digit',
-                    month: 'long', // Full month name
-                    year: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: true, // AM/PM format
-                };
-                // Display event details in the modal
-                document.getElementById('eventTitle').value = info.event.title;
-                document.getElementById('eventStart').value = new Date(info.event.start
-                    .toISOString()).toLocaleString('en-EN', options);
-                document.getElementById('eventEnd').value = new Date(info.event.end
-                    .toISOString()).toLocaleString('en-EN', options);
-                document.getElementById('eventDescription').textContent = info.event.extendedProps
-                    .description || 'No description available.';
-
-                // Show the Bootstrap modal
-                var myModal = new bootstrap.Modal(document.getElementById('eventDetailModal'));
-                myModal.show();
-            },
-        });
-
-        calendar.render();
-
-        document.getElementById('tavb_my-scheadule').addEventListener('shown.bs.tab', function() {
-            calendar.updateSize(); // Update the calendar size when tab is shown
-        });
-        // Listen for Livewire event to re-render calendar
-        Livewire.on('refreshCalendar', () => {
-            calendar.removeAllEvents(); // Clear events
-            calendar.addEventSource(@json($events)); // Add updated events
-        });
-    });
+        eventP = @JSON($events);
+       
+        // console.log(eventP)
+    
+        
     </script>
+    @vite(['resources/js/calendar/calendar.js'])
 </div>

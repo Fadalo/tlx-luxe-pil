@@ -269,9 +269,9 @@ class InstructorController extends Controller
                             'render'=> 'PanelAdmin.Instructor.component.Tab.my-contract',
                         ],
                         '2' => [
-                            'id'=> 'my-scheadule',
+                            'id'=> 'my-schedule',
                             'icon'=> '<i class="ri-calendar-event-line"></i>',
-                            'name'=> 'My Scheadule',
+                            'name'=> 'My Schedule',
                             'module'=> 'batch',
                             'render'=> 'PanelAdmin.Instructor.component.Tab.my-scheadule',
                         ],
