@@ -24,6 +24,10 @@ class Calendar extends Component
         $this->dispatch('refreshCalendar',['event1'=>$newEvent]);
         //dd($this->events);
     }
+    public function update()
+    {
+        
+    }
     public function mount()
     {
         // Load initial events (You can fetch from DB)

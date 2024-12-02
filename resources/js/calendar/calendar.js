@@ -25,19 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
    document.getElementById('tavb_my-schedule').addEventListener('shown.bs.tab', function() {
       
     //alert(eventP);
+    setTimeout(function() {
         console.log(eventP);
         //calendar.removeAllEvents(); 
         calendar.addEventSource(eventP); 
         
         calendar.updateSize(); // Update the calendar size when tab is shown
+    },1000);
         
    });
 
    document.addEventListener('refreshCalendar', (event) => {
    
+    
         console.log(event.detail[0].event1);
            calendar.removeAllEvents(); // Clear events
-           calendar.addEventSource(event.detail[0].event1); // Add updated events
+           calendar.addEventSource(JSON.parse(event.detail[0].event1)); // Add updated events
           // calendar.render();
            calendar.updateSize(); 
     });
