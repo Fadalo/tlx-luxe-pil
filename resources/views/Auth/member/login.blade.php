@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        
+        <base href="http://127.0.0.1:8000/lib1/" />
         <meta charset="utf-8" />
         <title>Login | Upcube - Admin & Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,8 @@
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
-
+        
+        
         <!-- Bootstrap Css -->
         <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
