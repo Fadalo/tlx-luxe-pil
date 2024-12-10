@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('instructor_contract_id');
             $table->foreign('instructor_contract_id')->references('id')->on('instructor_contract')->onDelete('cascade');
            
-
+            $tabla->string('scheadule_week');
             $table->string('scheadule_day'); // Monday - Friday
-            $table->string('scheadule_time'); // 08:00 - 21:00
-            
+            $table->time('scheadule_time_start'); // 08:00 - 21:00
+            $table->time('scheadule_time_end');
             
 
             // System
@@ -29,6 +29,7 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 

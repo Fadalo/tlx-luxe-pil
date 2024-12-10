@@ -1,0 +1,1 @@
+<livewire:PackageOrderPaymentHistory :config="$config" :member_id="$config['id']" />

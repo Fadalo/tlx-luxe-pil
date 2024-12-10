@@ -21,7 +21,8 @@ return new class extends Migration
             $table->timestamp('join_date')->nullable();
             $table->timestamp('actived_date')->nullable();
             $table->string('status');
-
+            $table->smallInteger('is_verify')->default(0)->nullable();
+            $table->smallInteger('is_notify')->default(1)->nullable();
             // System
             $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
             $table->unsignedBigInteger('created_by')->nullable();
@@ -29,6 +30,9 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
+
+
         });
         
     }

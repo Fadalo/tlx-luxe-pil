@@ -290,7 +290,7 @@ public $detailShow=[
 
     public function detail(request $request,response $response,$id=''){
         
-        $BatchResourse = BatchResource::collection(Batch::find($id)->get())->toArray($request);
+        $BatchResourse = BatchResource::collection(Batch::where('id',$id)->get())->toArray($request);
         $data = $BatchResourse;
         $config = [
                     'page'   => [

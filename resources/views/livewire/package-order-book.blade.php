@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
 
-                        <h5 class="card-title">[#OD {{ '10000'.$value['id']}}]<br> <?php 
+                        <h5 class="card-title">[#{{$value['order_id']}}]<br> <?php 
                         $oPv = new App\Models\Package\PackageVariant; 
                         $oP = new App\Models\Package\Package; 
                         
@@ -15,9 +15,13 @@
                         $g=$oP->find($l->package_id);
                         $packageVariantName = $g->name .' '. $l->name;
                         echo $packageVariantName;
+
+                        $helper = new App\Helpers\H1BHelper;
+                        $LastUpdate = $helper->lastUpdated($value['updated_at']);
+                      // $LastUpdate = $value['updated_at'];
                         ?></h5>
-                        <p class="card-text">Book At [ {{date('d-m-Y',strtotime($value['created_at']))}} ]<br>Total Ticket {{$value['qty_ticket_available']}}<br>Status - {{$value['status_payment']}}</p>
-                        <p class="card-text "><small class=" text-white">Last updated 3 mins ago</small></p>
+                        <p class="card-text">Book At [ {{date('d-m-Y',strtotime($value['created_at']))}} ]<br>Total Ticket {{$value['qty_ticket_available']}}<br>Status - {{$helper->status_payment($value['status_payment'])}}</p>
+                        <p class="card-text "><small class=" text-white">Last updated {{$LastUpdate}}</small></p>
                     </div>
                 </div>
                 <div class="col-md-4">

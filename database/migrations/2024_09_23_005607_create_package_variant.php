@@ -17,9 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id');
             $table->foreign('package_id')->references('id')->on('package')->onDelete('cascade');
             $table->text('desc')->nullable();
-            //$table->integer('package_available2activated_duration')->default(7);
-            //$table->integer('package_ticket_duration')->default(45);
+            
             $table->integer('package_qty_ticket')->default(10);
+            $table->smallInteger('package_qty_used_book')->default(0)->nullable();
+            $table->smallInteger('is_active')->default(0)->nullable();
+           
 
             // System
             $table->enum('status_document', ['draft', 'locked'])->nullable()->default('draft'); // draft,locked
@@ -28,6 +30,9 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
+
+
         });
     }
 

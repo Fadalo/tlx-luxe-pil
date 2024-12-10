@@ -22,6 +22,8 @@ $helper->adminRoute();
 
 //routeAdminHelper::getRoute();
 Route::get('/pdf','App\Http\Controllers\PdfController@viewPDF')->name('pdf');
+Route::get('/invoice/{id}', [PdfController::class, 'viewInvoice'])->name('invoice');
+
 
 Route::get('/pp',function(){
     print_r( PackageResource::collection(Package::All()));

@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('package_order_payment', function (Blueprint $table) {
+        Schema::create('notification', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('member_package_order_id');
-            $table->foreign('member_package_order_id')->references('id')->on('member_package_order')->onDelete('cascade');
-            $table->string('payment_type')->nullable();
-            $table->string('bank')->nullable();
-            $table->string('bank_account')->nullable();
-            $table->string('amount')->nullable();
-            $table->string('payment_proof')->nullable();
+            $table->unsignedBigInteger('from')->nullable();
+            $table->unsignedBigInteger('to')->nullable();
+            $table->text('type')->nullable();
+            $table->text('subject')->nullable();
             $table->text('remark')->nullable();
+            $table->smallint('is_read')->default(0)->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on(' users')->onDelete('cascade');
             $table->unsignedBigInteger('updated_by')->nullable(); 
+            $table->foreign('updated_by')->references('id')->on(' users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('package_order_payment');
+        Schema::dropIfExists('notification');
     }
 };

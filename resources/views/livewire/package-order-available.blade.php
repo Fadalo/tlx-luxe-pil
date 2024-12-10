@@ -6,17 +6,21 @@
 
                 <div class="col-md-8">
                     <div class="card-body">
-                    <h5 class="card-title">[#OD {{ '10000'.$value['id']}}]<br> <?php 
-                        $oPv = new App\Models\Package\PackageVariant; 
-                        $oP = new App\Models\Package\Package; 
-                        
-                        $l= $oPv->find($value['package_variant_id']);
-                        $g=$oP->find($l->package_id);
-                        $packageVariantName = $g->name .' '. $l->name;
-                        echo $packageVariantName;
-                        ?></h5>
-                        <p class="card-text">Available Since [ 19/09/2024 ]<br>Duration 450 days<br>Auto Actived In 7 Days<br>Total Ticket {{$value['qty_ticket_available']}}</p>
-                        <p class="card-text "><small class=" text-white">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title">[#{{$value['order_id']}}]<br> <?php 
+                            $oPv = new App\Models\Package\PackageVariant; 
+                            $oP = new App\Models\Package\Package; 
+                            
+                            $l= $oPv->find($value['package_variant_id']);
+                            $g=$oP->find($l->package_id);
+                            $packageVariantName = $g->name .' '. $l->name;
+                            echo $packageVariantName;
+
+                            $duration = 45*$value['qty_ticket_available'];
+                            $helper = new App\Helpers\H1BHelper;
+                            $LastUpdate = $helper->lastUpdated($value['updated_at']);
+                            ?></h5>
+                        <p class="card-text">Available Since [ {{date('d-M-Y',strtotime($value['available_package_started_datetime']))}} ]<br>Duration {{ $duration }} days<br>Auto Actived In 7 Days<br>Total Ticket {{$value['qty_ticket_available']}}</p>
+                        <p class="card-text "><small class=" text-white">Last updated {{ $LastUpdate }}</small></p>
                     </div>
                     
                 </div>

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('member_package_order_id');
             $table->foreign('member_package_order_id')->references('id')->on('member_package_order')->onDelete('cascade');
             $table->timestamp('session_date')->nullable();
-            $table->smallinteger('session_duration')->nullable();
-            $table->smallinteger('qty_ticket_used')->default(0);
-            $table->smallinteger('qty_ticket_available')->default(0);
+            $table->smallInteger('session_duration')->nullable();
+            $table->smallInteger('qty_ticket_used')->default(0);
+            $table->smallInteger('qty_ticket_available')->default(0);
             $table->string('status_session'); // OnScheadule,Closed,Cancel
             $table->integer('is_member_created'); // 0,1
 
@@ -30,6 +30,8 @@ return new class extends Migration
             $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
+         
         });
     }
 

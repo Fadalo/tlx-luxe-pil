@@ -7,6 +7,40 @@ use Carbon\Carbon;
 class H1BHelper
 {
 
+    public function status_payment($value){
+        return ($value=='not_paid')?'NOT PAID':'PAID';
+    }
+    public function lastUpdated($startDateTime)
+    {
+        //return 'aaaa';
+        //print_r($startDate);
+        //exit();
+        // Define start date
+        $startDate = Carbon::createFromFormat('Y-m-d H:i:s', Carbon::parse($startDateTime));
+      
+        // Get the current date and time
+        $endDate = Carbon::now();
+
+        // Calculate the total difference in minutes
+        $totalMinutes = $startDate->diffInMinutes($endDate);
+
+        // Convert to days, hours, and minutes
+        $days = intdiv($totalMinutes, 1440); // 1440 minutes in a day
+        $remainingMinutesAfterDays = $totalMinutes % 1440;
+
+        $hours = intdiv($remainingMinutesAfterDays, 60);
+        $minutes = $remainingMinutesAfterDays % 60;
+
+        // Display the difference
+        if ($days > 0) {
+            return "{$days} days, {$hours} hours, and {$minutes} minutes ago";
+        } elseif ($hours > 0) {
+            return "{$hours} hours and {$minutes} minutes ago";
+        } else {
+            return "{$minutes} minutes ago";
+        }
+       
+    }
     function isH1BDate() {
         // Get the current date
         $currentDate = new DateTime();

@@ -1,1 +1,1 @@
-<livewire:PackageOrderAvailable :config="$config" :member_id="$config['id']"/>
+<livewire:PackageOrderAvailable :config="$config" :member_id="$config['id']" />

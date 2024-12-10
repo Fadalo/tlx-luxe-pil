@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('role_name');
             $table->text('remark')->nullable();
-           
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable(); 
             $table->timestamps();
