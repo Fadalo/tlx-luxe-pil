@@ -273,9 +273,10 @@ class UserController extends Controller
                     'stat'=>[
                         'Total User'   => [
                             'name'=> 'Total User',
+                            'width'=> 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'User',
-                            'count-value'=> '100',
+                            'count-value'=> User::All()->count(),
                             'percentage-value'=> '20%',                            
                             'render'=> '',
                             'onClick'=> ''

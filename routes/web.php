@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Helpers\H1BHelper;
 use App\Helpers\routeAdminHelper;
+use App\Helpers\routeMemberHelper;
+use App\Helpers\routeInstructorHelper;
+
 
 use App\Http\Controllers;
 use App\routes\routeAdmin\AdminPanel;
@@ -98,6 +101,9 @@ Route::middleware(['App\Http\Middleware\AuthPelatih'])->group(function () {
         return view('PanelCouch.dashboard');
     })->name('couch.dashboard');
 
+    $hInstructor = new routeMemberHelper();
+    $hInstructor->getRoute();
+
 });
 
 
@@ -106,9 +112,12 @@ Route::middleware(['App\Http\Middleware\AuthMember'])->group(function () {
     Route::get('/member/dashboard', function () {
         return view('PanelMember.dashboard');
     })->name('member.dashboard');
+    
+    $hMember = new routeMemberHelper();
+    $hMember->getRoute();
 });
 
-
+/*
 // Black
 Route::get('/admin/blank', function () {
     return view('PanelAdmin.blank');
@@ -121,3 +130,4 @@ Route::get('/notfound', function () {
 Route::fallback(function () {
     return redirect()->route('notfound');
 });
+*/

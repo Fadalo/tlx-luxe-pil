@@ -337,7 +337,7 @@ class InstructorController extends Controller
                             'width'=> 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'instructor',
-                            'count-value'=> '100',
+                            'count-value'=> Instructor::All()->count(),
                             'percentage-value'=> '20%',                            
                             'render'=> '',
                             'onClick'=> ''

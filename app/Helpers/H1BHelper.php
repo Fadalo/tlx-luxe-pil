@@ -10,6 +10,7 @@ class H1BHelper
     public function status_payment($value){
         return ($value=='not_paid')?'NOT PAID':'PAID';
     }
+    
     public function lastUpdated($startDateTime)
     {
         //return 'aaaa';

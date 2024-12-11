@@ -84,14 +84,14 @@
                             <a href="{{ route('admin.rule.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Package Rule</a>
                             
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="{{ route('admin.MenuAdmin.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Menu</a>
                             
                         </li>
                         <li>
                             <a href="{{ route('admin.RoleRule.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Role Rule</a>
                             
-                        </li>
+                        </li> -->
                         <li>
                             <a href="{{ route('admin.role.list') }}" class="waves-effect"><i class="ri-shield-user-fill"></i>Role</a>
                             
