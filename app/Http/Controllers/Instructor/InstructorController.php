@@ -266,28 +266,28 @@ class InstructorController extends Controller
                             'name'=> 'My Contract',
                             'type'=> 'crud',
                             'module'=> 'member_order',
-                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-contract',
+                            'render'=> 'PanelAdmin.Instructor.Component.Tab.my-contract',
                         ],
                         '2' => [
                             'id'=> 'my-schedule',
                             'icon'=> '<i class="ri-calendar-event-line"></i>',
                             'name'=> 'My Schedule',
                             'module'=> 'batch',
-                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-scheadule',
+                            'render'=> 'PanelAdmin.Instructor.Component.Tab.my-scheadule',
                         ],
                        '3' => [
                             'id'=> 'my-chat',
                             'icon'=> '<i class="ri-whatsapp-fill"></i>',
                             'name'=> 'My Chat',
                             'module'=> 'member',
-                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-chat',
+                            'render'=> 'PanelAdmin.Instructor.Component.Tab.my-chat',
                         ],
                         '4' => [
                             'id'=> 'my-settings',
                             'icon'=> '<i class="ri-settings-2-line"></i>',
                             'name'=> 'My Settings',
                             'module'=> 'member',
-                            'render'=> 'PanelAdmin.Instructor.component.Tab.my-settings',
+                            'render'=> 'PanelAdmin.Instructor.Component.Tab.my-settings',
                         ],
                         
                         
