@@ -13,11 +13,11 @@
         
         
         <!-- Bootstrap Css -->
-        <link href="{{env('APP_ASSET_MEMBER2_URL')}}assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{{env('APP_ASSET_MEMBER2_URL')}}/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="{{env('APP_ASSET_MEMBER2_URL')}}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{env('APP_ASSET_MEMBER2_URL')}}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{{env('APP_ASSET_MEMBER2_URL')}}assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{env('APP_ASSET_MEMBER2_URL')}}/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
         <style>
          .bg{
