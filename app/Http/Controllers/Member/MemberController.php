@@ -312,7 +312,7 @@ class MemberController extends Controller
                             'type'=> 'crud',
                             'module'=> 'member',
                             'moduleClass'=>'App\Models\Member\Member',
-                            'render'=> 'PanelAdmin.Member.component.Tab.my-package',
+                            'render'=> 'PanelAdmin.Member.Component.Tab.my-package',
                             'submodule' =>[
                                 'tabs'=> [
                                     'title'=> 'sb1',
@@ -342,25 +342,25 @@ class MemberController extends Controller
                                                             'id' => 'list_by_status_book',
                                                             'name'=>'Book',
                                                             'is_actived'=> 'false',
-                                                            'render'=> 'PanelAdmin.Member.component.Tab.my-card-book',
+                                                            'render'=> 'PanelAdmin.Member.Component.Tab.my-card-book',
                                                          ],
                                                         '1' => [
                                                                 'id' => 'list_by_status_available',
                                                                 'name'=>'Available',
                                                                 'is_actived'=> 'false',
-                                                                'render'=> 'PanelAdmin.Member.component.Tab.my-card-available',
+                                                                'render'=> 'PanelAdmin.Member.Component.Tab.my-card-available',
                                                         ],
                                                         '2' => [
                                                                 'id' => 'list_by_status_activated',
                                                                 'name'=>'Actived',
                                                                 'is_actived'=> 'true',
-                                                                'render'=> 'PanelAdmin.Member.component.Tab.my-card-activated',
+                                                                'render'=> 'PanelAdmin.Member.Component.Tab.my-card-activated',
                                                         ],
                                                         '3' => [
                                                                 'id' => 'list_by_status_expired',
                                                                 'name'=>'Expired',
                                                                 'is_actived'=> 'false',
-                                                                'render'=> 'PanelAdmin.Member.component.Tab.my-card-expired',
+                                                                'render'=> 'PanelAdmin.Member.Component.Tab.my-card-expired',
                                                         ]
                                                     ]
                                                 ],
@@ -379,21 +379,21 @@ class MemberController extends Controller
                             'icon'=> '<i class="ri-currency-fill"></i>',
                             'name'=> 'My History Payment',
                             'module'=> 'member_order_payment',
-                            'render'=> 'PanelAdmin.Member.component.Tab.my-invoice',
+                            'render'=> 'PanelAdmin.Member.Component.Tab.my-invoice',
                         ],
                         '3' => [
                             'id'=> 'my-chat',
                             'icon'=> '<i class="ri-whatsapp-fill"></i>',
                             'name'=> 'My Chat',
                             'module'=> 'member',
-                            'render'=> 'PanelAdmin.Member.component.Tab.my-chat',
+                            'render'=> 'PanelAdmin.Member.Component.Tab.my-chat',
                         ],
                         '4' => [
                             'id'=> 'my-settings',
                             'icon'=> '<i class="ri-settings-2-line"></i>',
                             'name'=> 'My Settings',
                             'module'=> 'member',
-                            'render'=> 'PanelAdmin.Member.component.Tab.my-settings',
+                            'render'=> 'PanelAdmin.Member.Component.Tab.my-settings',
                         ]
                         
                         
