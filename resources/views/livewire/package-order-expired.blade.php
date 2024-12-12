@@ -22,7 +22,7 @@
                         ?></h5>
                         
                         <p class="card-text">Expired At [ {{date('d-M-Y',strtotime($value['updated_at']))}} ]<br>Used Ticket {{$value['qty_ticket_available']}}/{{$value['qty_ticket_available']}}</span></p>
-                        <p class="card-text "><small >Last updated {{$LastUpdate}}</small></p>
+                        <p class="card-text "><small >Last updated <br>{{$LastUpdate}}</small></p>
                        
                     </div>
                 </div>

@@ -16,13 +16,17 @@
                             echo $packageVariantName;
 
                             $duration = 45*$value['qty_ticket_available'];
-                            $targetTime = '';
+                            
                             $helper = new App\Helpers\H1BHelper;
                             $LastUpdate = $helper->lastUpdated($value['updated_at']);
-                            
+
+                          
+                            $endDate = date('Y-m-d H:i:s')
                             ?></h5>
-                        <span class="card-text">Start At [ {{date('d-M-Y',strtotime($value['activated_package_started_datetime']))}} ]<br><livewire:CountdownTimer :prefix="'Expired In:'" :format="'days'"  :targetTime="'2025-02-01 18:00:00'" :id="$value['id']"/><livewire:CountdownTimer :prefix="'Auto Actived In'" :id="'dd'" :format="'days'" :targetTime="'2024-11-01 18:00:00'"/><br>Used Ticket {{$value['qty_ticket_used']}}/{{$value['qty_ticket_available']}}</span>
-                        <p class="card-text "><small class=" text-white">Last updated {{ $LastUpdate }}</small></p>
+                        <span class="card-text">Start At [ {{date('d-M-Y',strtotime($value['activated_package_started_datetime']))}} ]
+                            <br>Expired In {{$value['activated_package_due_date']}} days
+                            <br>Used Ticket {{$value['qty_ticket_used']}}/{{$value['qty_ticket_available']}}</span>
+                        <p class="card-text "><small class=" text-white"><br>Last updated <br>{{ $LastUpdate }}</small></p>
                         <p>
 
                         </p>

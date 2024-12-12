@@ -31,12 +31,11 @@
                             $packageVariant = $oPv->find($value['package_variant_id']);
                             $package = $oP->find($packageVariant['package_id']);
 
-                         ?>;
+                         ?>
                          <td>{{ $payment->payment_type}} - {{$payment->amount}}</td>
                          <td>{{date('d-M-Y',strtotime($payment->created_at))}}</td>
                          <td>{{$package->name}} - {{$packageVariant->name}}</td>
                          <td><a target="_blank" href="{{ route('invoice', ['id' => $value['id']]) }}" class="btn btn-primary">Print</a></td>
-                         
                      </tr>
                    @endforeach
                  </tbody>

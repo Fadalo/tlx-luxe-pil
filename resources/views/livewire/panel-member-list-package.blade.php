@@ -30,21 +30,21 @@
 
 
 @if($showTab['tabAvailable'] == true)
-
+    <?php $package = 'available'; ?>
     @foreach($listAvailable as $key => $value)
         @include('PanelMember.component.package');
         <div class="divider-icon divider-margins bg-grey-dark"></div>
     @endforeach
 
 @elseif($showTab['tabActivated'] == true)
-
+    <?php $package = 'activated'; ?>
     @foreach($listActivated as $key => $value)
         @include('PanelMember.component.package');
         <div class="divider-icon divider-margins bg-grey-dark"></div>
     @endforeach
 
 @elseif($showTab['tabExpired'] == true)
-
+    <?php  $package = 'expired'; ?>
     @foreach($listExpired as $key => $value)
         @include('PanelMember.component.package');
         <div class="divider-icon divider-margins bg-grey-dark"></div>

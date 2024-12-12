@@ -19,8 +19,10 @@
                             $helper = new App\Helpers\H1BHelper;
                             $LastUpdate = $helper->lastUpdated($value['updated_at']);
                             ?></h5>
-                        <p class="card-text">Available Since [ {{date('d-M-Y',strtotime($value['available_package_started_datetime']))}} ]<br>Duration {{ $duration }} days<br>Auto Actived In 7 Days<br>Total Ticket {{$value['qty_ticket_available']}}</p>
-                        <p class="card-text "><small class=" text-white">Last updated {{ $LastUpdate }}</small></p>
+                        <p class="card-text">Available Since [ {{date('d-M-Y',strtotime($value['available_package_started_datetime']))}} ]
+                            <br>Duration {{ $duration }} days<br>Auto Actived In 7 Days
+                            <br>Total Ticket {{$value['qty_ticket_available']}}</p>
+                        <p class="card-text "><small class=" text-white">Last updated <br>{{ $LastUpdate }}</small></p>
                     </div>
                     
                 </div>

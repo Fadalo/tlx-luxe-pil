@@ -34,13 +34,17 @@ class H1BHelper
 
         // Display the difference
         if ($days > 0) {
-            return "{$days} days, {$hours} hours, and {$minutes} minutes ago";
+            return "{$days} days {$hours} hours, and {$minutes} minutes ago";
         } elseif ($hours > 0) {
             return "{$hours} hours and {$minutes} minutes ago";
         } else {
             return "{$minutes} minutes ago";
         }
        
+    }
+    function getTargetTime()
+    {
+
     }
     function isH1BDate() {
         // Get the current date

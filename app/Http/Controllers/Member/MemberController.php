@@ -419,6 +419,10 @@ class MemberController extends Controller
        }
        exit;*/
         $MemberResourse = MemberResource::collection(Member::All())->toArray($request);
+       
+        $prevMonthCount = Member::where('created_at','<',now())->count();
+        $totalCount = Member::All()->count();
+        $percentageMember = (($totalCount-$prevMonthCount)/$totalCount)*100;
         $data = $MemberResourse;
         $config = [
                     'page'   => [
@@ -458,8 +462,8 @@ class MemberController extends Controller
                             'width'=> 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'member',
-                            'count-value'=> '100',
-                            'percentage-value'=> '20%',                            
+                            'count-value'=> Member::All()->count(),
+                            'percentage-value'=> $prevMonthCount.' %',                            
                             'render'=> '',
                             'onClick'=> ''
                         ],

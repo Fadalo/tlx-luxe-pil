@@ -15,11 +15,12 @@ class PanelMemberListPackage extends Component
     public $listAvailable = [];
     public $listActivated = [];
     public $listExpired = [];
+    public $member_id = '';
 
     public function showAvailable(){
        // dd('ss');
        // exit();
-        $member_id = '1';
+        $member_id = $this->member_id;
         $MemberPackageOrder = MemberPackageOrder::where('member_id',$member_id)
         ->where('status_package','available')->get()->toArray();
         $this->listAvailable =  $MemberPackageOrder;
@@ -30,7 +31,7 @@ class PanelMemberListPackage extends Component
         ];
     }
     public function showActivated(){
-        $member_id = '1';
+        $member_id = $this->member_id;
         $MemberPackageOrder = MemberPackageOrder::where('member_id',$member_id)
         ->where('status_package','activated')->get()->toArray();
         $this->listActivated =  $MemberPackageOrder;
@@ -41,7 +42,7 @@ class PanelMemberListPackage extends Component
         ];
     }
     public function showExpired(){
-        $member_id = '1';
+        $member_id = $this->member_id;
         $MemberPackageOrder = MemberPackageOrder::where('member_id',$member_id)
         ->where('status_package','expired')->get()->toArray();
         $this->listExpired =  $MemberPackageOrder;

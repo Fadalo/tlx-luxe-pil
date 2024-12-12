@@ -2,8 +2,8 @@
 <br>
 <div class="menu-logo text-center">
     <a href="{{route('member.dashboard')}}#"><span style="color:black;font-size:28px;    font-weight: 800;">LUXE MEMBER</span></a>
-    <h1 class="pt-3 font-800 font-28 text-uppercase">+6282177522260</h1>
-    <p class="font-11 mt-n2">Ricky Setiawan</p>
+    <h1 class="pt-3 font-800 font-28 text-uppercase">{{Auth::guard('member')->User()->phone_no}}</h1>
+    <p class="font-11 mt-n2">{{Auth::guard('member')->User()->first_name.' '.Auth::guard('member')->User()->last_name}}</p>
 </div>
 
 <div class="menu-items mb-4">

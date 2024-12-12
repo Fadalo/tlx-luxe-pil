@@ -21,7 +21,7 @@
                       // $LastUpdate = $value['updated_at'];
                         ?></h5>
                         <p class="card-text">Book At [ {{date('d-m-Y',strtotime($value['created_at']))}} ]<br>Total Ticket {{$value['qty_ticket_available']}}<br>Status - {{$helper->status_payment($value['status_payment'])}}</p>
-                        <p class="card-text "><small class=" text-white">Last updated {{$LastUpdate}}</small></p>
+                        <p class="card-text "><small class=" text-white"><br>Last updated {{$LastUpdate}}</small></p>
                     </div>
                 </div>
                 <div class="col-md-4">

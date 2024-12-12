@@ -18,5 +18,5 @@ $menu_link = 'member.listPackage';
     <div class="card-overlay dark-mode-tint"></div>
     <div class="card-bg preload-img" data-src="{{env('APP_ASSET_MEMBER_URL')}}/images/pictures/20s.jpg"></div>
 </div>
-<livewire:PanelMemberListPackage />
+<livewire:PanelMemberListPackage :member_id="Auth::guard('member')->User()->id" />
 @endsection

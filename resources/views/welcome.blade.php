@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Solid Template</title>
+    <title>LUXE-PILATES</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
     <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
@@ -20,7 +20,8 @@
                     <div class="brand header-brand">
                         <h1 class="m-0">
                             <a href="#">
-                                <img class="header-logo-image" src="dist/images/logo.svg" alt="Logo">
+                                <h2><img class="header-logo-image" src="dist/images/logo.svg" alt="Logo" />
+                                    <span style="position: absolute">LUXE PILATES<span></h2>
                             </a>
                         </h1>
                     </div>
@@ -36,9 +37,9 @@
                             <h1 class="hero-title mt-0">Pelates Terbaik Di BSD</h1>
                             <p class="hero-paragraph">Our landing page template works on all devices, so you only have
                                 to set it up once, and get beautiful results forever.</p>
-                            <div class="hero-cta">
-                                <a class="button button-primary" href="{{ route('register') }}">DAFTAR
-                                    SEKARANG</a>
+                            <div class="hero-cta" style="position: absolute">
+                               <!-- <a class="button button-primary" href="{{ route('register') }}">DAFTAR
+                                    SEKARANG</a> -->
                                 <a class="button" href="{{ route('login') }}">LOGIN</a>
                                 <a class="button" href="{{ route('member.login') }}">LOGIN MEMBER</a>
                                 <a class="button" href="{{ route('instructor.login') }}">LOGIN PELATIH</a>
@@ -100,39 +101,7 @@
                                         Mauris rhoncus aenean vel elit scelerisque mauris.</p>
                                 </div>
                             </div>
-                            <div class="feature text-center is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-                                        <img src="dist/images/feature-icon-04.svg" alt="Feature 04">
-                                    </div>
-                                    <h4 class="feature-title mt-24">Be Productive</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat
-                                        nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis.
-                                        Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-                                </div>
-                            </div>
-                            <div class="feature text-center is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-                                        <img src="dist/images/feature-icon-05.svg" alt="Feature 05">
-                                    </div>
-                                    <h4 class="feature-title mt-24">Be Productive</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat
-                                        nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis.
-                                        Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-                                </div>
-                            </div>
-                            <div class="feature text-center is-revealing">
-                                <div class="feature-inner">
-                                    <div class="feature-icon">
-                                        <img src="dist/images/feature-icon-06.svg" alt="Feature 06">
-                                    </div>
-                                    <h4 class="feature-title mt-24">Be Productive</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat
-                                        nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis.
-                                        Mauris rhoncus aenean vel elit scelerisque mauris.</p>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
