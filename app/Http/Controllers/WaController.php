@@ -14,6 +14,7 @@ class WaController extends Controller
     }
     public function doSend(Request $request)
     {
+        
             // Validate the request data
             $request->validate([
                 'number' => 'required|string',

@@ -32,7 +32,7 @@ class WaQrCode extends Component
             $this->loading = true;
             $this->error = null;
 
-            $response = Http::get('127.0.0.1:3000/api/status');
+            $response = Http::get(env('WA_API').'/status');
             
             if ($response->successful()) {
                 $data = $response->json();
@@ -61,7 +61,7 @@ class WaQrCode extends Component
             $this->loading = true;
             $this->error = null;
 
-            $response = Http::get('127.0.0.1:3000/api/logout');
+            $response = Http::get(env('WA_API').'/logout');
             
             if ($response->successful()) {
                 $data = $response->json();
@@ -84,7 +84,7 @@ class WaQrCode extends Component
             $this->loading = true;
             $this->error = null;
 
-            $response = Http::get('127.0.0.1:3000/api/qr');
+            $response = Http::get(env('WA_API').'/qr');
             
             if ($response->successful()) {
                 $data = $response->json();
