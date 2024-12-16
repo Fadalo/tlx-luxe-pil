@@ -8,8 +8,68 @@
     <title>LUXE-PILATES</title>
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/style.css">
+     <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css >
     <script src="https://unpkg.com/animejs@3.0.1/lib/anime.min.js"></script>
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+        .box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+}
+
+.box select {
+  background-color: #0563af;
+  color: white;
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+.box::before {
+  content: "\f13a";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 30px;
+}
+    </style>
+    <script>
+        function change(){
+            var a = document.getElementById('btnLogin').value;
+            if (a != ''){
+                window.location.href = a;
+            }
+          
+        }
+    </script>
 </head>
 
 <body class="is-boxed has-animations">
@@ -20,8 +80,13 @@
                     <div class="brand header-brand">
                         <h1 class="m-0">
                             <a href="#">
-                                <h2><img class="header-logo-image" src="dist/images/logo.svg" alt="Logo" />
-                                    <span style="position: absolute">LUXE PILATES<span></h2>
+                                <h2 style="float:left"><img class="header-logo-image"  style="float:left" src="dist/images/logo.svg" alt="Logo" />
+                                    <span style="
+    float: left;
+    margin-left: 10px;
+    position: absolute;
+    top: 40px;
+">LUXE PILATES<span></h2>
                             </a>
                         </h1>
                     </div>
@@ -34,18 +99,27 @@
                 <div class="container">
                     <div class="hero-inner">
                         <div class="hero-copy">
-                            <h1 class="hero-title mt-0">Pelates Terbaik Di BSD</h1>
-                            <p class="hero-paragraph">Our landing page template works on all devices, so you only have
-                                to set it up once, and get beautiful results forever.</p>
+                            <h1 class="hero-title mt-0">Best Pilates IN BSD</h1>
+                            <p class="hero-paragraph">Pilates helps remind me that I am strong and I am deserving to be</p>
                             <div class="hero-cta" style="position: absolute">
                                <!-- <a class="button button-primary" href="{{ route('register') }}">DAFTAR
                                     SEKARANG</a> -->
-                                <a class="button" href="{{ route('login') }}">LOGIN</a>
-                                <a class="button" href="{{ route('member.login') }}">LOGIN MEMBER</a>
-                                <a class="button" href="{{ route('instructor.login') }}">LOGIN PELATIH</a>
+                                    <div class="box">
+                                        <select id="btnLogin" onchange="change()">
+                                          <option value=""><a class="button" href="{{ route('login') }}">LOGIN TO </a></option>
+                                          
+                                          <option value="{{ route('login') }}"><a class="button" href="{{ route('login') }}">LOGIN ADMIN</a></option>
+                                          <option value="{{ route('member.login') }}"><a class="button" href="{{ route('member.login') }}">LOGIN MEMBER</a></option>
+                                          <option value="{{ route('instructor.login') }}"><a class="button" href="{{ route('instructor.login') }}">LOGIN PELATIH</a></option>
+                                        </select>
+                                    </div>
+                                   
+                               
+                                
                             </div>
                         </div>
                         <div class="hero-figure anime-element">
+                            <image src="fontImage.png" style="position:absolute;z-index:99" />
                             <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
                                 <rect width="528" height="396" style="fill:transparent;" />
                             </svg>
@@ -63,7 +137,7 @@
                     </div>
                 </div>
             </section>
-
+<!--
             <section class="features section">
                 <div class="container">
                     <div class="features-inner section-inner has-bottom-divider">
@@ -225,7 +299,7 @@
             </div>
         </footer>
     </div>
-
+-->
     <script src="dist/js/main.min.js"></script>
 </body>
 

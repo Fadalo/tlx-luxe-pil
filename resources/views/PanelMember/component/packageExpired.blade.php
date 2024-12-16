@@ -9,7 +9,7 @@
     foreach($value as $k => $v1){
         $list[$k] = $v1;
     }
-    print_r($list);
+   // print_r($list);
    // exit();
    
     $oPv = new App\Models\Package\PackageVariant;
@@ -22,10 +22,9 @@
     $LastUpdate = $helper->lastUpdated($value['updated_at']);
     ?>
     <h3 class="font-600"># {{$list['order_id']}}</h3>
-    <p class="font-14  color-highlight">{{$Package->name.' '.$PackageVariant->name}}<br>Available Since [ {{date('d-M-Y',strtotime($list['available_package_started_datetime']))}} ]
-        <br>Duration {{ 45*$list['qty_ticket_available'] }} days
-        <br>Auto Actived In 7 Days
-        <br>Total Ticket {{$list['qty_ticket_available']}}
+    <p class="font-14  color-highlight">{{$Package->name.' '.$PackageVariant->name}}<br>Expired Since [ {{date('d-M-Y',strtotime($list['updated_at']))}} ]
+        
+        <br>Total Ticket {{$list['qty_ticket_available']}}/{{$list['qty_ticket_available']}}
     </p>
   
   

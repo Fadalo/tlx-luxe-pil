@@ -100,6 +100,11 @@
                             
                             <a href="{{ route('admin.user.list') }}" class="waves-effect"><i class="ri-user-add-line"></i>Users</a>
                            
+                        </li>
+                        <li>
+                            
+                            <a href="{{ route('admin.watem.list') }}" class="waves-effect"><i class="ri-whatsapp-line"></i>WA Template</a>
+                            
                         </li>   
                         <li>
                             

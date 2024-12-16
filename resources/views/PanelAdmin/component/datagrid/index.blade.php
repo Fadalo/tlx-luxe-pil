@@ -21,7 +21,12 @@ table>td {
         <a id="btnSearch" class="ri-search-line absolute-element position-absolute" style="display:block;top: 10px; right: 20px;"></a>
         
         <a id="btnClose" class="ri-close-line absolute-element position-absolute" style="display:none;top: 10px; right: 20px;"></a>
-        <input type="text" id="customSearch" class="form-control" aria-controls="datatable-{{$config['module']}}" placeholder="Search {{$config['module']}}">
+        <input type="text" id="customSearch" class="form-control" aria-controls="datatable-{{$config['module']}}" placeholder="Search <?php
+        if ($config['module']== 'watem'){
+            echo 'Template';
+        }else{
+            echo $config['module'];
+        } ?>">
     </div>
     
 </div>
@@ -284,7 +289,7 @@ $(document).ready(function() {
 
     setInterval(function() {
         a.ajax.reload(null, false); // false -> Don't reset paging
-    }, 5000);
+    }, 15000 );
 
 
 

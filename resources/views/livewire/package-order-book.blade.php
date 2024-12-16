@@ -40,5 +40,19 @@
    
 </div>
 <script>
+window.addEventListener('swal:payment', event => {
+        
+   
+    var data = event.detail[0].member;
+    var package = event.detail[0].package;
+    var packageVariant = event.detail[0].packageVariant;
+    //console.log(data);
+    $('#order_id').val(data.id);
+    $('#order_no').val(data.order_id);
+    $('#package_id').val(package.name+'-'+packageVariant.name);
+    $('#modalPayment').modal('show');
+           console.log(event.detail[0]); 
+          
+});
 
 </script>

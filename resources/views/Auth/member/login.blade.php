@@ -9,8 +9,7 @@
         <meta content="LUXE MEMBER" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{env('APP_ASSET_MEMBER2_URL')}}/assets/images/favicon.ico">
-        
+        <link rel="shortcut icon" href="{{ env('BASE_URL_ADMIN') }}/favicon.png">
         
         <!-- Bootstrap Css -->
         <link href="{{env('APP_ASSET_MEMBER2_URL')}}/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -47,6 +46,9 @@
     border-radius: .25rem;
 
          }
+         label{
+            color:white;
+         }
         </style>
     </head>
 
@@ -57,7 +59,7 @@
                  <div style="padding:30px;margin-top:100px">
 
                         <div class="text-center mt-4">
-                           <span style="color:white;"> LUXE MEMBER </span>
+                           <span style="color:white;font-size:48px;"> LUXE MEMBER </span>
                         </div>
                         
                         <h4 class="text-center font-size-18" style="color:white;"><b>LOGIN MEMBER</b></h4>
@@ -67,13 +69,15 @@
                                 @csrf
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input name="phone_no" class="form-control rounded-0" type="text" required="" placeholder="phone_no">
+                                        <label>PHONE NO</label>
+                                        <input name="phone_no" class="form-control rounded-0" type="text" required="" placeholder="+62821775***">
                                     </div>
                                 </div>
     
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input name="pin" class="form-control rounded-0" type="password" required="" placeholder="pin">
+                                        <label>PIN</label>
+                                        <input name="pin" class="form-control rounded-0" type="password" required="" placeholder="***">
                                     </div>
                                 </div>
     

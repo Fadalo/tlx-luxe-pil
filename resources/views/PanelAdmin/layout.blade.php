@@ -12,7 +12,7 @@
     <meta content="@yield('meta_author', 'Default Author')" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ env('BASE_URL_ADMIN') }}/favicon.png">
 
 
 

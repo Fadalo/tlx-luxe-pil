@@ -136,13 +136,31 @@ if (listByStatusBook) {
     });
 }
 
-
-window.addEventListener('swal:payment', event => {
+window.addEventListener('doClosePayment', event => {
+        document.getElementById('order_id').value = '';
+        document.getElementById('order_no').value ='';
+        document.getElementById('payment_type').value ='CASH';
+        document.getElementById('payment_type').options[0].selected = true;
+        document.getElementById('bank').value = '';
+        document.getElementById('bank').style.display = 'none';
         
-     $('#modalPayment').modal('show');
-           console.log(event.detail[0]); 
-          
-});
+        document.getElementById('bank_account').value = '';
+        document.getElementById('bank_account').style.display = 'none';
+        document.getElementById('input-currency').value ='0';
+        document.getElementById('package_id').value='';
+       
+        $('#modalPayment').modal('hide');
+        Swal.fire({
+                  title: event.detail[0].title,
+                  text: event.detail[0].text,
+                  icon: event.detail[0].icon,
+                  confirmButtonText: 'OK'
+        });
+
+        
+
+    });
+
 
 </script>
 <?php

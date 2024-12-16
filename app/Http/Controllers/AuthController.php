@@ -52,7 +52,7 @@ class AuthController extends Controller
         // Attempt to authenticate using phone number and password
         $instructor = Instructor::where('phone_no', $request->phone_no)->first();
 
-        if ($member && Hash::check($request->pin, $member->pin)) {
+        if ($instructor && Hash::check($request->pin, $instructor->pin)) {
             
             Auth::guard('instructor')->login($instructor);
             return redirect()->intended('instructor/dashboard');

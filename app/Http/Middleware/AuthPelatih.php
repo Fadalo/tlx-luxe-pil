@@ -15,7 +15,7 @@ class AuthPelatih
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+        if (!Auth::guard('instructor')->check()) {
             return redirect('/instructor/login');
         }
         return $next($request);

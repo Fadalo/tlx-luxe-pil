@@ -14,7 +14,7 @@ use App\Models\User;
 use App\Helpers\H1BHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 class InstructorController extends Controller
 {
     public $columns = [
@@ -219,7 +219,7 @@ class InstructorController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Instructor created successfully!',
-            'member' => $member,
+            'member' => $instructor,
         ]);
     }
     
@@ -300,6 +300,9 @@ class InstructorController extends Controller
     public function list(request $request,response $response){
 
         $InstructorResourse = InstructorResource::collection(Instructor::All())->toArray($request);
+        $prevMonthCount = Instructor::where('created_at','<',Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
+        $totalCount = Instructor::All()->count();
+        $percentageInstructor = (($totalCount-$prevMonthCount)/$totalCount)*100;
         $data = $InstructorResourse;
         $config = [
                     'page'   => [
@@ -337,8 +340,8 @@ class InstructorController extends Controller
                             'width'=> 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'instructor',
-                            'count-value'=> Instructor::All()->count(),
-                            'percentage-value'=> '20%',                            
+                            'count-value'=> $totalCount,
+                            'percentage-value'=> H1BHelper::isHasDecimal($percentageInstructor).' %',                            
                             'render'=> '',
                             'onClick'=> ''
                         ],

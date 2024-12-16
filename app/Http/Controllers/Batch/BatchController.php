@@ -16,6 +16,7 @@ use App\Models\Package\Package;
 
 use App\Models\User;
 use App\Helpers\H1BHelper;
+use Carbon\Carbon; 
 
 use Illuminate\Support\Facades\Auth;
 class BatchController extends Controller
@@ -316,6 +317,9 @@ public $detailShow=[
 
    
         $BatchResourse = BatchResource::collection(Batch::All())->toArray($request);
+        $prevMonthCount = Batch::where('created_at','<', Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
+        $totalCount = Batch::All()->count();
+        $percentageBatch = (($totalCount-$prevMonthCount)/$totalCount)*100;
         $data = $BatchResourse;
         $config = [
                     'page'   => [
@@ -350,11 +354,12 @@ public $detailShow=[
                     
                     'stat'=>[
                         'Total Batch'   => [
-                            'name'=> 'Total Member',
+                            'name'=> 'Total Batch Schedule',
+                            'width' => 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'member',
-                            'count-value'=> '100',
-                            'percentage-value'=> '20%',                            
+                            'count-value'=> $totalCount,
+                            'percentage-value'=>  H1BHelper::isHasDecimal($percentageBatch).'%',                           
                             'render'=> '',
                             'onClick'=> ''
                         ],

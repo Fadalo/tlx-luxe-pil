@@ -8,7 +8,14 @@
                         
                         data-bs-toggle="offcanvas" href="#offcanvas{{ ucfirst($config['module'])}}" role="button" aria-controls="offcanvas{{ucfirst($config['module'])}}"
                         >
-                        <i class="ri-user-add-line"></i> Create {{ $config['module'] }}</a>
+                        <i class="ri-user-add-line"></i> Create <?php 
+                        if($config['module'] == 'watem') {
+                            echo 'Template' ;
+                        }
+                        else {
+                            echo $config['module'] ;
+                        }?>
+                        </a>
                        
                 </div>
                 <!--<div class="d-grid">

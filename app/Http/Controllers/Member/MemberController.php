@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Helpers\H1BHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 
 class MemberController extends Controller
 {
@@ -101,9 +101,11 @@ class MemberController extends Controller
         'order_no'=>['label'=>'Order No','type'=>'label','width'=>'col-md-6'],
         'package_id'=>['label'=>'Package','type'=>'label','width'=>'col-md-6'],
         'payment_type'=>['label'=>'Type','type'=>'dropdown','width'=>'col-md-12','enum'=>['CASH','TRANSFER'],'enum_default'=>'CASH'],
+        'bank'=>['label'=>'Type','type'=>'dropdown','width'=>'col-md-12','enum'=>['BCA','BRI','BNI','CIMB','JAGO','MAYBANK','BSI','MANDIRI'],'enum_default'=>'BCA'],
+        
         'bank_account'=>['label'=>'Bank Account','type'=>'text','width'=>'col-md-12'],
         'payment'=>['label'=>'Payment','type'=>'currency','width'=>'col-md-12'],
-        'payment_prof'=>['label'=>'Payment Proff','type'=>'fileUpload','width'=>'col-md-12'],
+        //'payment_prof'=>['label'=>'Payment Proff','type'=>'fileUpload','width'=>'col-md-12'],
         'payment_date'=>['label'=>'Payment Date','type'=>'date','width'=>'col-md-6']
     ];
 
@@ -420,7 +422,7 @@ class MemberController extends Controller
        exit;*/
         $MemberResourse = MemberResource::collection(Member::All())->toArray($request);
        
-        $prevMonthCount = Member::where('created_at','<',now())->count();
+        $prevMonthCount = Member::where('created_at','<',Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = Member::All()->count();
         $percentageMember = (($totalCount-$prevMonthCount)/$totalCount)*100;
         $data = $MemberResourse;
@@ -463,12 +465,11 @@ class MemberController extends Controller
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'member',
                             'count-value'=> Member::All()->count(),
-                            'percentage-value'=> $prevMonthCount.' %',                            
+                            'percentage-value'=> H1BHelper::isHasDecimal($percentageMember).'%',                            
                             'render'=> '',
                             'onClick'=> ''
                         ],
                        
-                        
                     ]
                 ];
       

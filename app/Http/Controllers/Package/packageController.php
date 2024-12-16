@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Helpers\H1BHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon; 
 class PackageController extends Controller
 {            
     public $columns = [
@@ -234,6 +234,9 @@ class PackageController extends Controller
     public function list(request $request,response $response){
 
         $PackageResource = PackageResource::collection(Package::All())->toArray($request);
+        $prevMonthCount = Package::where('created_at','<', Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
+        $totalCount = Package::All()->count();
+        $percentagePackage = (($totalCount-$prevMonthCount)/$totalCount)*100;
         $data = $PackageResource;
         $config = [
                     'page'   => [
@@ -268,10 +271,11 @@ class PackageController extends Controller
                     'stat'=>[
                         'Total Instructor'   => [
                             'name'=> 'Total Package',
+                            'width' => 'col-md-12',
                             'icon'=> 'ri-user-3-line font-size-24',
                             'module'=> 'instructor',
-                            'count-value'=> '100',
-                            'percentage-value'=> '20%',                            
+                            'count-value'=> $totalCount,
+                            'percentage-value'=>  H1BHelper::isHasDecimal($percentagePackage).'%',                            
                             'render'=> '',
                             'onClick'=> ''
                         ],

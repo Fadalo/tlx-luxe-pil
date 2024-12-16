@@ -26,6 +26,7 @@ $helper->adminRoute();
 //routeAdminHelper::getRoute();
 Route::get('/pdf','App\Http\Controllers\PdfController@viewPDF')->name('pdf');
 Route::get('/invoice/{id}', [PdfController::class, 'viewInvoice'])->name('invoice');
+Route::post('/callback', [WaController::class, 'callback'])->name('callback');
 
 
 Route::get('/pp',function(){
@@ -74,7 +75,7 @@ Route::get('/member/forgot-password', function () {
 })->name('member.forgotpassword');
 
 
-#AUTH MEMBER - Frontend
+#AUTH INSTRUCTOR - Frontend
 Route::get('/instructor/login', function () {
     return view('Auth.instructor.login');
 })->name('instructor.login');
@@ -97,11 +98,11 @@ Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
 Route::middleware(['App\Http\Middleware\AuthPelatih'])->group(function () {
     
     # Couch Dashboard
-    Route::get('/couch/dashboard', function () {
+    Route::get('/instructor/dashboard', function () {
         return view('PanelCouch.dashboard');
-    })->name('couch.dashboard');
+    })->name('instructor.dashboard');
 
-    $hInstructor = new routeMemberHelper();
+    $hInstructor = new routeInstructorHelper();
     $hInstructor->getRoute();
 
 });

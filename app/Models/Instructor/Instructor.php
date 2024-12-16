@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Carbon\Carbon;
 
-class Instructor extends Model
+class Instructor extends Authenticatable
 {
     use HasFactory;
     protected $authPasswordName = 'pin';

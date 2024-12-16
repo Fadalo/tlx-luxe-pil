@@ -9,7 +9,7 @@
     foreach($value as $k => $v1){
         $list[$k] = $v1;
     }
-    print_r($list);
+    //print_r($list);
    // exit();
    
     $oPv = new App\Models\Package\PackageVariant;

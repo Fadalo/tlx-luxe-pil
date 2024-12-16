@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="login/assets/fonts/flaticon/font/flaticon.css">
 
     <!-- Favicon icon -->
-    <link rel="shortcut icon" href="login/assets/img/favicon.ico" type="image/x-icon" >
+    <link rel="shortcut icon" href="{{ env('BASE_URL_ADMIN') }}/favicon.png">
 
     <!-- Google fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">

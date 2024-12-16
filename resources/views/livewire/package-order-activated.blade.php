@@ -1,4 +1,5 @@
-<div class="row">
+<div class="row"  >
+    @if($view['viewGrid'] == true)
     @foreach($data as $key => $value)
     <div class="col-md-6">
         <div class="card bg-primary text-white-50">
@@ -74,4 +75,42 @@
 </div>
 </div>
 @endforeach
+
+@elseif($view['viewBooking'] == true)
+<?php
+    
+    $MemberPackageOrder =  App\Models\Member\MemberPackageOrder::find($member_package_order_id);
+    //dd($MemberPackageOrder);
+?>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-12">{{ $member_package_order_id }}ddd
+            <button wire:click="doListBack()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
+            <div style="float:right">
+            <a style="color:white">Activated [# {{$MemberPackageOrder->order_id }}]</a> > <a style="color:white">Session</a>&nbsp;  > Booking
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <livewire:OrderActivatedSessionBooking :config="'$config'" :member_package_order_id="'$member_package_order_id'" />
+    </div>
+</div>
+@elseif($view['viewDetail'] == true)
+<?php
+   echo $member_id;
+    $MemberPackageOrder =  App\Models\Member\MemberPackageOrder::find($member_package_order_id);
+
+?>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-12">
+            <button wire:click="doListBack()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
+            <div style="float:right">
+            <a style="color:white">Activated [# ]</a> > <a style="color:white">Session :</a>&nbsp; > Detail 
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 </div>

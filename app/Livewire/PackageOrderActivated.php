@@ -10,26 +10,55 @@ class PackageOrderActivated extends Component
 {
     public $config = [];
     public $member_id = '';
+    public $member_package_order_id = '';
     public $data = [];
     public $view = [
-        'viewActivated' => true,
+        'viewGrid'=>true,
+        'viewBooking' => false,
         'viewDetail' => false,
     ];
-    protected $listeners = ['btnSaveBookingSession','showDetailView'];
+    protected $listeners = ['btnSaveBookingSession','showDetailView','showModalBooking','showModalDetail'];
 
 
-    public $member_package_order_id ='';
+    
     public function mount(){
         $this->data  = MemberPackageOrder::where('member_id',$this->member_id)
         ->where('status_package','activated')
         ->get()->toArray();
     }
-    public function updateList()
+    public function update()
     {
         $memberPackageOrderObj = MemberPackageOrder::where('member_id',$this->member_id);
         $this->data = $memberPackageOrderObj->where('status_package','activated')->get()->toArray();
     }
+    public function showModalBooking($param){
+       // dd($param['member_package_order_id']);
+        $this->member_package_order_id = $param['member_package_order_id'];
+        //$this->update();
+        //dd($this->member_package_order_id);
+        $this->view = [
+            'viewGrid'=>false,
+            'viewBooking' => true,
+            'viewDetail' => false,
+        ];
+    }
+    public function showModalDetail($param){
+        //$this->member_package_order_id = $param['member_package_order_id'];
+        $this->view = [
+            'viewGrid'=>false,
+            'viewBooking' => false,
+            'viewDetail' => true,
+        ];
+    }
+    public function doListBack(){
+        $this->view = [
+            'viewGrid'=>true,
+            'viewBooking' => false,
+            'viewDetail' => false,
+        ];
+    }
     public function btnSaveBookingSession($id){
+        dd($id);
         $session = new MemberPackageOrderSession;
         $MemberPackageOrder =  MemberPackageOrder::find($id);
 

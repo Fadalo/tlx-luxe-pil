@@ -16,7 +16,8 @@ class routeAdminHelper
         'user',
         'scheadule',
         'rule', 
-        'RoleRule'
+        'RoleRule',
+        'watem'
     ];
 
     public  function getRoute(){

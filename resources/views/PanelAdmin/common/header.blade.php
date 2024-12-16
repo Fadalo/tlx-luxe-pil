@@ -1,3 +1,6 @@
+<?php
+if(Auth::User()==null){ redirect()->to(env('APP_URL')); }
+?>
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">

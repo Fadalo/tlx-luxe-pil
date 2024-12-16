@@ -5,7 +5,7 @@
                 <p class="text-truncate font-size-14 mb-2">{{ $value['name'] }}</p>
                 <h4 class="mb-2">{{ $value['count-value'] }}</h4>
                 <p class="text-muted mb-0"><span class="text-success fw-bold font-size-12 me-2"><i
-                            class="ri-arrow-right-up-line me-1 align-middle"></i>11.7%</span>from previous
+                            class="ri-arrow-right-up-line me-1 align-middle"></i>{{ $value['percentage-value'] }}</span>from previous
                     period</p>
             </div>
             <div class="avatar-sm">

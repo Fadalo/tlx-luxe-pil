@@ -11,7 +11,8 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{env('APP_ASSET_MEMBER_URL')}}/fonts/css/fontawesome-all.min.css">    
 <link rel="manifest" href="{{env('APP_URL')}}/lib/frontend/_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
-<link rel="apple-touch-icon" sizes="180x180" href="{{env('APP_ASSET_MEMBER_URL')}}/app/icons/icon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ env('BASE_URL_ADMIN') }}/favicon.png">
+<link rel="shortcut icon" href="{{ env('BASE_URL_ADMIN') }}/favicon.png">
 @livewireStyles
 </head>
     
@@ -72,5 +73,20 @@
 <script type="text/javascript" src="{{env('APP_ASSET_MEMBER_URL')}}/scripts/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="{{env('APP_ASSET_MEMBER_URL')}}/scripts/custom.js"></script>
+<script>
+     window.addEventListener('swal:alert', event => {
+         
+         //console.log(event.detail[0]);
+         
+         Swal.fire({
+                  title: event.detail[0].title,
+                  text: event.detail[0].text,
+                  icon: event.detail[0].icon,
+                  confirmButtonText: 'OK'
+                 });
+                 
+              
+    });
+   </script>
 @livewireScripts
 </body>

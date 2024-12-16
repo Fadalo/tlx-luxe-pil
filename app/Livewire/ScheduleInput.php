@@ -32,7 +32,7 @@ class ScheduleInput extends Component
     public function mount()
     {
         $contract = InstructorContract::find($this->contract_id);
-        if($contract->schedule_instructor != null || $contract->schedule_instructor != ''){
+        if(!empty($contract->schedule_instructor)){
             $this->schedules = json_decode($contract->schedule_instructor,true);
         }else{
             $this->addWeek();

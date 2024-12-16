@@ -20,7 +20,7 @@
                             $LastUpdate = $helper->lastUpdated($value['updated_at']);
                             ?></h5>
                         <p class="card-text">Available Since [ {{date('d-M-Y',strtotime($value['available_package_started_datetime']))}} ]
-                            <br>Duration {{ $duration }} days<br>Auto Actived In 7 Days
+                            <br>Duration {{ $duration }} days<br>Auto Actived In {{$value['available_package_due_date']}} Days
                             <br>Total Ticket {{$value['qty_ticket_available']}}</p>
                         <p class="card-text "><small class=" text-white">Last updated <br>{{ $LastUpdate }}</small></p>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="col-md-4">
                 <div style="height:200px">
                     <div class="mt-3" style="display: flex;justify-content: flex-end;margin-right: 10px;">
-                        <button class="btn btn-success rounded-0">Activated</button>
+                        <button wire:click='doActivation({{$value['id']}})'class="btn btn-success rounded-0">Activated</button>
                     </div>
                    
                     </div>

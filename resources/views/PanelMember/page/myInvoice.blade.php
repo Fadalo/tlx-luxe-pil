@@ -17,7 +17,17 @@
     <div class="card-bg preload-img" data-src="{{env('APP_ASSET_MEMBER_URL')}}/images/pictures/20s.jpg"></div>
 </div>
 
-
+<style>
+    
+.list-custom-small .badge {
+    position: absolute;
+    right: 15px;
+    margin-top: -26px !important;
+    font-size: 9px;
+    padding: 5px 8px 5px 8px;
+    font-weight: 700;
+}
+</style>
 <div class="card card-style">
     <div class="content mb-2">
         <h4>List Invoice</h4>
@@ -25,28 +35,26 @@
             Below is your purchase invoice
         </p>
 
+        <?php
+        $oMPO = new App\Models\Member\MemberPackageOrder;
+        $listInvoice = $oMPO->where('status_payment','paid')->get()->toArray();
+
+
+        ?>
         <div class="list-group list-custom-small">
+            @foreach($listInvoice as $key => $value)
             <a href="#">
                 <i class="fa font-14 fa-check rounded-sm shadow-m bg-green-dark"></i>
-                <span># OD0001 - 25/January/2024</span>
-                <span class="badge bg-green-dark">Download PDF</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <a href="#">
-                <i class="fa font-14 fa-check rounded-sm shadow-m bg-green-dark"></i>
-                <span># OD0002 - 25/January/2024</span>
+                <span># {{$value['order_id']}} -
+             PAID at ( {{date('F ,d-Y',strtotime($value['available_package_started_datetime'])) }} )</span>
+                <div>
+                <a target="_blank" href="{{env('APP_URL').'/invoice/'.$value['id']}}">
+                    <span class="badge bg-green-dark">Download PDF</span>
+                </a>
+            </div>
                 
-                <span class="badge bg-green-dark">Download PDF</span>
-                
-                <i class="fa fa-angle-right"></i>
             </a>
-            <a href="#">
-                <i class="fa font-14 fa-check rounded-sm shadow-m bg-green-dark"></i>
-                <span># OD0003 - 25/January/2024</span>
-                <span class="badge bg-green-dark">Download PDF</span>
-                <i class="fa fa-angle-right"></i>
-            </a>
-           
+           @endforeach
         </div>
     </div>
 </div>

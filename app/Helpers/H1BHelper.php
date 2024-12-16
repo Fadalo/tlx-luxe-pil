@@ -10,7 +10,14 @@ class H1BHelper
     public function status_payment($value){
         return ($value=='not_paid')?'NOT PAID':'PAID';
     }
-    
+    public static function isHasDecimal($val)
+    {
+        if (fmod($val, 1) !== 0.0) {
+            return number_format($val,2);
+        } else {
+            return $val;
+        }
+    }
     public function lastUpdated($startDateTime)
     {
         //return 'aaaa';
