@@ -306,7 +306,30 @@ public $detailShow=[
                     'route'  => 'batch',
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
                     'data' => $data,
-                    'relation'=>[]
+                    'relation'=>[
+                        '0'   => [
+                            'id'=> 'my-member',
+                            'name'=> 'Available Member',
+                            'icon'=> '<i class="ri-archive-line"></i>',
+                            'type'=> 'tab',
+                            'module'=> 'member',
+                            'moduleClass'=>'App\Models\Member\Member',
+                            'render'=> 'PanelAdmin.Batch.Component.Tab.my-member',
+                        ],
+                        '1'   => [
+                            'id'=> 'my-session',
+                            'name'=> 'Schedule Session',
+                            'icon'=> '<i class="ri-archive-line"></i>',
+                            'type'=> 'tab',
+                            'module'=> 'session',
+                            'moduleClass'=>'App\Models\Batch\BatchSession',
+                            'render'=> 'PanelAdmin.Batch.Component.Tab.my-session',
+                        ],
+                        
+                        
+                        
+                        
+                    ],
                     
 
                 ];

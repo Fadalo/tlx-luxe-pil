@@ -43,7 +43,7 @@ class PackageOrderActivated extends Component
         ];
     }
     public function showModalDetail($param){
-        //$this->member_package_order_id = $param['member_package_order_id'];
+        $this->member_package_order_id = $param['member_package_order_id'];
         $this->view = [
             'viewGrid'=>false,
             'viewBooking' => false,

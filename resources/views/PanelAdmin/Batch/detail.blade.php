@@ -26,7 +26,7 @@
         @include('PanelAdmin.component.crud.detail')
         
     </div>
-    @if(is_array($config['relation']) && !empty($config['related']))
+    @if(is_array($config['relation']) )
     <div class="col-12">
         <div class="card">
             <div class="card-body">

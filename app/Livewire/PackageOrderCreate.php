@@ -7,6 +7,7 @@ use App\Models\Package\PackageVariant;
 use App\Models\Batch\Batch;
 use App\Models\Member\MemberPackageOrder;
 
+use Illuminate\Support\Facades\Auth;
 
 
 class PackageOrderCreate extends Component
@@ -48,12 +49,16 @@ class PackageOrderCreate extends Component
             'qty_ticket_available' => $PackObj->package_qty_ticket,
             'status_package' => 'book',
             'status_payment' => 'not_paid',
-            'is_member_created' => 0
+            'is_member_created' => 0,
+            'created_by' => Auth::User()->id,
+            'updated_by' => Auth::User()->id,
         ];
         
        // $this->triggerAlert( '','Berhasil di booking !!!','success');
         $result = MemberPackageOrder::create($param);
        
+        $result->order_id = 'OD '.(100000+$result->id);
+        $result->save();
         $BatchObj->qty_book = $BatchObj->qty_book + 1;
         $BatchObj->save();
         $this->data = Batch::where('package_id',$PackObj->package_id)->get();

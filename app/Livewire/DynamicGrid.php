@@ -55,7 +55,11 @@ class DynamicGrid extends Component
 
         // If `packageVariantId` is 'n', insert a new variant
         if ($packageVariantId == 'n') {
-            $si = $package->PackageVariant()->create([$field => $value]);  
+            $si = $package->PackageVariant()->create([
+                $field => $value,
+                'created_by' => Auth::User()->id,
+                'updated_by' => Auth::User()->id,
+            ]);  
            // dd($arrayId);
             $this->data[$arrayId][0]['source'] = 'db';
             $this->data[$arrayId][0]['value'] = $si->id;
