@@ -18,22 +18,29 @@ class Calendar extends Component
        // dd($event);
         $newEvent = $event['event'];
         $this->events = [];
-       //print_r($newEvent);
-       // exit();
         $this->addEvent($newEvent);
-        $this->dispatch('refreshCalendar',['event1'=>$newEvent]);
+        $contract = InstructorContract::where('instructor_id',$this->instructor_id)->get()->toArray();
+         // dd($this->instructor_id);
+        $this->generateEvent( $contract );
+        $this->dispatch('refreshCalendar',['event1'=>json_encode($this->events)]);
         //dd($this->events);
     }
-    public function update()
+    public function updateCalendar()
     {
-        
+         // Load initial events (You can fetch from DB)
+         $contract = InstructorContract::where('instructor_id',$this->instructor_id)->get()->toArray();
+         // dd($this->instructor_id);
+          $this->generateEvent( $contract );
     }
     public function mount()
     {
         // Load initial events (You can fetch from DB)
-        $contract = InstructorContract::where('instructor_id',$this->instructor_id);
-        
-        
+        $contract = InstructorContract::where('instructor_id',$this->instructor_id)->get()->toArray();
+       // dd($this->instructor_id);
+        $this->generateEvent( $contract );
+       
+
+        /*
         $this->events = [
             [
                 'title' => 'Session 1 - Private - Single', 
@@ -58,9 +65,67 @@ class Calendar extends Component
                 'duration' => '02:00'
             ],
 
-        ];
+        ];*/
         
         //dd($this->events);
+    }
+
+    public function generateEvent( $contract ){
+
+        $event = [];
+        $i=0;
+        foreach($contract as $kc => $vc){
+           $sch = json_decode($vc['schedule_instructor'],true);
+         // dd($sch);
+            foreach ($sch as $key => $value){
+                foreach($value['days'] as $keyDay => $valueDay){
+                    foreach ($valueDay['time_ranges'] as $keyTime =>$valueTime){
+                   
+
+                        $dStart = $vc['contract_start_date'];
+                        $dEnd   = $vc['contract_end_date'];
+                        $dStartTime = $valueTime['start'];
+                        $dEndTime   = $valueTime['end'];
+                        
+                        $dStartCombine = date('d/m/Y H:i',strtotime($dStart.' '.$dStartTime));
+                        $dEndCombine   = date('d/m/Y H:i', strtotime($dStart.' '.$dEndTime));
+                        
+                        $start = Carbon::createFromFormat('d/m/Y H:i', $dStartCombine );
+                        $end = Carbon::createFromFormat('d/m/Y H:i',  $dEndCombine  );
+
+                        // Get the difference in hours and minutes
+                        $diffInHours = $start->diffInHours($end); // Whole hours
+                        $diffInMinutes = $start->diffInMinutes($end) % 60; // Remaining minutes after full hours
+
+                        // Format the duration as "HH:mm"
+                        $duration = sprintf('%02d:%02d', $diffInHours, $diffInMinutes);
+                        //dd($duration);
+                        
+                        $days  = $valueDay['name'];
+                        $event[$i++] = [
+                            'title'=> $vc['name'],
+                            'description' => 'Hello',
+                            'ssss'=>'sasdasdsa',
+                            'rrule'=> [
+                                
+                                'freq'=> 'weekly',           // Weekly recurrence
+                                'byweekday'=> $days,  // Monday, Tuesday, Friday
+                                'dtstart'=> Carbon::createFromFormat('d/m/Y H:i', $dStartCombine), // Start datetime
+                            ],
+                            'duration' => $duration,
+                        ];
+                    
+                    }
+                }
+            }
+        }
+        //dd($event);
+        $this->events = $event;
+    }
+
+    public function setCalendar($value){
+       // $this->events = [];
+        
     }
 
     public function addEvent($event)

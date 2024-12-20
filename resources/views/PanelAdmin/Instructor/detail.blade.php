@@ -8,8 +8,8 @@
 @section('head-page')
 <script >
     let eventP = [];
-</script>
 
+</script>
 @endsection
 
 @section('content')

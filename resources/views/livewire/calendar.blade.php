@@ -1,4 +1,4 @@
-<div>
+<div >
     <style>
     #full-calendar a {
         color: black !important;
@@ -56,12 +56,13 @@
             </div>
         </div>
     </div>
-    <script>
-        eventP = @JSON($events);
-       
+    <script >
+        window.eventP = @JSON($events);
+        window.instuctor_id =  '{{$instructor_id}}';
         // console.log(eventP)
     
         
     </script>
-    @vite(['resources/js/calendar/calendar.js'])
+    
+@vite(['resources/js/calendar/calendar.js'])
 </div>

@@ -4,11 +4,17 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import rrulePlugin from '@fullcalendar/rrule';
 
-let calendar = '';
-let calendarEl = document.getElementById('full-calendar');
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
+   let eventP  = window.eventP;
+   document.getElementById('tavb_my-schedule').addEventListener('shown.bs.tab', function() {
+    
+    
+    console.log(eventP);
+    let calendar = '';
+    let calendarEl = document.getElementById('full-calendar');
     calendar = new Calendar(calendarEl, {
     plugins: [ dayGridPlugin, timeGridPlugin,rrulePlugin ],
     initialView: 'dayGridMonth',
@@ -17,17 +23,16 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'
     },
-    events: eventP,
+    //events: eventP,
     });
 
     calendar.render();
 
-   document.getElementById('tavb_my-schedule').addEventListener('shown.bs.tab', function() {
-      
     //alert(eventP);
     setTimeout(function() {
         console.log(eventP);
-        //calendar.removeAllEvents(); 
+      //  calendar.removeAllEvents(); 
+        //calendar.refetchEvents()
         calendar.addEventSource(eventP); 
         
         calendar.updateSize(); // Update the calendar size when tab is shown
@@ -36,13 +41,25 @@ document.addEventListener('DOMContentLoaded', function() {
    });
 
    document.addEventListener('refreshCalendar', (event) => {
-   
-    
-        console.log(event.detail[0].event1);
-           calendar.removeAllEvents(); // Clear events
-           calendar.addEventSource(JSON.parse(event.detail[0].event1)); // Add updated events
-          // calendar.render();
-           calendar.updateSize(); 
+    eventP = JSON.parse(event.detail[0].event1);
+    console.log(eventP);
+   /* let calendar = '';
+    let calendarEl = document.getElementById('full-calendar');
+    console.log()
+    calendar = new Calendar(calendarEl, {
+        plugins: [ dayGridPlugin, timeGridPlugin,rrulePlugin ],
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek'
+        },
+        events:  JSON.parse(event.detail[0].event1),
+        });
+    calendar.render();
+      */   
+
     });
+
 
 });

@@ -44,6 +44,7 @@ class InstructorContractPackage extends Component
     public function update()
     {
         $this->instructorContractPackages = InstructorContract::where('instructor_id',$this->instructor_id)->get();
+        $this->dispatch('updateDataCalendar',['event'=>[]]);
     }
     public function render()
     {

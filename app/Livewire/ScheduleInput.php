@@ -97,7 +97,7 @@ class ScheduleInput extends Component
          $instructorContract->schedule_instructor = $this->schedules;
          $instructorContract->save();
  
-         $this->triggerAlert('Instructor Schedule Saved');
+         //$this->triggerAlert('Instructor Schedule Saved');
          $this->loadEvent();
        }
        catch(Extension $e){
@@ -112,6 +112,7 @@ class ScheduleInput extends Component
         $contract = InstructorContract::find($this->contract_id);
         
         $event = [];
+        $i =0;
         foreach ($this->schedules as $key => $value){
             foreach($value['days'] as $keyDay => $valueDay){
                 foreach ($valueDay['time_ranges'] as $keyTime =>$valueTime){
@@ -137,7 +138,7 @@ class ScheduleInput extends Component
                     //dd($duration);
                     
                     $days  = $valueDay['name'];
-                    $event[] = [
+                    $event[$i++] = [
                         'title'=> 'Recurring Event',
                         'description' => 'Hello',
                         'rrule'=> [
