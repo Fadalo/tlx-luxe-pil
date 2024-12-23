@@ -1,3 +1,9 @@
+<?php
+
+if(!Auth::User()){
+    print_r('fail');
+}
+?>
 <!doctype html>
 <html lang="en">
 

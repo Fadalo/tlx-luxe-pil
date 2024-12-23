@@ -67,6 +67,6 @@
 </div>
 @elseif($list_contract_showpage['list_contract_insentif'])
 <div class="col-md-12">
-        <livewire:ScheduleInput />
+        <livewire:InstructorContractInsentif />
 </div>
 @endif

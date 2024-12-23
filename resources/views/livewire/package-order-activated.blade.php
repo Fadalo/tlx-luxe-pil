@@ -121,6 +121,25 @@
         <livewire:OrderActivatedSessionBooking :config="$config" :member_package_order_id="$member_package_order_id" />
     </div>
 </div>
+@elseif($view['viewChangeSchedule'] == true)
+<?php
+    //dd($member_package_order_id);
+    $MemberPackageOrder =  App\Models\Member\MemberPackageOrder::find($member_package_order_id);
+    //dd($MemberPackageOrder);
+?>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-12">
+            <button wire:click="doListBack()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
+            <div style="float:right">
+            <a style="color:white">Activated [# {{$MemberPackageOrder->order_id }}]</a> > <a style="color:white">Session</a>&nbsp;  > Booking
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <livewire:OrderActivatedSessionChangeSchedule :config="$config" :member_package_order_id="$member_package_order_id" />
+    </div>
+</div>
 @endif
 
 </div>

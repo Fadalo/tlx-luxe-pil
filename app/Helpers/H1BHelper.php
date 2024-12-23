@@ -7,6 +7,7 @@ use Carbon\Carbon;
 class H1BHelper
 {
 
+    
     public function status_payment($value){
         return ($value=='not_paid')?'NOT PAID':'PAID';
     }

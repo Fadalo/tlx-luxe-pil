@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.5000ms="historyMessage" >
     <style>
         .chat-container {
             max-width: 100%;
@@ -16,17 +16,30 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            color:rgb(90, 84, 84);
+        }
+        .message-text{
+            font-size:0.9em;
         }
         .message-bubble {
-            background-color: #dcf8c6;
+            background-color: #32ae6c;
             border-radius: 8px;
             padding: 8px 12px;
-            max-width: 75%;
+            
+            max-width: 300px;
             position: relative;
             align-self: flex-end;
         }
+        .message-bubble_left {
+            background-color: #dcf8c6;
+            border-radius: 8px;
+            padding: 8px 12px;
+            max-width: 330px;
+            position: relative;
+            align-self: flex-start;
+        }
         .message-time {
-            font-size: 0.75rem;
+            font-size: 0.55rem;
             color: #555;
             text-align: right;
             margin-top: 2px;
@@ -45,14 +58,50 @@
        
     </style>
     
-    
-    <div class="chat-container">
+    <!-- class="chat-container" -->
+    <div  class="chat-container">
         <div class="messages">
+          
+            
             @foreach ($messages as $message)
-                <div class="message-bubble">
-                    <div class="message-text">{{ $message['text'] }}</div>
-                    <div class="message-time">{{ $message['timestamp'] }}</div>
+                <?php
+                    $om = new App\Models\Member\Member;
+                    $fullName = str_replace('@c.us','',$message['from']);
+                    $Member =  $om->where('phone_no','+'.str_replace('@c.us','',$message['from']))->first();
+                   // dd();
+                    if ($Member){
+                    $fullName = $Member['first_name'] .' '.$Member['last_name'];
+                    }
+                    
+                  //  print_r($message);
+                    
+                ?>
+                
+                @if($message['from'] == $phone_no.'@c.us')
+                 <?php
+                   // print_r('<pre>');
+                   // print_r( $message);
+                   // print_r( $message['hasMedia'])
+                 ?>
+                <div class="message-bubble_left ">
+                    <div class="message-text"><h6 style="color:#555;font-size:1em;text-decoration:underline">{{ $fullName }}</h6></div>
+                    @if(!empty($message['hasMedia']))
+                    <div class="message-text"><img width="250px" src="{{ $message['imageUrl'] }}" /></div>
+                    @endif
+                    <div class="message-text"><span style="color:#555">{{ $message['body'] }}</span></div>
+                    <div class="message-time">{{ date('d/m/Y',$message['timestamp']) }}<br>{{ date('H:i:s',$message['timestamp']) }}</div>
                 </div>
+                @else
+                <div class="message-bubble">
+                    <div class="message-text"><h6 style="color:#555;font-size:1em;text-decoration:underline">{{ $fullName }}</h6></div>
+                    @if(!empty($message['hasMedia']))
+                    <div class="message-text"><img width="250px" src="{{ $message['imageUrl'] }}" /></div>
+                    @endif
+                    <div class="message-text"><span style="color:#555">{{ $message['body'] }}<span></div>
+                    <div class="message-time">{{ date('d/m/Y',$message['timestamp']) }}<br>{{ date('H:i:s',$message['timestamp']) }}</div>
+                </div>
+                @endif
+                
             @endforeach
         </div>
         

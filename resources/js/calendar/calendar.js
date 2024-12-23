@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('full-calendar');
     calendar = new Calendar(calendarEl, {
     plugins: [ dayGridPlugin, timeGridPlugin,rrulePlugin ],
-    initialView: 'dayGridMonth',
+    initialView: 'timeGridWeek',
     headerToolbar: {
         left: 'prev,next today',
         center: 'title',

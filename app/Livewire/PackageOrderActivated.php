@@ -16,6 +16,7 @@ class PackageOrderActivated extends Component
         'viewGrid'=>true,
         'viewBooking' => false,
         'viewDetail' => false,
+        'viewChangeSchedule' => false,
     ];
     protected $listeners = ['btnSaveBookingSession','showDetailView','showModalBooking','showModalDetail'];
 
@@ -83,6 +84,7 @@ class PackageOrderActivated extends Component
         $this->view = [
             'viewActivated' => false,
             'viewDetail' => true,
+            'viewChangeSchedule' => false
         ];
     }
     public function showActivatedView()
@@ -90,6 +92,7 @@ class PackageOrderActivated extends Component
         $this->view = [
             'viewActivated' => true,
             'viewDetail' => false,
+            'viewChangeSchedule' => false
         ];
     }
     public function render()
