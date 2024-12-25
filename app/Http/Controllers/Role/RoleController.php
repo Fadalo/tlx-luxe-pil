@@ -196,7 +196,7 @@ class RoleController extends Controller
     }
 
     public function detail(request $request,response $response,$id){
-        $RoleResource = RoleResource::collection(Role::find($id)->get())->toArray($request);
+        $RoleResource = RoleResource::collection(Role::where('id',$id)->get())->toArray($request);
         $data = $RoleResource;
         $config = [
                     'page'   => [
@@ -206,7 +206,7 @@ class RoleController extends Controller
                         'parent' => 'Role',
                         'author' => 'Telcomixo',
                     ],
-                    
+                    'id' => $id,
                     'module' => 'role',
                     'route'  => 'role',
                     'meta'=> H1BHelper::combine_based_on_second($this->meta,$this->detailShow),
@@ -232,6 +232,7 @@ class RoleController extends Controller
                         'parent' => 'Roles',
                         'author' => 'Telcomixo',
                     ],
+                   
                     'module' => 'role',
                     'columns' => json_encode($this->columns,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                     'objModule'=> Role::All(),
@@ -247,13 +248,15 @@ class RoleController extends Controller
                             'route'=>'role/create',
                             'icon'=>'ri-add-line'
                         ],
-                        'Export PDF'=>[
-                            'name'=>'Export Excel',
-                            'route'=>'role/create',
+                        
+                    ],
+                    'button_grid'=>[
+                        'Role Permission'=>[
+                            'name'=>'Role Permission',
+                            'route'=>'role_permission',
                             'icon'=>'ri-add-line'
                         ],
                     ],
-                    
                     'stat'=>[
                         'Total Instructor'   => [
                             'name'=> 'Total Role',
@@ -273,5 +276,26 @@ class RoleController extends Controller
                 ];
       
         return view('PanelAdmin.Role.list',compact('config'));
+    }
+    public function role_permission($id){
+        $data = [];
+        $config = [
+            'page'   => [
+                            'title' => 'Role Permission List',
+                            'description' => 'Role Listing Permission - Description',
+                            'name' => 'Listing Role Permission',
+                            'parent' => 'Roles',
+                            'author' => 'Telcomixo',
+                        ],
+           
+                        'module' => 'role',
+                        'columns' => json_encode($this->columns,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+                        'objModule'=> Role::All(),
+                        'route'  => 'role',
+                        'sort' =>"[[3, 'desc']]",
+                        'data' => $data,
+                        'register_callback',
+         ];
+        return view('PanelAdmin.Role.permission',compact('config'));
     }
 }

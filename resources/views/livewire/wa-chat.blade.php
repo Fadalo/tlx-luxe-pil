@@ -1,4 +1,4 @@
-<div wire:poll.5000ms="historyMessage" >
+<div><div wire:poll.5000ms="historyMessage" >
     <style>
         .chat-container {
             max-width: 100%;
@@ -55,7 +55,12 @@
             border: none;
             outline: none;
         }
-       
+        .emoji-st{
+            position: absolute;
+             z-index: 99;
+            bottom: 139px;
+             left: 47px;
+        }
     </style>
     
     <!-- class="chat-container" -->
@@ -64,15 +69,28 @@
           
             
             @foreach ($messages as $message)
+         
                 <?php
-                    $om = new App\Models\Member\Member;
-                    $fullName = str_replace('@c.us','',$message['from']);
-                    $Member =  $om->where('phone_no','+'.str_replace('@c.us','',$message['from']))->first();
-                   // dd();
-                    if ($Member){
-                    $fullName = $Member['first_name'] .' '.$Member['last_name'];
+                 //  dd($message);
+                    if($this->waType == 'Member')
+                    {
+                        $om = new App\Models\Member\Member;
+                        $fullName = str_replace('@c.us','',$message['from']);
+                        $Member =  $om->where('phone_no','+'.str_replace('@c.us','',$message['from']))->first();
+                    // dd();
+                        if ($Member){
+                        $fullName = $Member['first_name'] .' '.$Member['last_name'];
+                        }
+                    } else {
+                        $oI = new App\Models\Instructor\Instructor;
+                        $fullName = str_replace('@c.us','',$message['from']);
+                        $Instructor =  $oI->where('phone_no','+'.str_replace('@c.us','',$message['from']))->first();
+                    // dd();
+                        if ($Instructor){
+                        $fullName = $Instructor['first_name'] .' '.$Instructor['last_name'];
+                        }
                     }
-                    
+
                   //  print_r($message);
                     
                 ?>
@@ -105,27 +123,44 @@
             @endforeach
         </div>
         
+        <div class="emoji-st" style="@if($showEmoji) display:block @else display:none @endif">
+            <emoji-picker id="emoji-picker"></emoji-picker>
+        </div>
+        
         <form wire:submit.prevent="sendMessage" class="message-input">
             
             <a class="btn btn-info rounded-0" ><span style="
     position: absolute;
-   bottom: 68px;
     left: 53px;
 "><i class=" ri-attachment-2"></i></span></a>
-<a class="btn btn-warning rounded-0" ><span style="
+<a class="btn btn-warning rounded-0" wire:click='doShowEmojiBox' ><span style="
   
     position: absolute;
-    bottom: 68px;
     left: 79px;
 
 "><i class=" ri-emotion-happy-line"></i></span></a>
             <input class="form-control rounded-0" type="text" wire:model="newMessage" placeholder="Type a message..." />
-            <button class="btn btn-info rounded-0" type="submit">Send</button>
+            <button class="btn btn-info rounded-0" wire:click.prevent='sendMessage' type="submit">Send</button>
         </form>
     </div>
-    
+   
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
 </div>
+<div class="row">
+    <div class="col-md-12" style="display:flex">
+        <select class="form-select col-md-8" style="width:80% !important" wire:model='selectedTemplete' >
+            <option value=""  selected>-- Select Templete --</option>
+            @foreach($templateBatch as $key => $value)
+                <option value="{{$value['id']}}" >{{$value['name']}}</option>
+            @endforeach
+        </select>
+        <button class="btn btn-info rounded-0 col-md-4"  style="width:20% !important" wire:click='doSendTemplete'>Send Templete</button>
+    </div>
+</div>
+</div>
+
+
+
 <script>
     document.addEventListener('livewire:load', function () {
         Livewire.hook('message.processed', (message, component) => {
@@ -133,5 +168,31 @@
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         });
     });
+    document.addEventListener('DOMContentLoaded', function() {
+    const emojiPicker = document.getElementById('emoji-picker');
+   // console.log(emojiPicker);
+    if (emojiPicker) {
+        emojiPicker.addEventListener('emoji-click', event => {
+            console.log(event.detail);
+            //console.log('aaaaa');
+            Livewire.dispatch('emoji2Message',[{'emoticon':event.detail.unicode}]);
+        });
+    }
+});
 </script>
+<?php
+/*
 
+document.addEventListener('DOMContentLoaded', function() {
+    const emojiPicker = document.getElementById('emoji-picker');
+    //console.log(emojiPicker);
+    if (emojiPicker) {
+        emojiPicker.addEventListener('emoji-click', event => {
+            console.log(event.detail.unicode);
+        //    console.log('aaaaa');
+             livewire:dispatch('emoji2Message',{'emoticon':event.detail.unicode})
+        });
+    }
+});
+*/
+?>

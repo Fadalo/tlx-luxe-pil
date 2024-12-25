@@ -11,7 +11,12 @@
             href="{{ route('admin.'.$route.'.detail', $module_data['id']) }}">Edit
         </a>
         @else
-    
+            @if( $route =='role')
+        
+            <a class="dropdown-item"
+                href="{{ route('admin.role.permission', $module_data['id']) }}">Role Permission
+            </a>
+            @endif
         <a class="dropdown-item"
             href="{{ route('admin.'.strtolower($route).'.detail', $module_data['id']) }}">Edit
         </a>

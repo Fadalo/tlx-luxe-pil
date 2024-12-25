@@ -26,6 +26,9 @@ class FormAttendance extends Component
         }
     }
 
+    public function doCountTicket($o){
+        dd($o);
+    }
     public function doClear(){
         $this->phone_no = '';
         $this->type = '';

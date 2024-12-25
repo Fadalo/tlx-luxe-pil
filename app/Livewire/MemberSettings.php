@@ -11,10 +11,15 @@ class MemberSettings extends Component
     public $member_id = '';
     public $notification= '';
     public $promotion = '';
+    public $status_member = '';
     public $options = [
         1 => 'Allow',
         0 => 'Disallow',
         
+    ];
+    public $status_member_list = [
+        0 => 'Disabled',
+        1 => 'Actived'
     ];
 
     public function mount()
@@ -23,6 +28,7 @@ class MemberSettings extends Component
         
         $this->promotion = $member->is_news;
         $this->notification = $member->is_notify;
+        $this->status_member = $member->status_member;
     }
     
     public function doToggleNotification(){
@@ -47,7 +53,16 @@ class MemberSettings extends Component
             $this->triggerAlert('success update promotion');
         }
         
-       
+    }
+    public function doToggleStatusMember(){
+        
+        $member = Member::find($this->member_id);
+        if($member){
+            $member->status_member = $this->status_member;
+            $member->save();
+            $this->triggerAlert('success update status member');
+        }
+        
     }
     public function triggerAlert($msg,$title='Success!',$icon='success')
     {

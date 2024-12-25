@@ -108,6 +108,11 @@
                         </li>   
                         <li>
                             
+                            <a href="{{ route('admin.autoresponse.list') }}" class="waves-effect"><i class="ri-whatsapp-line"></i>WA Autoresponse</a>
+                            
+                        </li> 
+                        <li>
+                            
                             <a href="{{ route('admin.wa.settings') }}" class="waves-effect"><i class="ri-whatsapp-line"></i>WA Settings</a>
                             
                         </li>                    

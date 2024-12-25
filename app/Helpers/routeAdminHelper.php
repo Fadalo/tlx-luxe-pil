@@ -17,7 +17,8 @@ class routeAdminHelper
         'scheadule',
         'rule', 
         'RoleRule',
-        'watem'
+        'watem',
+        'autoresponse'
     ];
 
     public  function getRoute(){
@@ -68,6 +69,9 @@ class routeAdminHelper
             return view('PanelAdmin.Members.scheadule_change');
         })->name('admin.member.scheadule.change');
         
+        // Role Permission
+        Route::get(trim("admin/role/permission/{id}"),trim("App\Http\Controllers\\Role\\RoleController@role_permission"))
+        ->name('admin.role.permission');
 
         //WA
         Route::get(trim("admin/wa/settings"),trim("App\Http\Controllers\\WA\\WaController@settings"))

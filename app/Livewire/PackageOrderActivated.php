@@ -11,6 +11,8 @@ class PackageOrderActivated extends Component
     public $config = [];
     public $member_id = '';
     public $member_package_order_id = '';
+    public $member_package_order_session_id = '';
+    
     public $data = [];
     public $view = [
         'viewGrid'=>true,
@@ -18,7 +20,12 @@ class PackageOrderActivated extends Component
         'viewDetail' => false,
         'viewChangeSchedule' => false,
     ];
-    protected $listeners = ['btnSaveBookingSession','showDetailView','showModalBooking','showModalDetail'];
+    protected $listeners = [
+    'btnSaveBookingSession',
+    'showDetailView',
+    'showModalBooking',
+    'showModalDetail',
+    'showModalChangeSchedule'];
 
 
     
@@ -41,6 +48,7 @@ class PackageOrderActivated extends Component
             'viewGrid'=>false,
             'viewBooking' => true,
             'viewDetail' => false,
+            'viewChangeSchedule' => false
         ];
     }
     public function showModalDetail($param){
@@ -49,6 +57,16 @@ class PackageOrderActivated extends Component
             'viewGrid'=>false,
             'viewBooking' => false,
             'viewDetail' => true,
+            'viewChangeSchedule' => false
+        ];
+    }
+    public function showModalChangeSchedule($param){
+        $this->member_package_order_session_id = $param['member_package_order_session_id'];
+        $this->view = [
+            'viewGrid'=>false,
+            'viewBooking' => false,
+            'viewDetail' => false,
+            'viewChangeSchedule' => true
         ];
     }
     public function doListBack(){
@@ -56,6 +74,7 @@ class PackageOrderActivated extends Component
             'viewGrid'=>true,
             'viewBooking' => false,
             'viewDetail' => false,
+            'viewChangeSchedule' => false
         ];
     }
     public function btnSaveBookingSession($id){
@@ -82,7 +101,10 @@ class PackageOrderActivated extends Component
     public function showDetailView()
     {
         $this->view = [
+            'viewGrid'=>false,
             'viewActivated' => false,
+            'viewBooking' => false,
+            'viewDetail' => false,
             'viewDetail' => true,
             'viewChangeSchedule' => false
         ];
@@ -90,7 +112,9 @@ class PackageOrderActivated extends Component
     public function showActivatedView()
     {
         $this->view = [
+            'viewGrid'=>false,
             'viewActivated' => true,
+            'viewBooking' => false,
             'viewDetail' => false,
             'viewChangeSchedule' => false
         ];

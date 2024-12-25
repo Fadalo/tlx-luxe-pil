@@ -202,8 +202,15 @@ if(!Auth::User()){
              
    });
   </script>
-  @livewireScripts
   
+  @livewireScripts
+  @vite(['resources/js/emoji/emoji.js']) 
+ 
+  <script>
+        
+        $('.select2s').select2();
+    
+</script>
 </body>
 
 </html>

@@ -30,7 +30,21 @@
                     </select>
                 </div>
             </div>
-            
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Status Member </label>
+                <div class="col-sm-10">
+                    <select wire:model="status_member"  wire:change="doToggleStatusMember" class="form-select" aria-label="Default select example">
+                      
+                        @foreach($status_member_list as $key => $value)
+                        <option 
+                        <?php 
+                            if ($key== $status_member) echo 'selected';
+                        ?> 
+                        value="{{$key}}">{{$value}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
    

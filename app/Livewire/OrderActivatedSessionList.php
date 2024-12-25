@@ -29,7 +29,9 @@ class OrderActivatedSessionList extends Component
     }
     public function doChangeSchedule($id){
 
-        $MemberPackageOrderSession = MemberPackageOrderSession::find($id);
+        //$MemberPackageOrderSession = MemberPackageOrderSession::find($id);
+
+        $this->dispatch('showModalChangeSchedule',['member_package_order_session_id'=>$id]);
     }
     public function render()
     {

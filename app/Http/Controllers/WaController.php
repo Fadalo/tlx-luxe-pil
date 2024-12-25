@@ -4,14 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\Autoresponse\Autoresponse;
 
 class WaController extends Controller
 {
 
     public $data = [];
     public $config = [];
-    public function callback(){
-        dd($_POST);
+    public function callback(Request $request){
+        
+        $phone_no = str_replace('@c.us','',str_replace('-','',str_replace(' ','',str_replace('+','',$_GET['from']))));
+        $key  = $_GET['body'];
+        $Autoresponse = Autoresponse::All();
+       
+       // $Autoresponse = Autoresponse::All();
+        foreach($Autoresponse as $keyAuto => $valAuto){
+            if($key == $valAuto['key']){
+
+                $this->doSendMessage($phone_no,$valAuto['templete']);
+            }
+        }
 
     }
     public static function doSend(Request $request)

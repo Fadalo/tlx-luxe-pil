@@ -6,50 +6,77 @@ return [
 
     'menu' => [
         'Dashboard' => [
-            'icon' => 'fa fa-dashboard',
-            'route' => 'admin.dashboard',
-            'active' => 'admin.dashboard'
+            'name' => 'Dashboard',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
+                             
         ],
         'Manage Member' => [
-            'icon' => 'fa fa-dashboard',
-            'route' => 'admin.dashboard',
-            'active' => 'admin.dashboard'
+            'name' => 'Manage Member',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                            ]
         ],
-        'Manage Trainer' => [
-            'icon' => 'fa fa-dashboard',
-            'route' => 'admin.dashboard',
-            'active' => 'admin.dashboard'
+        'Manage Instructor' => [
+           'name' => 'Manage Instructor',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
         ],
         'Manage Package' => [
-            'icon' => 'fa fa-dashboard',
-            'route' => 'admin.dashboard',
-            'active' => 'admin.dashboard'
+            'name' => 'Manage Package',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
         ],
-        'Manage Booking' => [
-            'icon' => 'fa fa-dashboard',
-            'route' => 'admin.dashboard',
-            'active' => 'admin.dashboard'
+        'Manage Schedule' => [
+            'name' => 'Manage Schedule',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
         ],
-        'header' => [
-            'icon' => 'fa fa-dashboard',
-            'route' => 'admin.dashboard',
-            'active' => 'admin.dashboard',
-            'title' => 'Settings'
-        ],
-        'Users' => [
-            'icon' => 'fa fa-users',
-            'route' => 'admin.users.index',
-            'active' => 'admin.users.*'
-        ],
-        'Roles' => [
-            'icon' => 'fa fa-user-secret',
-            'route' => 'admin.roles.index',
-            'active' => 'admin.roles.*'
-        ],
-        'Permissions' => [
-            'icon' => 'fa fa-key',
-            'route' => 'admin.permissions.index',
-            'active' => 'admin.permissions.*'
+        'Manage Attendance' => [
+            'name' => 'Manage Attendance',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
+         ],
+         'Reports' => [
+            'name' => 'Report',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
+         ],
+        'Settings' => [
+            'name' => 'Settings',
+            'permission' =>[
+                             'view' => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit' => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
         ]
     ]
 ];

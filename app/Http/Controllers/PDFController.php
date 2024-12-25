@@ -49,4 +49,56 @@ class PDFController extends Controller
 
         return $pdf->stream('invoice_#'.$memberPackageOrder->order_id.'.pdf');
     }
+    public function printReport($report){
+      //  dd($report);
+        switch($report){
+            case 'QtyTicketAvailableLeftMember':
+                         $data['data']['title'] = 'Report Qty Ticket Available Member';
+                         $data['data']['content'] = view('PanelAdmin.Reports.reportQtyTicketAvailableLeftMember')->render();
+                         $pdf = Pdf::loadView('reportView', $data);
+                         return $pdf->stream('report#QtyTicketAvailableLeftMember.pdf');
+                    break;
+           case 'MemberAttandence':
+                        $data['data']['title'] = 'Report Member Attandance';
+                        $data['data']['content'] = view('PanelAdmin.Reports.reportMemberAttendance')->render();
+                        $pdf = Pdf::loadView('reportView', $data);
+                        return $pdf->stream('report#MemberAttandence.pdf');
+                    break;
+             case 'Insentif':
+                        $data['data']['title'] = 'Report Insentif';
+                        $data['data']['content'] = view('PanelAdmin.Reports.reportInsentif')->render();
+                        $pdf = Pdf::loadView('reportView', $data);
+                        return $pdf->stream('report#Insentif.pdf');
+                    break;          
+            case 'TodaySchedule':
+                        $data['data']['title'] = 'Report Today Schedule';
+                        $data['data']['content'] = view('PanelAdmin.Reports.reportTodaySchedule')->render();
+                        $pdf = Pdf::loadView('reportView', $data);
+                        return $pdf->stream('report#TodaySchedule.pdf');
+                    break;
+            case 'Member':
+                        $data['data']['title'] = 'Report Member';
+                        $data['data']['content'] = view('PanelAdmin.Reports.reportMember')->render();
+                        $pdf = Pdf::loadView('reportView', $data);
+                        return $pdf->stream('report#Member.pdf');
+                    break;
+            case 'Instructor':
+                        $data['data']['title'] = 'Report Instructor';
+                        $data['data']['content'] = view('PanelAdmin.Reports.reportInstructor')->render();
+                        $pdf = Pdf::loadView('reportView', $data);
+                        return $pdf->stream('report#Instructor.pdf');
+                    break;
+            case 'Package':
+                        $data['data']['title'] = 'Report Package';
+                        $data['data']['content'] = view('PanelAdmin.Reports.reportPackage')->render();
+                        $pdf = Pdf::loadView('reportView', $data);
+                        return $pdf->stream('report#Package.pdf');
+                    break;
+            
+        }
+     
+       
+       
+    }
+    
 }

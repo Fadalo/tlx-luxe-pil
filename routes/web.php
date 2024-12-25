@@ -17,6 +17,7 @@ use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\Instructor\InstructorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\WaController;
 use App\Http\Controllers\scheadule\scheaduleController;
 
 
@@ -25,8 +26,11 @@ $helper->adminRoute();
 
 //routeAdminHelper::getRoute();
 Route::get('/pdf','App\Http\Controllers\PdfController@viewPDF')->name('pdf');
+
 Route::get('/invoice/{id}', [PdfController::class, 'viewInvoice'])->name('invoice');
-Route::post('/callback', [WaController::class, 'callback'])->name('callback');
+Route::get('/report/{report}', [PdfController::class, 'printReport'])->name('printReport');
+
+Route::get('/callback', [WaController::class, 'callback'])->name('callback');
 
 
 Route::get('/pp',function(){

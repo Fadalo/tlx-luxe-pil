@@ -125,6 +125,8 @@
 <?php
     //dd($member_package_order_id);
     $MemberPackageOrder =  App\Models\Member\MemberPackageOrder::find($member_package_order_id);
+    $MemberPackageOrderSession = App\Models\Member\MemberPackageOrderSession::find($member_package_order_session_id);
+    $BatchSession = App\Models\Batch\BatchSession::find($MemberPackageOrderSession->batch_session_id);
     //dd($MemberPackageOrder);
 ?>
 <div class="col-md-12">
@@ -132,7 +134,7 @@
         <div class="col-12">
             <button wire:click="doListBack()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
             <div style="float:right">
-            <a style="color:white">Activated [# {{$MemberPackageOrder->order_id }}]</a> > <a style="color:white">Session</a>&nbsp;  > Booking
+            <a style="color:white">Activated [# {{$MemberPackageOrder->order_id }}]</a> > <a style="color:white">{{$BatchSession->name}}</a>&nbsp;  > Change Schedule
             </div>
         </div>
     </div>

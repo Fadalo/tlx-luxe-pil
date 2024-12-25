@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Make stuff after on response of each request
             
             var result = JSON.parse(params.req.response);
-            $('#offcanvasTemplate .btn-close').click();
+            $('#offcanvasWatem .btn-close').click();
             Swal.fire({
                 title: 'Success',
                 text: result.message,

@@ -25,7 +25,7 @@ class WatemController extends Controller
     ];
     public  $meta = [ 
         'id'          => ['type'=> 'hidden','label'=>'ID' ],
-        'module'      => ['type'=> 'text','label'=>'Module' ],
+        'module'      => ['type'=> 'dropdown','label'=>'Module','enum'=>['Member','Instructor'] ,'enum_default' => 'Member'],
         'name'        => ['type'=> 'text','label'=>'Name' ],
         'templete'    => ['type'=> 'textarea','label'=>'Template' ],
         
@@ -161,8 +161,8 @@ class WatemController extends Controller
         
         $Watem = Watem::create([
             'module' => $validatedData['module'],
-            'name' => $validatedData['type'],
-            'templete' => $validatedData['templete'],
+            'name' => $validatedData['name'],
+            'templete' => $request->input('templete'),
             'updated_by'=> Auth::user()->id,
             'created_by'=> Auth::user()->id
         ]);

@@ -1,0 +1,2 @@
+import 'emoji-picker-element';
+
