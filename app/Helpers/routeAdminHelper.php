@@ -47,6 +47,11 @@ class routeAdminHelper
             Route::get(trim("admin/".$module."/{id}/edit"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@edit"))
             ->name('admin.'.$module.'.edit');
 
+            if(in_array($module,['member','instructor'])){
+                Route::get(trim("admin/".$module."/{id}/resetPIN"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@resetPIN"))
+                ->name('admin.'.$module.'.resetPIN');
+            }
+
             Route::post(trim("admin/".$module."/{id}/edit2"), trim("App\Http\Controllers\\".ucfirst($module)."\\".ucfirst($module)."Controller@edit"))
             ->name('admin.'.$module.'.edit');
 

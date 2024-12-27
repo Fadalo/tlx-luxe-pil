@@ -22,7 +22,7 @@
     </div>
 </div>
 <div class="row">
-    <livewire:RolePermissionChecklist />
+    <livewire:RolePermissionChecklist :config="$config" :role_id="$config['id']"/>
 </div>
 @endsection
 @section('script')

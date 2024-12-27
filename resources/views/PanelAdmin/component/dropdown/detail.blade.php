@@ -9,6 +9,8 @@
     
 @endphp
 <div id='field_{{$MetaKey}}' class="mb-3">
+    <form id="form_{{ $MetaKey}}" method="POST" action="{{ route('admin.'.$config['module'].'.edit',['id' => $config['id']]) }}" >
+        @csrf
     <label  class="form-label">{{ $MetaValue['label'] }}</label>
     <select  id="{{$MetaKey }}" name="{{ $MetaKey }}" disabled  class="form-select" >
        @foreach($enum as $value)
@@ -27,6 +29,7 @@
         </span>
     </span>
     @endif
+    </form>
 </div>
 
 @if(!in_array($MetaKey, $restricted))
@@ -51,6 +54,7 @@
     }); 
 
     saveButton_{{$MetaKey}}.addEventListener('click',function(){
+        form_{{ $MetaKey}}.dispatchEvent(new Event('submit', { cancelable: true }));
         //alert('save{{$MetaKey}}');
         input_{{ $MetaKey}}.setAttribute('disabled', '');
        // input_{{ $MetaKey}}.style.backgroundColor = '#272d3d';
@@ -66,5 +70,43 @@
         group_1_{{ $MetaKey}}.style.display='block';
         group_2_{{ $MetaKey}}.style.display='none';
     }); 
+
+    ajaxable('#form_{{ $MetaKey}}').onStart(function(params) {
+            // Make stuff before each request, eg. start 'loading animation'
+            console.log('hello');
+        })
+        .onEnd(function(params) {
+            // Make stuff after each request, eg. stop 'loading animation'
+            console.log('selesai');
+        })
+        .onResponse(function(res, params) {
+            // Make stuff after on response of each request
+           
+            var result = JSON.parse(params.req.response);
+           
+            if(result.success){
+
+                Swal.fire({
+                 title: 'Success',
+                 text: result.message,
+                 icon: 'success',
+                 confirmButtonText: 'OK'
+                });
+            }
+            else{
+                Swal.fire({
+                 title: 'Error',
+                 text: result.message,
+                 icon: 'warning',
+                 confirmButtonText: 'OK'
+                });
+            }
+            
+            
+        })
+        .onError(function(err, params) {
+           
+            console.log(err);
+        });
 </script>
 @endif

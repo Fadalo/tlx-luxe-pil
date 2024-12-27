@@ -8,9 +8,9 @@ return [
         'Dashboard' => [
             'name' => 'Dashboard',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
                              
@@ -18,63 +18,63 @@ return [
         'Manage Member' => [
             'name' => 'Manage Member',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                             ]
         ],
         'Manage Instructor' => [
            'name' => 'Manage Instructor',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
         ],
         'Manage Package' => [
             'name' => 'Manage Package',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
         ],
         'Manage Schedule' => [
             'name' => 'Manage Schedule',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
         ],
         'Manage Attendance' => [
             'name' => 'Manage Attendance',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
          ],
          'Reports' => [
             'name' => 'Report',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
          ],
         'Settings' => [
             'name' => 'Settings',
             'permission' =>[
-                             'view' => [ 'name' => 'view' ],
+                             'view'   => [ 'name' => 'view' ],
                              'create' => [ 'name' => 'create' ],
-                             'edit' => [ 'name' => 'edit' ],
+                             'edit'   => [ 'name' => 'edit' ],
                              'delete' => [ 'name' => 'delete' ]
                            ]
         ]

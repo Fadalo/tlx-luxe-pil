@@ -66,6 +66,14 @@
         <livewire:ScheduleInput :config="$config" :instructor_id="$config['id']" :contract_id="$contract_id" />
 </div>
 @elseif($list_contract_showpage['list_contract_insentif'])
+<div class="row">
+        <div class="col-12">
+            <button wire:click="doListBack()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
+            <div style="float:right">
+            <a style="color:white">Instructor</a> ><a style="color:white">Contract :{{$contract_name}}</a>&nbsp; > Schedule 
+            </div>
+        </div>
+    </div>
 <div class="col-md-12">
         <livewire:InstructorContractInsentif />
 </div>

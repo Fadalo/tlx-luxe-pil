@@ -1,18 +1,25 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="card">
-            <h5 class="card-header">Featured</h5>
+            <h5 class="card-header">Member Information</h5>
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to
-                    additional content.</p>
-
-                <a wire:click='doCountTicket(10)' class="btn btn-primary">Go somewhere</a>
+               
+                <table>
+                    <tr>
+                        <td width="40%">Name</td>
+                        <td width="60%">: {{$Member->first_name}} {{$Member->last_name}} </td>
+                    </tr>
+                    <tr>
+                        <td>Phone No</td>
+                        <td>: {{$Member->phone_no}} </td>
+                    </tr>
+                </table>
+                
             </div>
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="card bg-primary text-white-50">
             <div class="row no-gutters align-items-center">
 

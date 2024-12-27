@@ -1,44 +1,65 @@
 
 <div>
-    <h6>Create Insentif</h6>
-    <hr>
-<form >
-        <div class="row" style="display:flex;">
-        <div class="col-md-8 mb-3">
-            <label>Name</label>
-            <input type="text" wire:model="form.name" class="form-control" required>
-            <input type="hidden" wire:model="form.instructor_id"  required>
+    
+     <div class="row"  >
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-title">
+                    <h6>Single</h6>
+                     <hr>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                            <thead>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Qty</td>
+                                        <td>Value</td>
+                                        <td>Action</td>
+                                    </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>s</td>
+                                    <td>s</td>
+                                    <td>s</td>
+                                    <td>s</td>
+                                </tr>
+                             </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            
         </div>
-       
-
-        <div class="col-md-4 mb-3">
-            <label>Package ID</label>
-            <select wire:model="form.package_id" class="form-select" required>
-                <option value="">-- Select Status -- </option>
-                <option value="1">Private</option>
-                <option value="2">Group</option>
-            </select>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-title">
+                    <h6>Multiple</h6>
+                     <hr>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                            <thead>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Qty</td>
+                                        <td>Value</td>
+                                        <td>Action</td>
+                                    </tr>
+                             </thead>
+                             <tbody>
+                                <tr>
+                                    <td>s</td>
+                                    <td>s</td>
+                                    <td>s</td>
+                                    <td>s</td>
+                                </tr>
+                             </tbody>
+                    </table>
+                </div>
+            </div>
+            
         </div>
-
-        
-
-        <div class="col-md-4 mb-3">
-            <label>Contract Start Date</label>
-            <input type="date" wire:model="form.contract_start_date" class="form-control" required>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <label>Contract End Date</label>
-            <input type="date" wire:model="form.contract_end_date" class="form-control" required>
-        </div>
-
-        <div class="col-md-12 mb-3">
-            <label>Remark</label>
-            <textarea wire:model="form.remark" class="form-control"></textarea>
-        </div>
-
-        </div>
-        </div>
-
-    </form>
+     </div>
 </div>

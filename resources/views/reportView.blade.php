@@ -123,9 +123,8 @@
                 </h3>
             </div>
             <hr>
-
-           {!! $data['content'] !!}
-           
+            {!! $data['content'] !!}
+            
         </div>
     </div>
 </body>

@@ -1,5 +1,7 @@
+@if (!Auth::check())
+    <script>window.location = '{{ route('login') }}';</script>
+@endif
 <?php
-if(Auth::User()==null || Auth::User() == '' ){ redirect()->to(env('APP_URL')); }
 use Detection\MobileDetect;
 $browser = new MobileDetect();
 ?>

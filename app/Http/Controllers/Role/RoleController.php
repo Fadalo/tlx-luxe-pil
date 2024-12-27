@@ -289,6 +289,7 @@ class RoleController extends Controller
                         ],
            
                         'module' => 'role',
+                        'id' => $id,
                         'columns' => json_encode($this->columns,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
                         'objModule'=> Role::All(),
                         'route'  => 'role',

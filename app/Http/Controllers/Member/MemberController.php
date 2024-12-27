@@ -221,6 +221,11 @@ class MemberController extends Controller
         }
         
     }
+    public function resetPIN(request $request, response $response,$id)
+    {
+        $m = Member::find($id);
+        dd($m);
+    }
     public function store(request $request,response $response)
     {
         //print_r(Auth::user()->id);
