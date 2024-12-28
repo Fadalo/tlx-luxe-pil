@@ -4,7 +4,7 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     server: {
         port: 5174, // update the port number
-        host: '0.0.0.0', // set to allow connections from all interfaces
+        host: '103.56.148.122', // set to allow connections from all interfaces
         https: false,
         open: false,
       },
