@@ -44,7 +44,7 @@ class FormAttendance extends Component
     public function doClear(){
         $this->phone_no = '';
         $this->type = '';
-
+        $this->render_result = '';
     }
     public function render()
     {
