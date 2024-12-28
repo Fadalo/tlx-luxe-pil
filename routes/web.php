@@ -16,7 +16,7 @@ use App\Http\resources\Package\PackageResource;
 use App\Http\Controllers\Member\MemberController;
 use App\Http\Controllers\Instructor\InstructorController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\WaController;
 use App\Http\Controllers\scheadule\scheaduleController;
 
