@@ -204,13 +204,14 @@ if(!Auth::User()){
   </script>
   
   @livewireScripts
-  @vite(['resources/js/emoji/emoji.js']) 
+  <?php /*@vite(['resources/js/emoji/emoji.js'])*/ ?>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
  
   <script>
         
         $('.select2s').select2();
     
-</script>
+ </script>
 </body>
 
 </html>
