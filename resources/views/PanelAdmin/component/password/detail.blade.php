@@ -3,7 +3,7 @@
         @csrf
         <label for="validationCustom01" class="form-label">{{ $MetaValue['label'] }}</label>
         <input type="password" class="form-control" id="validationCustom02" placeholder=""  
-        disabled value="{{ $objValue[$MetaKey] }}"><button>Reset</button>
+        disabled value="{{ $objValue[$MetaKey] }}">
     
         <span  class="btn-group-edit_{{$MetaKey }}" style="position:absolute;right:11px;top:7px">
             <span   style="display:block">
