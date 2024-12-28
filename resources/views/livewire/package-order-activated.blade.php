@@ -139,7 +139,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <livewire:OrderActivatedSessionChangeSchedule :config="$config" :member_package_order_id="$member_package_order_id" />
+        <livewire:OrderActivatedSessionChangeSchedule :config="$config" :member_package_order_id="$member_package_order_id" :member_package_order_session_id="$member_package_order_session_id" />
     </div>
 </div>
 @endif

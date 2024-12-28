@@ -63,6 +63,9 @@
             });
     });        
 </script>
+
+<script src="assets/libs/inputmask/jquery.inputmask.min.js"></script>
+<script src="assets/js/pages/form-mask.init.js"></script>
 <!--
 <script src="assets/libs/@fullcalendar/core/main.min.js"></script>
 <script src="assets/libs/@fullcalendar/bootstrap/main.min.js"></script>
@@ -72,4 +75,5 @@
 
 <!-- Calendar init -->
 <!-- <script src="assets/js/pages/calendar.init.js"></script>-->
+
 @endsection

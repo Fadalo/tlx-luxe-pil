@@ -22,6 +22,8 @@ class WAChat extends Component
     public $templateBatch = [];
     public $selectedTemplete = '';
     public $showEmoji = false;
+    public $showFileUpload = false;
+    
     protected $listeners = ['emoji2Message'];
     public $memberField = [
         'phone_no',
@@ -128,6 +130,19 @@ class WAChat extends Component
         }
        
     }
+    public function doShowFileUploadBox()
+    {
+        if ($this->showFileUpload)
+        {
+            $this->showFileUpload = false;
+        }
+        else
+        {
+            $this->showFileUpload = true;
+        }
+       
+    }
+    
     public function doSendTemplete(){
 
         $id_temp = $this->selectedTemplete;

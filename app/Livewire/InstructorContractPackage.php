@@ -10,6 +10,7 @@ class InstructorContractPackage extends Component
 {
     
     public $instructorContractPackages;
+    public $InstructorContractId ='';
     public $contract_name = '';
     public $contract_id = '';
     public $config = [];
@@ -194,6 +195,7 @@ class InstructorContractPackage extends Component
     public function doShowInsentif($id){
 
         $contract = InstructorContract::find($id);
+        $this->InstructorContractId =  $contract->id;
         $this->contract_name =  $contract->name;
         $this->list_contract_showpage=[
             'list_contract'=>false,

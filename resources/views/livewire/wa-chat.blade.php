@@ -46,7 +46,7 @@
         }
         .message-input {
             display: flex;
-            padding: 10px;
+            /*padding: 10px;*/
             border-top: 1px solid #ddd;
         }
         .message-input input {
@@ -59,7 +59,7 @@
             position: absolute;
              z-index: 99;
             bottom: 139px;
-             left: 47px;
+             left: 48px;
         }
     </style>
     
@@ -126,17 +126,19 @@
         <div class="emoji-st" style="@if($showEmoji) display:block @else display:none @endif">
             <emoji-picker id="emoji-picker"></emoji-picker>
         </div>
-        
+        <div style="@if($showFileUpload) display:block @else display:none @endif">
+        <livewire:FileUpload />
+        </div>
         <form wire:submit.prevent="sendMessage" class="message-input">
             
-            <a class="btn btn-info rounded-0" ><span style="
+            <a class="btn btn-info rounded-0" wire:click='doShowFileUploadBox' ><span style="
     position: absolute;
-    left: 53px;
+    left: 42px;
 "><i class=" ri-attachment-2"></i></span></a>
 <a class="btn btn-warning rounded-0" wire:click='doShowEmojiBox' ><span style="
   
     position: absolute;
-    left: 79px;
+    left: 67px;
 
 "><i class=" ri-emotion-happy-line"></i></span></a>
             <input class="form-control rounded-0" type="text" wire:model="newMessage" placeholder="Type a message..." />
@@ -146,6 +148,7 @@
    
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
 </div>
+
 <div class="row">
     <div class="col-md-12" style="display:flex">
         <select class="form-select col-md-8" style="width:80% !important" wire:model='selectedTemplete' >

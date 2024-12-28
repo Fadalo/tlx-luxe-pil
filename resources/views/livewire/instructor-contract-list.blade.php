@@ -70,11 +70,11 @@
         <div class="col-12">
             <button wire:click="doListBack()" class="btn btn-info rounded-0 mb-3" style="float:left">Back</button>
             <div style="float:right">
-            <a style="color:white">Instructor</a> ><a style="color:white">Contract :{{$contract_name}}</a>&nbsp; > Schedule 
+            <a style="color:white">Instructor</a> ><a style="color:white">Contract :{{$contract_name}}</a>&nbsp; > Insentif 
             </div>
         </div>
     </div>
 <div class="col-md-12">
-        <livewire:InstructorContractInsentif />
+        <livewire:InstructorContractInsentif :config="$config" :instructor_contract_id="$InstructorContractId" />
 </div>
 @endif

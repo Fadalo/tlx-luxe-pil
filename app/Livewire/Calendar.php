@@ -75,49 +75,52 @@ class Calendar extends Component
         $event = [];
         $i=0;
         foreach($contract as $kc => $vc){
-           $sch = json_decode($vc['schedule_instructor'],true);
-         // dd($sch);
-            foreach ($sch as $key => $value){
-                foreach($value['days'] as $keyDay => $valueDay){
-                    foreach ($valueDay['time_ranges'] as $keyTime =>$valueTime){
-                   
-
-                        $dStart = $vc['contract_start_date'];
-                        $dEnd   = $vc['contract_end_date'];
-                        $dStartTime = $valueTime['start'];
-                        $dEndTime   = $valueTime['end'];
-                        
-                        $dStartCombine = date('d/m/Y H:i',strtotime($dStart.' '.$dStartTime));
-                        $dEndCombine   = date('d/m/Y H:i', strtotime($dStart.' '.$dEndTime));
-                        
-                        $start = Carbon::createFromFormat('d/m/Y H:i', $dStartCombine );
-                        $end = Carbon::createFromFormat('d/m/Y H:i',  $dEndCombine  );
-
-                        // Get the difference in hours and minutes
-                        $diffInHours = $start->diffInHours($end); // Whole hours
-                        $diffInMinutes = $start->diffInMinutes($end) % 60; // Remaining minutes after full hours
-
-                        // Format the duration as "HH:mm"
-                        $duration = sprintf('%02d:%02d', $diffInHours, $diffInMinutes);
-                        //dd($duration);
-                        
-                        $days  = $valueDay['name'];
-                        $event[$i++] = [
-                            'title'=> $vc['name'],
-                            'description' => 'Hello',
-                            'ssss'=>'sasdasdsa',
-                            'rrule'=> [
-                                
-                                'freq'=> 'weekly',           // Weekly recurrence
-                                'byweekday'=> $days,  // Monday, Tuesday, Friday
-                                'dtstart'=> Carbon::createFromFormat('d/m/Y H:i', $dStartCombine), // Start datetime
-                            ],
-                            'duration' => $duration,
-                        ];
-                    
-                    }
-                }
+            if (!empty($vc['schedule_instructor'])){
+                $sch = json_decode($vc['schedule_instructor'],true);
+                // dd($sch);
+                   foreach ($sch as $key => $value){
+                       foreach($value['days'] as $keyDay => $valueDay){
+                           foreach ($valueDay['time_ranges'] as $keyTime =>$valueTime){
+                          
+       
+                               $dStart = $vc['contract_start_date'];
+                               $dEnd   = $vc['contract_end_date'];
+                               $dStartTime = $valueTime['start'];
+                               $dEndTime   = $valueTime['end'];
+                               
+                               $dStartCombine = date('d/m/Y H:i',strtotime($dStart.' '.$dStartTime));
+                               $dEndCombine   = date('d/m/Y H:i', strtotime($dStart.' '.$dEndTime));
+                               
+                               $start = Carbon::createFromFormat('d/m/Y H:i', $dStartCombine );
+                               $end = Carbon::createFromFormat('d/m/Y H:i',  $dEndCombine  );
+       
+                               // Get the difference in hours and minutes
+                               $diffInHours = $start->diffInHours($end); // Whole hours
+                               $diffInMinutes = $start->diffInMinutes($end) % 60; // Remaining minutes after full hours
+       
+                               // Format the duration as "HH:mm"
+                               $duration = sprintf('%02d:%02d', $diffInHours, $diffInMinutes);
+                               //dd($duration);
+                               
+                               $days  = $valueDay['name'];
+                               $event[$i++] = [
+                                   'title'=> $vc['name'],
+                                   'description' => 'Hello',
+                                   'ssss'=>'sasdasdsa',
+                                   'rrule'=> [
+                                       
+                                       'freq'=> 'weekly',           // Weekly recurrence
+                                       'byweekday'=> $days,  // Monday, Tuesday, Friday
+                                       'dtstart'=> Carbon::createFromFormat('d/m/Y H:i', $dStartCombine), // Start datetime
+                                   ],
+                                   'duration' => $duration,
+                               ];
+                           
+                           }
+                       }
+                   }
             }
+         
         }
         //dd($event);
         $this->events = $event;

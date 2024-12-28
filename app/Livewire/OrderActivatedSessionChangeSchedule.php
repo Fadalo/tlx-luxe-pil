@@ -14,6 +14,7 @@ class OrderActivatedSessionChangeSchedule extends Component
     public $selected = [];
     public $selectAll  = true;
     public $member_package_order_id = '';
+    public $member_package_order_session_id = '';
     public $meta = [
         'session_id' => ['type'=> 'list_changeschedule' ,'width'=>'col-12', 'related_table'=>'App\Models\Batch\BatchSession','related_value'=>'name', 'label' => 'Session', 'default' => ''],
     ];
@@ -23,12 +24,12 @@ class OrderActivatedSessionChangeSchedule extends Component
         //dd($this->member_package_order_id);
         $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
         $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
-       // dd($MemberPackageOrderSession);
+       
         $bookId = [];
         foreach($MemberPackageOrderSession as $key => $value){
             $bookId[] = $value['batch_session_id'];
         }
-      // dd($bookId);
+
         $BatchSession = BatchSession::where('batch_id',$MemberPackageOrder->batch_id)
         ->whereNotIn('id',$bookId);
        
@@ -39,7 +40,7 @@ class OrderActivatedSessionChangeSchedule extends Component
 
         $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
         $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
-       // dd($MemberPackageOrderSession);
+       
         $bookId = [];
         foreach($MemberPackageOrderSession as $key => $value){
             $bookId[] = $value['batch_session_id'];
@@ -51,57 +52,32 @@ class OrderActivatedSessionChangeSchedule extends Component
         $this->items = $BatchSession->get()->toArray();
         
     }
-    public function doCheckAll()
-    {
-        
-
-        if($this->selectAll == true){
-            
-           foreach($this->items as $key =>$value){
-                $this->selected[$key] =$value['id'];
-           }
-           $this->selectAll = false; 
-        }
-        else{
-            $this->selected = [];
-            $this->selectAll = true;
-        }
-       
-        
-    }
     
-    public function getChecked()
+    public function triggerAlert($msg,$title='Success!',$icon='success',)
     {
-        // This method can be used to retrieve the selected items
-        return array_filter($this->items, fn($item) => in_array($item['id'], $this->selected));
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
     }
-
     public function saveChecked()
     {
         // Save or process the checked items
-        //dd($this->selected);
-        //dd($selectedItems);
-        $selectedItems = $this->getChecked();
-        foreach($selectedItems as $key => $value)
-        {
-            $this->doAddSession($value);
-        }
-        // Debugging or further processing
-    }
-    public function doAddSession($value){
-
-        //dd($value);
-        $MemberPackageOrderSession = new MemberPackageOrderSession;
-        $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
-        $MemberPackageOrderSession->batch_session_id = $value['id'];
-        $MemberPackageOrderSession->status_session = 'book';
-        $MemberPackageOrderSession->qty_ticket_used = 1;
-        $MemberPackageOrderSession->created_by = Auth::User()->id;
-        $MemberPackageOrderSession->updated_by = Auth::User()->id;
+       
+       
+       if ($this->selected !== ''){
+        $MemberPackageOrderSession = MemberPackageOrderSession::find($this->member_package_order_session_id);
+        $MemberPackageOrderSession->batch_session_id  = $this->selected;
         $MemberPackageOrderSession->save();
-        $this->dispatch('showModalDetail',['member_package_order_id'=>$this->member_package_order_id]);
+       }
+       //$this-> updateList();
+       $this->triggerAlert( 'Berhasil Ubah Jadwal','Berhasil di Ubah Jadwal !!!','success');
+       $this->dispatch('showModalDetail',['member_package_order_id'=>$this->member_package_order_id]);
  
     }
+    
     public function render()
     {
         return view('livewire.order-activated-session-change-schedule');

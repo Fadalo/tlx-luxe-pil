@@ -19,7 +19,7 @@ $restricted = ['created_at','created_by','updated_at','updated_by'];
         <tr>
             <td><input type="radio"  
                 wire:model="selected" 
-                <?=(in_array($value['id'],$selected)?'checked':'')?>
+               
                 value="{{ $value['id'] }}" class="check-item"  id="item-{{ $value['id'] }}"  /></td>
             <td>{{$value['name']}}</td>
             <td style="text-align:right">{{date('F, d-Y - [ H:i',strtotime($value['start_datetime']))}} - {{date('H:i ]',strtotime($value['end_datetime']))}} </td>
