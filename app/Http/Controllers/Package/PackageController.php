@@ -36,6 +36,7 @@ class PackageController extends Controller
         'desc'=>[], 
         //'status_document'=>['enum'=>['draft','lock'],'enum_default'=>'draft'],
         'updated_at'=>[],
+        
         //'updated_by'=>['related_table'=>'user','related_value'=>'name']
     ] ;
 
