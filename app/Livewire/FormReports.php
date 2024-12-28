@@ -101,7 +101,7 @@ class FormReports extends Component
     public function doSearch(){
        
            // $Member = Member::where('phone_no',$this->phone_no);
-           dd($this->form);
+          // dd($this->form);
       //  dd($report);
       switch($this->selectedReport){
         case 'QtyTicketAvailableLeftMember':

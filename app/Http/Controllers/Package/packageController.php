@@ -18,7 +18,6 @@ class PackageController extends Controller
         ['data' => 'action', 'width' => '5%'],
         ['data' => 'name', 'width' => '25%'],
         ['data' => 'desc', 'width' => '50%'],
-        
         ['data' => 'updated_at', 'width' => '10%']
     ];
     public  $meta = [ 

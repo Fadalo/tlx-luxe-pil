@@ -64,5 +64,6 @@
         
     </script>
     
-@vite(['resources/js/calendar/calendar.js'])
+<?php /*@vite(['resources/js/calendar/calendar.js'])*/ ?>
+<script src="http://luxepilates.co.id/build/assets/calendar-CGuA2nMW.js"></script>
 </div>
