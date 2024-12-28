@@ -19,25 +19,32 @@ class FormAttendance extends Component
        if ($this->phone_no != ''){
             if ($this->type == 'Instructor'){
                 $Instructor = Instructor::where('phone_no','like',"%{$this->phone_no}%")->first();
-
-                $param = [
-                    'Instructor' => $Instructor,
-                    
-                ];
-                $this->render_result = view('PanelAdmin.Attendance.attandenceInstructor',$param)->render();
-            }
+                if($Instructor){
+                    $param = [
+                        'Instructor' => $Instructor,
+                        
+                    ];
+                    $this->render_result = view('PanelAdmin.Attendance.attandenceInstructor',$param)->render();
+       
+                }
+             }
             else if ($this->type == 'Member'){
                 $Member = Member::where('phone_no','like',"%{$this->phone_no}%")->first();
-                $MemberPackageOrder = MemberPackageOrder::where('member_id',$Member->id);
-                $param = [
-                    'Member' => $Member,
-                    'MemberPackageOrder' => $MemberPackageOrder
-                ];
-                $this->render_result = view('PanelAdmin.Attendance.attandanceMember',$param)->render();
+                if ($Member){
+                    $MemberPackageOrder = MemberPackageOrder::where('member_id',$Member->id);
+                    $param = [
+                        'Member' => $Member,
+                        'MemberPackageOrder' => $MemberPackageOrder
+                    ];
+                    $this->render_result = view('PanelAdmin.Attendance.attandanceMember',$param)->render();
+                }
+               
             }
        }
     }
-
+    public function updateList(){
+        $this->doSearch();
+    }
     public function doCountTicket($o){
         dd($o);
     }

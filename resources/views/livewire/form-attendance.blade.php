@@ -1,5 +1,5 @@
 
-<div class="row">
+<div  wire:poll.1000ms="updateList" class="row" >
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
@@ -24,7 +24,7 @@
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label for="birthday" class="form-label">Phone No</label>
-                            <input wire:model.change='doSearch' wire:model='phone_no' type="text" class="form-control"/>
+                            <input wire:change='doSearch()' wire:model='phone_no' type="text" class="form-control"/>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
