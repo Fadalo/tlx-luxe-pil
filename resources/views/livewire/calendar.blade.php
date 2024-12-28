@@ -64,6 +64,5 @@
         
     </script>
     
-<script type="module" src="https://vite.luxepilates.co.id/"/>
-<?php /* @vite(['resources/js/calendar/calendar.js'])*/ ?>
+ @vite(['resources/js/calendar/calendar.js'])
 </div>
