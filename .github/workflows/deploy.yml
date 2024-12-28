@@ -23,4 +23,6 @@ jobs:
           sshpass -p "$REMOTE_PASSWORD" ssh -o StrictHostKeyChecking=no root@103.56.148.122 << EOF
             cd /home/luxe/public_html/luxe-app
             git pull origin main
+            service vite_dev stop
+            service vite_dev start      
           EOF
