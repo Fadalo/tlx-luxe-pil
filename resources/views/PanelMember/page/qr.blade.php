@@ -23,7 +23,7 @@
         <h3 class="font-700 mt-2">MyQR</h3>
         <p class="font-12 mt-n1 color-highlight mb-3">+6282177522260</p>
         <p class="boxed-text-xl">
-            {!! QrCode::size(300)->generate('+6282177522260\n') !!}
+            {!! QrCode::size(300)->generate('+6282177522260%0A') !!}
         </p>
     </div>
 </div>
