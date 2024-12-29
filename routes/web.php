@@ -39,6 +39,7 @@ Route::get('/pp',function(){
 
 Route::get('/', function () {
   
+    print($_SERVER['HTTP_HOST']);
     return view('welcome');
 });
 
