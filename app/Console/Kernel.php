@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\MyScheduledTask; // Import your custom command
+use App\Console\Commands\ScheaduleCheckAutoActivated;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -11,6 +12,7 @@ class Kernel extends ConsoleKernel
     // Register your custom console commands
     protected $commands = [
         MyScheduledTask::class, // Register your custom command here
+
     ];
 
     /**

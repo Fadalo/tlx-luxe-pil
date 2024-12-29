@@ -8,4 +8,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 
 
-Schedule::command('luxe:scheadule-check-auto-activated ')->everyTenSeconds()->runInBackground();
+Schedule::command('luxe:scheadule-check-auto-activated')->everyTenSeconds()->runInBackground();
+Schedule::command('luxe:scheadule-check-auto-burn-ticket')->everyTenSeconds()->runInBackground();

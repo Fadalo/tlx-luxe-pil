@@ -15,6 +15,22 @@
 </div>
 
 
+
+
+
+<div class="card card-style">
+    <div class="content my-0">
+        <div class="list-group list-custom-small ">
+            <a href="{{route('member.dashboard')}}"><i class="fa fa-home font-16 color-blue-dark"></i><span>Home</span><i class="fa fa-angle-right"></i></a>
+            <a href="{{route('member.listPackage')}}"><i class="fa fa-calendar font-16 color-brown-dark"></i><span>My Package</span><i class="fa fa-angle-right"></i></a>
+            <a href="{{route('member.myInvoice')}}"><i class="fa fa-dollar-sign font-16 color-green-dark"></i><span>My Invoice</span><i class="fa fa-angle-right"></i></a>
+            <a href="{{route('member.profile')}}"><i class="fa fa-user font-16 color-grey-dark"></i><span>Profile</span><i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="splide single-slider slider-no-arrows slider-no-dots homepage-slider" id="single-slider-1">
     <div class="splide__track">
         <div class="splide__list">
@@ -46,19 +62,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="card card-style">
-    <div class="content my-0">
-        <div class="list-group list-custom-small ">
-            <a href="{{route('member.dashboard')}}"><i class="fa fa-home font-16 color-blue-dark"></i><span>Home</span><i class="fa fa-angle-right"></i></a>
-            <a href="{{route('member.listPackage')}}"><i class="fa fa-calendar font-16 color-brown-dark"></i><span>My Package</span><i class="fa fa-angle-right"></i></a>
-            <a href="{{route('member.myInvoice')}}"><i class="fa fa-dollar-sign font-16 color-green-dark"></i><span>My Invoice</span><i class="fa fa-angle-right"></i></a>
-            <a href="{{route('member.settings')}}"><i class="fa fa-gear font-16 color-grey-dark"></i><span>Settings</span><i class="fa fa-angle-right"></i></a>
         </div>
     </div>
 </div>

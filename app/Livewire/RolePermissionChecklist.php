@@ -18,10 +18,44 @@ class RolePermissionChecklist extends Component
     {
         return view('livewire.role-permission-checklist');
     }
+    public function checkAllView(){
+        foreach($this->data['menu'] as $key => $menu){
+            
+              
+                 $da[] = [ $key=> [
+                                    'view' => true
+                 ]];
+                       
+                
+            
+        }
+        $this->form = $da;
+        
+    }
+    public function checkAllCreate(){
+
+    }
+    public function checkAllEdit(){
+
+    }
+    public function checkAllDelete(){
+
+    }
     public function doSavePermission(){
        // dd($this->form);
         $role = Role::find($this->role_id);
         $role->role_permission = $this->form;
         $role->save();
+        $this->triggerAlert('Berhasil Simpan Role Permission !!!',$title='Success!',$icon='success');
     }
+    public function triggerAlert($msg,$title='Success!',$icon='success')
+    {
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
+    }
+    
 }

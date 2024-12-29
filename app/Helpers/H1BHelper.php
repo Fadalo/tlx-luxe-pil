@@ -7,7 +7,11 @@ use Carbon\Carbon;
 class H1BHelper
 {
 
-    
+    public static function clearPhoneNo($value)
+    {
+        $val = trim(str_replace('-','',str_replace(' ','',str_replace('+','',$value))));
+        return $val;
+    }
     public function status_payment($value){
         return ($value=='not_paid')?'NOT PAID':'PAID';
     }

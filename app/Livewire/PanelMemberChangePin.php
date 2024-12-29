@@ -21,8 +21,14 @@ class PanelMemberChangePin extends Component
         }
        
     }
-    public function trigerAlert(){
-        $this->dispatch()
+    public function triggerAlert($msg,$title='Success!',$icon='success')
+    {
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
     }
     public function render()
     {

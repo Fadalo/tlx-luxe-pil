@@ -26,7 +26,7 @@
                     <tr>
                         <td style="border-right:1px solid">{{$vMenu['name']}}</td>
                         @foreach($vMenu['permission'] as $kp => $vp)
-                        <td><input wire:model='form.{{$vMenu['name']}}.{{$vp['name']}}'  type="checkbox"></td>
+                        <td><input wire:model='form.{{$vMenu['name']}}.{{$vp['name']}}' checked  type="checkbox"></td>
                         @endforeach
                     </tr>
                    @endforeach

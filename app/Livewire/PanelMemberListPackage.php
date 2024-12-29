@@ -17,6 +17,9 @@ class PanelMemberListPackage extends Component
     public $listExpired = [];
     public $member_id = '';
 
+    public function mount(){
+        $this->showActivated();
+    }
     public function showAvailable(){
        // dd('ss');
        // exit();

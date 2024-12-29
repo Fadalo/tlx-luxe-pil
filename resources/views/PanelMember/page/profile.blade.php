@@ -8,6 +8,7 @@
 @endsection
 
 @section('contents')
+
 <div class="page-title page-title-small">
     <h2><a href={{ route('member.dashboard')}}#" data-back-button=""><i class="fa fa-arrow-left"></i></a>LUXE MEMBER</h2>
     <a href="{{ route('member.profile')}}#" data-menu="menu-main" class="bg-fade-highlight-light shadow-xl preload-img" data-src="{{env('APP_ASSET_MEMBER_URL')}}/images/menu.png"></a>
@@ -22,15 +23,15 @@
     <div class="content">
         <div class="d-flex">
             <div>
-                <img src="images/avatars/5s.png" width="50" class="me-3 bg-highlight rounded-xl">
+                <img src="{{env('APP_ASSET_MEMBER_URL')}}/images/avatars/5s.png" width="50" class="me-3 bg-highlight rounded-xl">
             </div>
             <div>
-                <h1 class="mb-0 pt-1">Enabled</h1>
-                <p class="color-highlight font-11 mt-n2 mb-3">The Best Mobile Author on Envato</p>
+                <h1 class="mb-0 pt-1">{{(Auth::guard('member')->User()->phone_no) }}</h1>
+                <p class="color-highlight font-11 mt-n2 mb-3">{{Auth::guard('member')->User()->first_name.' '.Auth::guard('member')->User()->last_name }}</p>
             </div>
         </div>
         <p>
-            We care about all our customers and we give 150% attention to detail for perfect quality.
+            
         </p>
     </div>
 </div>
@@ -39,7 +40,7 @@
         <div class="d-flex">
             <div class="me-auto">
                 <h4 class="font-600">Basic Information</h4>
-                <p class="font-11 mt-n2 mb-3">Let's get acquainted. We're Enabled</p>
+                <p class="font-11 mt-n2 mb-3">Member Profile</p>
             </div>
             <div class="ms-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user" data-feather-line="1" data-feather-size="40" data-feather-color="blue-dark" data-feather-bg="blue-fade-light" style="stroke-width: 1; width: 40px; height: 40px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -47,42 +48,33 @@
         </div>
         <div class="divider"></div>
         <div class="input-style input-style-always-active has-borders no-icon validate-field my-4">
-            <input type="name" class="form-control validate-name" id="form1as" placeholder="John Doe">
-            <label for="form1as" class="color-highlight">Your Name</label>
+            <input type="name" disabled class="form-control validate-name" id="form11" name="first_name" placeholder="{{Auth::guard('member')->User()->first_name}}">
+            <label for="form11" class="color-highlight">Your First Name</label>
             <i class="fa fa-times disabled invalid color-red-dark"></i>
             <i class="fa fa-check disabled valid color-green-dark"></i>
-            <em>(required)</em>
+      
         </div>
         <div class="input-style input-style-always-active has-borders no-icon validate-field my-4">
-            <input type="email" class="form-control validate-email" id="form1a" placeholder="name@domain.com">
-            <label for="form1a" class="color-highlight">Your Email</label>
+            <input type="name" disabled class="form-control validate-name" id="form12"  name="last_name" placeholder="{{Auth::guard('member')->User()->last_name}}">
+            <label for="form12" class="color-highlight">Your Last Name</label>
             <i class="fa fa-times disabled invalid color-red-dark"></i>
             <i class="fa fa-check disabled valid color-green-dark"></i>
-            <em>(required)</em>
+           
         </div>
-        <div class="input-style input-style-always-active has-borders no-icon my-4">
-            <label for="form2a" class="color-highlight">Select Age Group</label>
-            <select id="form2a">
-                <option value="default" disabled="">Select Age Group</option>
-                <option value="1">Between 18 - 25</option>
-                <option value="2">Between 25 - 30</option>
-                <option value="3" selected="">Between 30 - 40</option>
-                <option value="4">Between 40 - 50</option>
-                <option value="5">50 and Above</option>
-            </select>
-            <span><i class="fa fa-chevron-down"></i></span>
+        <div class="input-style input-style-always-active has-borders no-icon validate-field my-4">
+            <input type="phone" disabled class="form-control validate-email" id="form13" name="phone_no" placeholder="{{Auth::guard('member')->User()->phone_no}}">
+            <label for="form13" class="color-highlight">Your Phone No</label>
+            <i class="fa fa-times disabled invalid color-red-dark"></i>
             <i class="fa fa-check disabled valid color-green-dark"></i>
-            <i class="fa fa-check disabled invalid color-red-dark"></i>
-            <em></em>
+            
         </div>
+        
         <div class="pt-2"></div>
-        <div class="form-check icon-check">
-            <input class="form-check-input" type="checkbox" value="" id="form3acsd" checked="">
-            <label class="form-check-label font-12 ms-n1" for="form3acsd">This is a Dummy Checkbox</label>
-            <i style="margin-top:-1px;" class="icon-check-1 fa fa-circle color-gray-dark font-14"></i>
-            <i style="margin-top:-1px;" class="icon-check-2 fa fa-check-circle font-14 color-highlight"></i>
-        </div>
+        
+        <div class="pt-2"></div>
+       
     </div>
 </div>
+
 
 @endsection
