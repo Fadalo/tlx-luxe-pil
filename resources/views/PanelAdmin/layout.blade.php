@@ -1,5 +1,6 @@
 <?php
-
+print_r($_SERVER['HTTP_HOST']);
+exit();
 if(!Auth::User()){
     print_r('fail');
 }
@@ -13,12 +14,12 @@ if(!Auth::User()){
     <title>@yield('meta_title','Default Title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <base href="{{ env('BASE_URL_ADMIN') }}/admin/" />
+    <base href="{{ $_SERVER['HTTP_HOST'] }}/admin/" />
     <meta content="@yield('meta_description', 'Default description')" name="description" />
     <meta content="@yield('meta_author', 'Default Author')" name="author" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ env('BASE_URL_ADMIN') }}/favicon.png">
+    <link rel="shortcut icon" href="{{ $_SERVER['HTTP_HOST']}}/favicon.png">
 
 
 
