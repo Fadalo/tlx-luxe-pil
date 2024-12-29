@@ -68,6 +68,9 @@ Route::get('/forgot-password', function () {
 
 
 #AUTH MEMBER - Frontend
+Route::get('/member',function(){
+    return view('Auth.member.login');
+});
 Route::get('/member/login', function () {
     return view('Auth.member.login');
 })->name('member.login');
