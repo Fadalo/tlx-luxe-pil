@@ -92,6 +92,9 @@ class OrderActivatedSessionBooking extends Component
     }
     public function doAddSession($value){
 
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
         //dd($value);
         $MemberPackageOrderSession = new MemberPackageOrderSession;
         $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;

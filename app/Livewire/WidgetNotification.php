@@ -14,7 +14,9 @@ class WidgetNotification extends Component
     public $admin_id = '';
     public function mount()
     {
-
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
        $this->admin_id = Auth::User()->id;
        $this->updateList();
 

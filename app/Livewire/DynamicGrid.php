@@ -42,6 +42,10 @@ class DynamicGrid extends Component
     }
     public function updateField($arrayId,$packageId, $packageVariantId, $field, $value)
     {
+        
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
         //print_r($packageId);
         //session()->flash('message', 'PackageId:'.$packageId.'-PackageVariantId- '.$packageVariantId);
         

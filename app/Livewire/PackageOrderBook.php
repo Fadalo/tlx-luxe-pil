@@ -58,7 +58,9 @@ class PackageOrderBook extends Component
     }
     public function paymentSave($param){
       // dd($param);
-
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
     
        if ( $this->convertVal($param['bank_amount']) == "0.00"){
         $this->triggerAlert('Please Check Required Input !!!',$title='error !!!',$icon='error');

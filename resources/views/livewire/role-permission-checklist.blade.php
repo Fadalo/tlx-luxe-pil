@@ -14,10 +14,10 @@
                    
                     <tr>
                         <td style="border-right:1px solid">Module</td>
-                        <td>View<br><input type="checkbox" wire:click='checkAllView'> </td>
-                        <td>Create<br><input type="checkbox" wire:click='checkAllCreate'> </td>
-                        <td>Edit<br><input type="checkbox" wire:click='checkAllEdit'></td>
-                        <td>Delete<br><input type="checkbox" wire:click='checkAllDelete'></td>
+                        <td>View<br><input type="checkbox" wire:model='selectedCheckAllView' wire:click='checkAllView'> </td>
+                        <td>Create<br><input type="checkbox"wire:model='selectedCheckAllCreate'  wire:click='checkAllCreate'> </td>
+                        <td>Edit<br><input type="checkbox" wire:model='selectedCheckAllEdit' wire:click='checkAllEdit'></td>
+                        <td>Delete<br><input type="checkbox" wire:model='selectedCheckAllDelete' wire:click='checkAllDelete'></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +26,7 @@
                     <tr>
                         <td style="border-right:1px solid">{{$vMenu['name']}}</td>
                         @foreach($vMenu['permission'] as $kp => $vp)
-                        <td><input wire:model='form.{{$vMenu['name']}}.{{$vp['name']}}' checked  type="checkbox"></td>
+                        <td><input wire:model='form.{{$vMenu['name']}}.{{$vp['name']}}'   type="checkbox"></td>
                         @endforeach
                     </tr>
                    @endforeach
@@ -34,7 +34,7 @@
                    @endforeach
                 </tbody>
             </table>
-            <button wire:click='doSavePermission'>Save Permission</button>
+            <a  class="btn btn-info rounded-0" wire:click='doSavePermission'>Save Permission</a>
         </div>  
     </div>
 

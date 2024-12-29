@@ -37,6 +37,9 @@ class PackageOrderCreate extends Component
     }
     public function onBook($id){
 
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
        //print_r($this->member_id);
        //exit();
         $BatchObj = Batch::find($id);

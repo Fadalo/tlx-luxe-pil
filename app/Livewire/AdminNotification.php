@@ -9,7 +9,7 @@ class AdminNotification extends Component
 {
     public $user_id = '';
 
-    public mount(){
+    public function mount(){
 
     }
     public function render()

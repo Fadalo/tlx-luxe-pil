@@ -81,6 +81,9 @@ class InstructorContractPackage extends Component
 
     public function doContractUpdate()
     {
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
         try{
             $this->validate([
                 'form.name' => 'required',
@@ -121,7 +124,9 @@ class InstructorContractPackage extends Component
         $this->update();
     }
     public function doContractSave(){
-       
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
         try {
             $a = $this->validate([
                 'form.name' => 'required',

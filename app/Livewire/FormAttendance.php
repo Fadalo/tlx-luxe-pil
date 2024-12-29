@@ -62,6 +62,9 @@ class FormAttendance extends Component
         $this->render_result = '';
     }
     public function doAbsenMember($member_package_order_session_id){
+        if (!Auth::check()) {
+            return redirect('/login-new');
+        }
        // dd($member_package_order_session_id);
         $MemberPackageOrderSession = MemberPackageOrderSession::find($member_package_order_session_id);
         $MemberPackageOrderSession->status_session = 'used';
