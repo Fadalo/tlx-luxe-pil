@@ -41,7 +41,7 @@ Route::get('/', function () {
   
     //print($_SERVER['HTTP_HOST']);
     if($_SERVER['HTTP_HOST'] == 'luxepilates.co.id'){
-        Redirect::to('https://www.luxepilates.co.id');
+        header('Location: https://www.luxepilates.co.id');
     }
     return view('welcome');
 });
