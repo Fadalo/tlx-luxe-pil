@@ -1,3 +1,7 @@
+<?php
+use Detection\MobileDetect;
+$browser = new MobileDetect();
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -103,8 +107,9 @@
                             <p class="hero-paragraph">Pilates helps remind me that I am strong and I am deserving to be</p>
                             <div class="hero-cta" style="position: absolute">
                                <!-- <a class="button button-primary" href="{{ route('register') }}">DAFTAR
-                                    SEKARANG</a> -->
-                                    <div class="box">
+                                    SEKARANG</a> --> 
+                                    @if (!$browser->isMobile())
+                                    <div class="box" style="position:absolute;z-index:99">
                                         <select id="btnLogin" onchange="change()">
                                           <option value=""><a class="button" href="{{ route('login') }}">LOGIN TO </a></option>
                                           
@@ -113,13 +118,24 @@
                                           <option value="{{ route('instructor.login') }}"><a class="button" href="{{ route('instructor.login') }}">LOGIN PELATIH</a></option>
                                         </select>
                                     </div>
+                                   @else 
+                                   <div class="box">
+                                    <select id="btnLogin" onchange="change()">
+                                      <option value=""><a class="button" href="{{ route('login') }}">LOGIN TO </a></option>
+                                      
+                                      <option value="{{ route('login') }}"><a class="button" href="{{ route('login') }}">LOGIN ADMIN</a></option>
+                                      <option value="{{ route('member.login') }}"><a class="button" href="{{ route('member.login') }}">LOGIN MEMBER</a></option>
+                                      <option value="{{ route('instructor.login') }}"><a class="button" href="{{ route('instructor.login') }}">LOGIN PELATIH</a></option>
+                                    </select>
+                                </div>
+                                   @endif
                                    
                                
                                 
                             </div>
                         </div>
                         <div class="hero-figure anime-element">
-                            <image src="fontImage.png" style="position:absolute;z-index:99" />
+                            <image src="fontImage.png" style="position:absolute;z-index:98" />
                             <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
                                 <rect width="528" height="396" style="fill:transparent;" />
                             </svg>

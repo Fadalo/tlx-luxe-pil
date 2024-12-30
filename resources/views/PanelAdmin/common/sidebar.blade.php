@@ -11,7 +11,7 @@
                 <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
             </div>
             <div class="mt-3">
-                <h4 class="font-size-16 mb-1">{{ Auth::User()->name }}</h4>
+                <h4 class="font-size-16 mb-1">@auth{{ Auth::User()->name }}@endauth</h4>
                 <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-14 text-success"></i>
                     Online</span>
             </div>

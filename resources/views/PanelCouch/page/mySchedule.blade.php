@@ -19,7 +19,6 @@
     <div class="card-bg preload-img" data-src="{{env('APP_ASSET_MEMBER_URL')}}/images/pictures/20s.jpg"></div>
 </div>
 
-
 <div class="calendar bg-theme shadow-xl rounded-m">
     <div class="cal-header">
         <h4 class="cal-title text-center text-uppercase font-700 font-15 bg-theme color-theme">TODAY SCHEDULE</h4>
@@ -82,6 +81,10 @@
         <a href="#" class="cal-disabled">5</a>
         <div class="clearfix"></div>
     </div>
+
+
+    
+<livewire:ComponentCalendar >
 
     <div class="cal-footer">
         <div class="cal-schedule">
