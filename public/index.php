@@ -1,5 +1,12 @@
 <?php
 
+$host = $_SERVER['HTTP_HOST'];
+if ($host == 'luxepilates.co.id')
+{
+  
+    header('Location: https://www.luxepilates.co.id');
+    exit();
+}
 use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));

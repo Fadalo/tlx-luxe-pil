@@ -64,4 +64,10 @@ class MemberPackageOrder extends Model
     {
         return $query->where('status_package', 'expired');
     }
+    public static function MemberQtyAvailable($query)
+    {
+        
+        return $query;
+    
+    }
 }

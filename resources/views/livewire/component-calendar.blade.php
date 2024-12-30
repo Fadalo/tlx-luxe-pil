@@ -1,10 +1,9 @@
-<div>
+<div class="calendar bg-theme shadow-xl rounded-m">
 
 <div class="cal-header">
-    <a href="#" wire:click='doPrev'
-    >Prev</a>
-    <h4 class="cal-title text-center text-uppercase font-700 font-15 bg-theme color-theme">TODAY SCHEDULE [ {{ date('F Y', strtotime($year . '-' . $month . '-01')) }} ]</h4>
-    <a href="#" wire:click='doNext'> Next</a>
+    <h4 class="cal-title text-center text-uppercase font-700 font-15 bg-theme color-theme">{{$month}} {{ date('F Y', strtotime($year . '-' . $month . '-01')) }}</h4>
+    <h6 class="cal-title-left color-theme" wire:click='doPrev'><i class="fa fa-chevron-left" ></i></h6>
+    <h6 class="cal-title-right color-theme" wire:click='doNext'><i class="fa fa-chevron-right" ></i></h6>
 </div>
 <div class="clearfix"></div>
 <div class="divider mb-1"></div>
@@ -25,7 +24,9 @@
    
         @foreach ($week as $day)
              <a href="#" wire:click="getEventsForDate('{{ $day['date'] }}')" class="{{$day['extraClass']}}">
-               
+                @if($day['event'] == true)
+                <i class="fa fa-circle " style="color:brown" aria-hidden="true"></i>
+                @endif
                @if($day['today'] == true)
                  <i class="fa fa-square color-highlight"></i>
                  <span>{{ $day['day'] }}</span>
@@ -38,5 +39,13 @@
     @endforeach
     <div class="clearfix"></div>
 </div>
-
+<div class="cal-footer">
+    @foreach($events as $key => $value)
+    <div class="cal-schedule">
+        <em>{{date('H:i A',strtotime($value['start_datetime']))}}<br>{{date('H:i A',strtotime($value['end_datetime']))}}</em>
+        <strong>{{$value['batch_name']}} - {{$value['name']}}</strong>
+        <span><i class="fa fa-building"></i>LUXE PILATES</span>
+    </div>
+    @endforeach
+</div>
 </div>
