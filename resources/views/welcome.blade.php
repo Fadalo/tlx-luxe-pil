@@ -81,7 +81,7 @@ $browser = new MobileDetect();
         <header class="site-header">
             <div class="container">
                 <div class="site-header-inner">
-                    <div class="brand header-brand"  @if ($browser->isMobile())     style="margin-left: 75px;" @endif>
+                    <div class="brand header-brand"  @if ($browser->isMobile())     style="margin-left: 40px;" @endif>
                         <h1 class="m-0">
                             <a href="#">
                                 <h2 style="float:left"><img class="header-logo-image"  style="float:left" src="dist/images/logo.svg" alt="Logo" />
@@ -105,7 +105,7 @@ $browser = new MobileDetect();
                         <div class="hero-copy">
                             <h1 class="hero-title mt-0">Best Pilates IN BSD</h1>
                             <p class="hero-paragraph">Pilates helps remind me that I am strong and I am deserving to be</p>
-                            <div class="hero-cta" style="position: absolute @if ($browser->isMobile())     left: 75px; @endif">
+                            <div class="hero-cta" style="position: absolute ;@if ($browser->isMobile())     left: 45px; @endif">
                                <!-- <a class="button button-primary" href="{{ route('register') }}">DAFTAR
                                     SEKARANG</a> --> 
                                     @if ($browser->isMobile())
