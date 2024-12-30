@@ -108,7 +108,7 @@ $browser = new MobileDetect();
                             <div class="hero-cta" style="position: absolute">
                                <!-- <a class="button button-primary" href="{{ route('register') }}">DAFTAR
                                     SEKARANG</a> --> 
-                                    @if (!$browser->isMobile())
+                                    @if ($browser->isMobile())
                                     <div class="box" style="position:absolute;z-index:99">
                                         <select id="btnLogin" onchange="change()">
                                           <option value=""><a class="button" href="{{ route('login') }}">LOGIN TO </a></option>
@@ -135,7 +135,7 @@ $browser = new MobileDetect();
                             </div>
                         </div>
                         <div class="hero-figure anime-element">
-                            @if (!$browser->isMobile())
+                            @if ($browser->isMobile())
                             <image src="fontImage.png" style="position:absolute;z-index:98;margin-top:80px" />
                             @else
                             <image src="fontImage.png" style="position:absolute;z-index:98" />
