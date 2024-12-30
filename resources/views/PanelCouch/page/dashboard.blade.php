@@ -15,18 +15,7 @@
 </div>
 
 
-<div class="splide single-slider slider-no-arrows slider-no-dots homepage-slider" id="single-slider-1">
-    <div class="splide__track">
-        <div class="splide__list">
-            <div class="splide__slide">
-                @include('PanelCouch.component.Slide')
-            </div>
-            <div class="splide__slide">
-                @include('PanelCouch.component.Slide')
-            </div>
-        </div>
-    </div>
-</div>
+<livewire:PanelInstructorSlide>
 
 
 

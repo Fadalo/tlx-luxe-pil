@@ -33,6 +33,7 @@ class ComponentCalendar extends Component
           //dd($date);
           $BatchSession = BatchSession::join('batch','batch.id','=','batch_session.batch_id')
           ->where('instructor_id',$this->instructor_id)
+          ->where('status_session','running')
           ->whereRaw('DATE(`batch_session`.`start_datetime`) = DATE(\''.$date.'\')')
           ->selectRaw('
             batch_session.*,
@@ -70,6 +71,7 @@ class ComponentCalendar extends Component
     public function checkEvent($date){
         $iCount =  BatchSession::join('batch','batch.id','=','batch_session.batch_id')
         ->where('instructor_id',$this->instructor_id)
+        ->where('status_session','running')
         ->whereRaw('DATE(`batch_session`.`start_datetime`) = DATE(\''.$date.'\')')
       
         ->get()->count();
