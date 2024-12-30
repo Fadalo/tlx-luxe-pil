@@ -135,7 +135,11 @@ $browser = new MobileDetect();
                             </div>
                         </div>
                         <div class="hero-figure anime-element">
+                            @if (!$browser->isMobile())
+                            <image src="fontImage.png" style="position:absolute;z-index:98;margin-top:80px" />
+                            @else
                             <image src="fontImage.png" style="position:absolute;z-index:98" />
+                            @endif
                             <svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">
                                 <rect width="528" height="396" style="fill:transparent;" />
                             </svg>
