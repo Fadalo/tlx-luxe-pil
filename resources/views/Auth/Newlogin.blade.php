@@ -1,3 +1,7 @@
+<?php
+use Detection\MobileDetect;
+$browser = new MobileDetect();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,9 +24,21 @@
     <link type="text/css" rel="stylesheet" href="login/assets/css/style.css">
     <link rel="stylesheet" type="text/css" id="style_sheet" href="login/assets/css/skins/default.css">
 
+    @if ($browser->isMobile())
     <style>
-    
+        .login-19 .waviy span {
+            position: relative;
+            display: inline-block;
+            font-size: 34px;
+            color: #fff;
+            text-transform: uppercase;
+            animation: flip 2s infinite;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation-delay: calc(.2s * var(--i));
+        }
     </style>
+    @endif
 </head>
 <body id="top">
 <!-- Google Tag Manager (noscript) -->
