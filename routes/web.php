@@ -73,6 +73,9 @@ Route::get('/forgot-password', function () {
 
 
 #AUTH MEMBER - Frontend
+Route::get('/member/lock',function(){
+    return view('PanelMember.page.lock');
+});
 Route::get('/member1',function(){
     return view('Auth.member.login');
 });
@@ -88,6 +91,9 @@ Route::get('/member/forgot-password', function () {
 
 
 #AUTH INSTRUCTOR - Frontend
+Route::get('/instructor/lock',function(){
+    return view('PanelCouch.page.lock');
+});
 Route::get('/instructor/login', function () {
     return view('Auth.instructor.login');
 })->name('instructor.login');

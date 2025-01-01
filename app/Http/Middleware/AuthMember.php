@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Member\Member;
 class AuthMember
 {
     /**
@@ -16,10 +17,22 @@ class AuthMember
     public function handle(Request $request, Closure $next): Response
     {
        
-        if (!Auth::guard('member')->check()) {
+       
+        if(Auth::guard('member')->check()){
+            $id = Auth::guard('member')->User()->id;
+            $Member = Member::find($id);
+            if ($Member){
+                if($Member->status_member == 0)
+                {
+                    return redirect('/member/lock');
+                }
+            }
+        }
+        else if (!Auth::guard('member')->check()) {
             
             return redirect('/member/login');
         }
+        
         return $next($request);
     }
 }

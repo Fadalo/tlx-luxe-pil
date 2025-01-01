@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Instructor\Instructor;
 class AuthPelatih
 {
     /**
@@ -15,7 +16,20 @@ class AuthPelatih
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('instructor')->check()) {
+       
+
+        if(Auth::guard('instructor')->check()){
+            $id = Auth::guard('instructor')->User()->id;
+            $Instructor = Instructor::find($id);
+            if ($Instructor){
+                if($Instructor->status_instructor == 0)
+                {
+                    return redirect('/instructor/lock');
+                }
+            }
+        }
+        else if (!Auth::guard('instructor')->check()) {
+            
             return redirect('/instructor/login');
         }
         return $next($request);

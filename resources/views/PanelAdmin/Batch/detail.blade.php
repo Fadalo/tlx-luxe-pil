@@ -6,11 +6,6 @@
 @section('page-parent',$config['page']['parent'])
 
 @section('head-page')
-<link rel="stylesheet" href="assets/libs/@fullcalendar/core/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/daygrid/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/bootstrap/main.min.css" type="text/css">
-<link rel="stylesheet" href="assets/libs/@fullcalendar/timegrid/main.min.css" type="text/css">
-
 
 
 @endsection
@@ -40,12 +35,4 @@
 </div>
 @endsection
 @section('script')
-<script src="assets/libs/@fullcalendar/core/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/bootstrap/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/daygrid/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/timegrid/main.min.js"></script>
-<script src="assets/libs/@fullcalendar/interaction/main.min.js"></script>
-
-<!-- Calendar init -->
-<script src="assets/js/pages/calendar.init.js"></script>
 @endsection
