@@ -7,6 +7,8 @@ use App\Models\Batch\Batch;
 use App\Models\Batch\BatchSession;
 use App\Models\Instructor\Instructor;
 use App\Models\Instructor\InstructorContract;
+use App\Models\Member\MemberPackageOrderSession;
+
 use Illuminate\Support\Arr;
 
 use Illuminate\Support\Facades\Auth;
@@ -32,28 +34,42 @@ class BatchSessionPicker extends Component
     public function mount(){
         $this->doShowList();
         $this->listSession = $this->doGetData();
-        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
+       // $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
+        //$this->listAvailableSC = $this->doGetScheduleInstructor();
        // dd($this->listAvailableSC);
     }
 
     public function filterAvailableSC($a,$b){
        $p = [];
+       $r = [];
+       
        foreach($a as $ka => $va)
        {
-          foreach($b as $kb => $vb ){
-            //dd($va['start_datetime']);
-             if($va['start_datetime'] == $vb['start_datetime'] && $va['end_datetime'] == $vb['end_datetime']  ){
-                continue;
-                //dd($va);
-             }else{
-                $p[$ka] = $va;
-             }
-             // if($ka == $kb && $va == $vb ){
-             //dd($va);
-             
-             //}
-          }
-       }
+            if (count($b) > 0){
+                foreach($b as $kb => $vb )
+                {
+                 //   $p[$ka] = $va;
+                    
+                    if (date('Y-m-d H:i',strtotime($va['start_datetime'])) == date('Y-m-d H:i',strtotime($vb['start_datetime']))) 
+                    {
+                       // print_r('find');
+                       // print_r(date('Y-m-d H:i',strtotime($va['start_datetime'])));
+                       // print_r(date('Y-m-d H:i',strtotime($vb['start_datetime'])));
+                        
+                        //break;
+                        unset($a[$ka]);
+                    }
+                    
+                }
+                $p = $a;
+            }
+            else {
+                $p = $a;
+                return $p;
+            } 
+        }
+      
+            
        return $p;
     }
     public function doCheckAll(){
@@ -88,6 +104,8 @@ class BatchSessionPicker extends Component
                 $BatchSession = new BatchSession();
                 $BatchSession->batch_id = $this->batch_id;
                 $BatchSession->package_id = $Batch->package_id;
+                $BatchSession->instructor_id = $Batch->instructor_id;
+                
                 $BatchSession->name = $this->session_name_prefix.$i;
                 $BatchSession->start_datetime = date('Y-m-d H:i',strtotime($vo['start_datetime']));
                 $BatchSession->end_datetime = date('Y-m-d H:i',strtotime($vo['end_datetime']));
@@ -104,6 +122,10 @@ class BatchSessionPicker extends Component
         }
        
         $this->listSession = $this->doGetData();
+        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
+        $this->doClearSession();
+        $this->doShowList();
+      
     // dd($o);
     }
     public function getAVSById($id)
@@ -120,6 +142,9 @@ class BatchSessionPicker extends Component
     }
     public function doClearSession(){
 
+        $this->session_name_prefix = '';
+        $this->selectedCheckALL = false;
+        $this->list=[];
     }
     public function doGetScheduleInstructor()
     {
@@ -129,70 +154,92 @@ class BatchSessionPicker extends Component
         $idd = 0;
         foreach($InstructorContract as $key =>$value){
                 $r = json_decode($value->schedule_instructor,true);
-                $startDate = new DateTime($value['contract_start_date']);
-                $endDate   = new DateTime($value['contract_end_date']);
-             
-                $diff = date_diff($startDate,$endDate);
-             
-                $i = date('d',strtotime($startDate->format('Y-m-d')));
-                for($m = $i; $m <= $diff->d; $m++){
+
+                if (!empty($r)){
+                    $startDate = new DateTime($value['contract_start_date']);
+                    $endDate   = new DateTime($value['contract_end_date']);
+                
+                    $diff = date_diff($startDate,$endDate);
+                
+                    $i = date('d',strtotime($startDate->format('Y-m-d')));
+                
                     foreach($r as $kr => $weeks){
-                    
+                        
                         foreach($weeks as $krd => $days)
                         {
-                           
+                            //dd($days);
                             foreach($days as $kday => $times)
                             {
-                               // print_r($times['time_ranges']);
+                                // print_r($times['time_ranges']);
                                 $weekDay = ($times['name']);
+                                //  $idd = 0
+                              // dd($times);
                                 foreach($times['time_ranges'] as $ktime => $time){
 
-                                   
                                   
-                                    // GET DATE FROM CONTRACT
-                                    $week = [
-                                       
-                                        'SAT' => 'ST',
-                                        'MON' => 'MO',
-                                        'TUE' => 'TU',
-                                        'WED' => 'WE',
-                                        'THU' => 'TH',
-                                        'FRI' => 'FR',
-                                        'SUN' => 'SU'
-
-                                    ];
-                                    $d = date('Y-m-'.$m,strtotime($startDate->format('Y-m-d')));
-                                    $weekDay_d = $week[strtoupper(date('D',strtotime($d)))];
-                                   
-                                    if ($weekDay == $weekDay_d){
-                                         // dd($d);
-                                      //   print_r($time);
-                                        $starNew = $d.' '.$time['start'];
-                                        $endNew = $d.' '.$time['end'];
-
-                                         //print_r($starNew);
-                                        // GEN NEW DATE FROM SCHEDULE
-                                        $start_datetime = date('d-m-Y H:i',strtotime($starNew));
-                                        $end_datetime = date('d-m-Y H:i',strtotime($endNew));
+                                    //print_r($time);
+                                    //print_r('<br>');
+                                    // LOOP FOR EACH DAYS
+                                    for($m = $i; $m < $diff->d; $m++){
+                                        // GET DATE FROM CONTRACT
+                                        $week = [
                                         
-                                        $dataSC[$idd]=[
-                                            'id'             => $idd,
-                                            'start_datetime' => $start_datetime,
-                                            'end_datetime' => $end_datetime,
-                                            
+                                            'SAT' => 'ST',
+                                            'MON' => 'MO',
+                                            'TUE' => 'TU',
+                                            'WED' => 'WE',
+                                            'THU' => 'TH',
+                                            'FRI' => 'FR',
+                                            'SUN' => 'SU'
+
                                         ];
-                                        $idd = $idd + 1;
+                                        $d = date('Y-m-'.$m,strtotime($startDate->format('Y-m-d')));
+                                        $weekDay_d = $week[strtoupper(date('D',strtotime($d)))];
+                                    
+                                       
+                                        if ($weekDay == $weekDay_d){
+                                            //print_r($d);
+                                            //print_r('<br>');
+                                            // dd($d);
+                                        //   print_r($time);
+                                            $starNew = $d.' '.$time['start'];
+                                            $endNew = $d.' '.$time['end'];
+
+                                            //print_r($starNew);
+                                            // GEN NEW DATE FROM SCHEDULE
+                                            $start_datetime = date('Y-m-d H:i',strtotime($starNew));
+                                            $end_datetime = date('Y-m-d H:i',strtotime($endNew));
+                                            
+                                            $dataSC[$idd]=[
+                                                'id'             => $idd,
+                                                'contract'       => $value['name'],
+                                                'start_datetime' => $start_datetime,
+                                                'end_datetime'   => $end_datetime,
+                                                
+                                            ];
+                                          ///  print_r($dataSC[$idd]);
+                                          //  print_r('<br>');
+                                            $idd++;
+                                        }
+                                    
                                     }
-                                   
+                                  //  $dataSC[] = $dataSC1;
                                 }
+                            
                             }
-                        
                         }
                     }
+
                 }
+                
         }
-     //   print_r($dataSC);
-        return $dataSC;
+        $idd = 0;
+         //print_r(count($dataSC));
+        $sortedArray= $dataSC;
+         uasort($sortedArray, function($a, $b) {
+            return strtotime($a['start_datetime']) - strtotime($b['start_datetime']);
+        });
+        return $sortedArray;
     }
    
     public function doGetData(){
@@ -201,6 +248,7 @@ class BatchSessionPicker extends Component
         ->selectRaw('
             batch.id as batch_id,
             batch_session.id as id,
+            batch_session.instructor_id as instructor_id,
             batch_session.name as name,
             batch.name as batch_name,
             batch_session.start_datetime as start_datetime,
@@ -211,6 +259,7 @@ class BatchSessionPicker extends Component
         return $BatchSession;
     }
     public function doShowAddSession(){
+        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
         $this->showContent = [
             'showList' => false,
             'showAdd' => true,
@@ -234,7 +283,30 @@ class BatchSessionPicker extends Component
         ] ;
     }
     public function doDelete($id){
-
+        try{
+             
+             $iCountMPOS = MemberPackageOrderSession::where('batch_session_id',$id)->get()->count();
+             if ($iCountMPOS == 0){
+                $BatchSession = BatchSession::find($id)->delete();
+                $this->listSession = $this->doGetData();
+                $this->triggerAlert('Berhasil di delete','Success !!','success');
+             }
+            else{
+                $this->triggerAlert('This Session Already Lock !!!','Error !!','error'); 
+            }
+        }
+        catch (Exception $e) {
+            $this->triggerAlert('This Session Already Lock !!!','Error !!','error');
+        }
+    }
+    public function triggerAlert($msg,$title='Success!',$icon='success')
+    {
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
     }
     public function render()
     {

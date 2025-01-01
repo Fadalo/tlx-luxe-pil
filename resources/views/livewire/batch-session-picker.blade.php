@@ -7,7 +7,8 @@
                 <tr>
                     <th width="5%"  style="text-align:center">No</th>
                     <th width="15%"  style="text-align:center">Session</th>
-                    <th width="70%"  style="text-align:center">Schedule</th>
+                    <th width="20%"  style="text-align:center">Instructor</th>
+                    <th width="50%"  style="text-align:center">Schedule</th>
                     <th width="10%"  style="text-align:center">Action</th>
                 </tr>
         </thead>
@@ -16,11 +17,17 @@
             @foreach($listSession as $key => $value)
             <?php 
               //dd($value) 
+               $oI = new App\Models\Instructor\Instructor;
+               $Instructor = $oI->find($value['instructor_id']);
+               $InstructorName = $Instructor->first_name .' '.$Instructor->last_name;
+
             ?>
             <tr>
                 <td  style="text-align:center">{{$loop->iteration}}</td>
                 <td  style="text-align:center">{{$value['name']}}</td>
-                <td style="text-align:right">{{date('F, d-Y [ H:i A',strtotime($value['start_datetime']))}} {{date('- H:i A ]',strtotime($value['end_datetime']))}}</td>
+                <td  style="text-align:center">{{$InstructorName}}</td>
+                
+                <td style="text-align:right">{{date('F,l d-Y [ H:i A',strtotime($value['start_datetime']))}} {{date('- H:i A ]',strtotime($value['end_datetime']))}}</td>
                 <td>@include('PanelAdmin.component.action_session_grid.view')</td>
             </tr>
             @endforeach

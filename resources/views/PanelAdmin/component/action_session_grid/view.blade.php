@@ -15,7 +15,7 @@
         
         <div class="dropdown-divider"></div>
        
-        <a class="dropdown-item" wire:click='doDelete' >Delete</a>
+        <a class="dropdown-item" wire:click='doDelete({{$value['id']}})' >Delete</a>
        
     </div>
 </div>

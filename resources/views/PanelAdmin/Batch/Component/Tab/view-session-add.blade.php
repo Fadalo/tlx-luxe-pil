@@ -50,10 +50,29 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
+                            <?php
+                                $dl = 'init';
+                              //  $sortedArray = $listAvailableSC;
+                               
+                            //   dd($sortedArray);
+                            ?>
                             @foreach($listAvailableSC as $key => $val)
+                            <?php
+                                $dn = date('l, d-m-Y',strtotime($val['start_datetime']));
+
+                            ?>
+                            @if($dl != $dn)
+                            <tr>
+                                <td colspan="2">{{$dn}}</td>
+                            </tr>
+                            <?php
+                                $dl = $dn;
+                            ?>
+                            @endif
                             <tr>
                                 <td width="5%"><input name="ssss" wire:model='list.{{$val['id']}}.value' value ="{{ date('d-m-Y H:i A',strtotime($val['start_datetime']))}} - {{date('d-m-Y H:i A',strtotime($val['end_datetime']))}}"type="checkbox"></td>
-                                <td width="95%" style="text-align:right">{{ date('l F, d/Y [ H:i ',strtotime($val['start_datetime']))}} - {{date('H:i ]',strtotime($val['end_datetime']))}}</td>
+                                <td width="95%" style="text-align:right">{{$val['contract']}} - {{ date('l F, d/Y [ H:i ',strtotime($val['start_datetime']))}} - {{date('H:i ]',strtotime($val['end_datetime']))}}</td>
                             </tr>
                             @endforeach
                         </tbody>
