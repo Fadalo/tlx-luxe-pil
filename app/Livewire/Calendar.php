@@ -90,9 +90,11 @@ class Calendar extends Component
                                
                                $dStartCombine = date('d/m/Y H:i',strtotime($dStart.' '.$dStartTime));
                                $dEndCombine   = date('d/m/Y H:i', strtotime($dStart.' '.$dEndTime));
+                               $last =  date('d/m/Y H:i', strtotime($dEnd.' '.$dEndTime));
                                
                                $start = Carbon::createFromFormat('d/m/Y H:i', $dStartCombine );
                                $end = Carbon::createFromFormat('d/m/Y H:i',  $dEndCombine  );
+                               $la =  Carbon::createFromFormat('d/m/Y H:i',  $last  );
        
                                // Get the difference in hours and minutes
                                $diffInHours = $start->diffInHours($end); // Whole hours
@@ -112,8 +114,10 @@ class Calendar extends Component
                                        'freq'=> 'weekly',           // Weekly recurrence
                                        'byweekday'=> $days,  // Monday, Tuesday, Friday
                                        'dtstart'=> Carbon::createFromFormat('d/m/Y H:i', $dStartCombine), // Start datetime
-                                   ],
-                                   'duration' => $duration,
+                                       'until'=> date('Y-m-d',strtotime($dEnd))
+                                    ],
+                                 
+                                   
                                ];
                            
                            }
@@ -122,7 +126,7 @@ class Calendar extends Component
             }
          
         }
-        //dd($event);
+       // dd($event);
         $this->events = $event;
     }
 

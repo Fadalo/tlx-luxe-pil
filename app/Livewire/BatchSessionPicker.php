@@ -36,6 +36,7 @@ class BatchSessionPicker extends Component
         'new' =>'false'
     ];
     public $listAvailableSC = [];
+    protected $listeners = ['doUpdateList'];
     public function mount(){
         $this->doShowList();
         $this->listSession = $this->doGetData();
@@ -311,6 +312,12 @@ class BatchSessionPicker extends Component
             'showAdd' => false,
             'showChangeInstructor' => true
         ] ;
+    }
+    public function doUpdateList($p)
+    {
+        //dd($p);
+        $this->listSession = $this->doGetData();
+        $this->doShowList();
     }
     public function doDelete($id){
         try{

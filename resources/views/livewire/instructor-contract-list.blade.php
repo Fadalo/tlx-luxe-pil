@@ -22,12 +22,12 @@
             $p = $objPackage->find($instructorContractPackage->package_id);
         ?>
         <tr>
-            <td>{{ $instructorContractPackage->id }}</td>
-            <td>{{ $instructorContractPackage->name }}</td>
-            <td>{{ $p->name }}</td>
-            <td>{{ $instructorContractPackage->contract_start_date }}</td>
-            <td>{{ $instructorContractPackage->contract_end_date }}</td>
-            <td>
+            <td width="5%">{{ $instructorContractPackage->id }}</td>
+            <td width="35%" ><textarea rows="5" disabled class="form-control">{{ $instructorContractPackage->name }}</textarea></div></td>
+            <td width="15%">{{ $p->name }}</td>
+            <td width="20%">{{ $instructorContractPackage->contract_start_date }}</td>
+            <td width="20%">{{ $instructorContractPackage->contract_end_date }}</td>
+            <td width="10%">
                 <div class="btn-group me-1 mt-2">
                     <button class="btn btn-info rounded-0 btn-sm dropdown-toggle" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
