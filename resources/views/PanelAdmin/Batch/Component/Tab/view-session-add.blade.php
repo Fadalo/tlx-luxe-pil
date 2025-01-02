@@ -64,7 +64,7 @@
                             ?>
                             @if($dl != $dn)
                             <tr>
-                                <td colspan="2">{{$dn}}</td>
+                                <td colspan="2" style="background-color:#0e0c01">{{$dn}}</td>
                             </tr>
                             <?php
                                 $dl = $dn;

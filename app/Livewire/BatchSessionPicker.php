@@ -24,12 +24,17 @@ class BatchSessionPicker extends Component
 
     public  $selectedCheckALL = false;
     public  $session_name_prefix = '';
+    public  $session_name_pick = '';
 
     public  $showContent = [
         'showList' => true,
         'showAdd' => false,
         'showChangeInstructor' => false
     ] ;
+    public $selectedType =[
+        'exits' => 'true',
+        'new' =>'false'
+    ];
     public $listAvailableSC = [];
     public function mount(){
         $this->doShowList();
@@ -122,7 +127,7 @@ class BatchSessionPicker extends Component
         }
        
         $this->listSession = $this->doGetData();
-        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
+        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->doGetDataAll());
         $this->doClearSession();
         $this->doShowList();
       
@@ -146,15 +151,17 @@ class BatchSessionPicker extends Component
         $this->selectedCheckALL = false;
         $this->list=[];
     }
-    public function doGetScheduleInstructor()
+    public function doGetScheduleInstructor($instructor_id=null)
     {
+        
         $dataSC = [] ;
         $batch = Batch::find($this->batch_id);
-        $InstructorContract = InstructorContract::where('instructor_id',$batch ->instructor_id)->get();
+        $InstructorContract = InstructorContract::where('instructor_id',(is_null($instructor_id)?$batch ->instructor_id:$instructor_id))->get();
+       
         $idd = 0;
         foreach($InstructorContract as $key =>$value){
                 $r = json_decode($value->schedule_instructor,true);
-
+                
                 if (!empty($r)){
                     $startDate = new DateTime($value['contract_start_date']);
                     $endDate   = new DateTime($value['contract_end_date']);
@@ -196,7 +203,7 @@ class BatchSessionPicker extends Component
                                         $d = date('Y-m-'.$m,strtotime($startDate->format('Y-m-d')));
                                         $weekDay_d = $week[strtoupper(date('D',strtotime($d)))];
                                     
-                                       
+                                      //  dd($weekDay_d );
                                         if ($weekDay == $weekDay_d){
                                             //print_r($d);
                                             //print_r('<br>');
@@ -239,6 +246,7 @@ class BatchSessionPicker extends Component
          uasort($sortedArray, function($a, $b) {
             return strtotime($a['start_datetime']) - strtotime($b['start_datetime']);
         });
+       
         return $sortedArray;
     }
    
@@ -258,8 +266,25 @@ class BatchSessionPicker extends Component
         ->get()->toArray();
         return $BatchSession;
     }
+    public function doGetDataAll(){
+        $BatchSession = BatchSession::join('batch','batch.id','=','batch_session.batch_id')
+        ->join('package','package.id','=','batch_session.package_id')
+        ->selectRaw('
+            batch.id as batch_id,
+            batch_session.id as id,
+            batch_session.instructor_id as instructor_id,
+            batch_session.name as name,
+            batch.name as batch_name,
+            batch_session.start_datetime as start_datetime,
+            batch_session.end_datetime as end_datetime
+        ')
+       
+        ->get()->toArray();
+        return $BatchSession;
+    }
+    
     public function doShowAddSession(){
-        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
+        $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->doGetDataAll());
         $this->showContent = [
             'showList' => false,
             'showAdd' => true,
@@ -275,7 +300,12 @@ class BatchSessionPicker extends Component
             'showChangeInstructor' => false
         ] ;
     }
-    public function doShowChangeInstructor(){
+    public function doShowChangeInstructor($id){
+        //dd($id);
+        $BatchSession = BatchSession::find($id);
+
+        $this->session_name_pick = $BatchSession->name.' '.date('F, l d-m-Y H:i A -',strtotime($BatchSession->start_datetime)).date(' H:i A ]',strtotime($BatchSession->end_datetime));
+        $this->batch_session_id = $id;
         $this->showContent = [
             'showList' => false,
             'showAdd' => false,
@@ -307,6 +337,21 @@ class BatchSessionPicker extends Component
             'title' => $title,
             'text' => $msg,
         ]);
+    }
+    public function doShowExists()
+    {
+       // dd('sss');
+        $this->selectedType =[
+            'exits' => true,
+            'new' =>false
+        ];
+    }
+    public function doShowNew(){
+        //dd('pp');
+        $this->selectedType =[
+            'exits' => false,
+            'new' =>true
+        ];
     }
     public function render()
     {

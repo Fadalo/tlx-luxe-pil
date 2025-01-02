@@ -7,11 +7,9 @@
        
       
         <a class="dropdown-item"
-            href="">Change Instructor
+        wire:click='doShowChangeInstructor({{$value['id']}})'>Change Instructor
         </a>
-        <a class="dropdown-item"
-            href="">Edit
-        </a>
+       
         
         <div class="dropdown-divider"></div>
        

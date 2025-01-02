@@ -39,6 +39,6 @@
    
     @elseif($showContent['showChangeInstructor'] == true)
   
-         @include('PanelAdmin.Batch.Component.Tab.view-session-add')
+         @include('PanelAdmin.Batch.Component.Tab.view-session-changeInstructor')
     @endif
 </div>
