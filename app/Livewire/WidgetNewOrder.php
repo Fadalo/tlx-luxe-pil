@@ -29,7 +29,11 @@ class WidgetNewOrder extends Component
     public function doCountPercentage(){
         $prevMonthCount = MemberPackageOrder::where('created_at','<', Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = MemberPackageOrder::All()->count();
-        $percentage = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        $percentage = 0;
+        if($totalCount !=0){
+            $percentage = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        }
+      
         $this->percentage =  $percentage .' %';
     }
     public function render()
