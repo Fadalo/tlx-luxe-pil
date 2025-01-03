@@ -49,7 +49,7 @@ class PackageOrderCreate extends Component
             batch.id as id,
             concat(batch.name,"<br>",batch_session.name) as name,
             batch.start_datetime as start_datetime,
-            batch.end_datetime as end_datetime,
+            batch.end_datetime as end_datetime
             
 
             '
