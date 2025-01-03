@@ -48,6 +48,7 @@ class PackageOrderCreate extends Component
         ->selectRaw(
             '
             batch.id as id,
+            batch.instructor_id as instuctor_id,
             concat(batch.name,"<br>",package_variant.name) as name,
             batch.start_datetime as start_datetime,
             batch.end_datetime as end_datetime
