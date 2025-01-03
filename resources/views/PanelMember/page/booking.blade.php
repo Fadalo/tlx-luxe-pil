@@ -18,7 +18,7 @@
     <div class="card-bg preload-img" data-src="{{env('APP_ASSET_MEMBER_URL')}}/images/pictures/20s.jpg"></div>
 </div>
 
-<livewire:ComponentMemberBooking >
+<livewire:ComponentMemberBooking :member_package_order_id="$_GET['id']" >
     
 
 @endsection
