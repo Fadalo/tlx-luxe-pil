@@ -20,6 +20,16 @@ class PanelMemberListPackage extends Component
     public function mount(){
         $this->showActivated();
     }
+    public function doActivated($id){
+
+        $MemberPackageOrder = MemberPackageOrder::find($id);
+        $MemberPackageOrder->activated_package_started_datetime = now();
+        $MemberPackageOrder->activated_package_due_date = (45*$MemberPackageOrder->qty_ticket_available);
+        $MemberPackageOrder->status_package = 'activated';
+        $MemberPackageOrder->save();
+        $this->showActivated();
+        
+    }
     public function showAvailable(){
        // dd('ss');
        // exit();

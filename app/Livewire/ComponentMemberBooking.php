@@ -15,7 +15,7 @@ class ComponentMemberBooking extends Component
     public $year;
     public $events = [];
     public $selectedDate = '';
-    public $instructor_id = '';
+    public $member_id = '';
     public $cc='';
 
     public function mount()
@@ -30,19 +30,18 @@ class ComponentMemberBooking extends Component
     public function getEventsForDate($date)
     {
           $this->selectedDate = $date;
-          //dd($date);
-          $BatchSession = BatchSession::join('batch','batch.id','=','batch_session.batch_id')
-          ->where('batch_session.instructor_id',$this->instructor_id)
-          ->where('status_session','running')
+          $BatchSession =  BatchSession::join('batch','batch.id','=','batch_session.batch_id')
+          ->join('member_package_order','member_package_order.batch_id','=','batch.id')
+          ->where('member_package_order.member_id',$this->member_id)
+          ->where('batch_session.status_session','running')
           ->whereRaw('DATE(`batch_session`.`start_datetime`) = DATE(\''.$date.'\')')
+
+
           ->selectRaw('
             batch_session.*,
             batch.name as batch_name,
             batch.start_datetime as batch_start_datetime,
             batch.end_datetime as batch_end_datetime
-            
-            
-            
           ')
           ->get()->toArray();
           $this->events = $BatchSession;
@@ -70,8 +69,9 @@ class ComponentMemberBooking extends Component
     }
     public function checkEvent($date){
         $iCount =  BatchSession::join('batch','batch.id','=','batch_session.batch_id')
-        ->where('batch_session.instructor_id',$this->instructor_id)
-        ->where('status_session','running')
+        ->join('member_package_order','member_package_order.batch_id','=','batch.id')
+        ->where('member_package_order.member_id',$this->member_id)
+        ->where('batch_session.status_session','running')
         ->whereRaw('DATE(`batch_session`.`start_datetime`) = DATE(\''.$date.'\')')
       
         ->get()->count();

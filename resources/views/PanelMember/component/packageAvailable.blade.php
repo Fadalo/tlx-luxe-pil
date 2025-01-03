@@ -33,5 +33,5 @@
         <p class="font-10 opacity-80 mb-n1"><i class="far fa-calendar"></i> Last updated {{$LastUpdate}} </p>
         <p class="font-10 opacity-80"><i class="fa fa-map-marker-alt"></i> LUXE-PILATES</p>
     </div>
-    <a href="{{route('member.listPackage')}}#" class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2">Activated</a>
+    <a href="{{route('member.listPackage')}}#" wire:click='doActivated({{$list['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2">Activated</a>
 </div>
