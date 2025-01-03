@@ -20,7 +20,7 @@
 
 <livewire:ComponentMemberBooking >
     
-list profile
+
 @endsection
 
 

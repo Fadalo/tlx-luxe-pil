@@ -5,19 +5,19 @@
     <div class="content mt-n2">
         <div class="row mb-0">
             <a  href="{{ route('member.listPackage')}}#" wire:click='showAvailable' class="col-4">
-                <div class="card card-style text-center py-3 mx-0 mb-0 @if($showTab['tabAvailable'] == true) bg-primary @endif">
+                <div class="card card-style text-center py-3 mx-0 mb-0" style="@if($showTab['tabAvailable'] == true) background-color:#9fc07a @endif">
                     <i class="fa fa-list-ul font-24 color-theme opacity-30"></i>
                     <p class="font-13 font-500 mb-n1 mt-2 color-theme">Available</p>
                 </div>
             </a>
             <a  href="{{ route('member.listPackage')}}#" wire:click='showActivated' class="col-4">
-                <div class="card card-style text-center py-3 mx-0 mb-0 @if($showTab['tabActivated'] == true)bg-primary @endif">
+                <div class="card card-style text-center py-3 mx-0 mb-0" style="@if($showTab['tabActivated'] == true)background-color:#9fc07a @endif">
                     <i class="fa fa-exchange-alt font-24 color-theme opacity-30"></i>
                     <p class="font-13 font-500 mb-n1 mt-2 color-theme">Actived</p>
                 </div>
             </a>
             <a  href="{{ route('member.listPackage')}}#"  wire:click='showExpired' class="col-4">
-                <div class="card card-style text-center py-3 mx-0 mb-0 @if($showTab['tabExpired'] == true)bg-primary @endif">
+                <div class="card card-style text-center py-3 mx-0 mb-0" style="@if($showTab['tabExpired'] == true)background-color:#9fc07a @endif">
                     <i class="fa fa-arrow-down font-24 color-theme opacity-30"></i>
                     <p class="font-13 font-500 mb-n1 mt-2 color-theme">Expired</p>
                 </div>
