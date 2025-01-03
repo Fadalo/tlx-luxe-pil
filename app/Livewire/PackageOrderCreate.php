@@ -52,8 +52,8 @@ class PackageOrderCreate extends Component
             concat(batch.name," - ",package_variant.name) as name,
             batch.start_datetime as start_datetime,
             batch.end_datetime as end_datetime,
-            package_variant.package_qty_ticket as package_qty_ticket,
-            package_variant.package_qty_used_book as package_qty_used_book
+            package_variant.package_qty_ticket as qty_max,
+            package_variant.package_qty_used_book as qty_book
 
             '
         )
