@@ -22,7 +22,7 @@ class ComponentMemberBooking extends Component
     {
         $this->month = date('m');
         $this->year = date('Y');
-        $this->instructor_id = 1;
+        $this->member_id = Auth::guard('member')->User()->id;
         $this->getEventsForDate(date('Y-m-d'));
     }
 

@@ -9,7 +9,7 @@
 
 @section('contents')
 <div class="page-title page-title-small">
-    <h2><a href="{{ route('member.dashboard')}}#" data-back-button=""><i class="fa fa-arrow-left"></i></a>LUXE MEMBER</h2>
+    <h2><a href="{{ route('member.listPackage')}}#" data-back-button=""><i class="fa fa-arrow-left"></i></a>LUXE MEMBER - BOOKING</h2>
     <a href="{{ route('member.booking')}}#" data-menu="menu-main" class="bg-fade-highlight-light shadow-xl preload-img" data-src="{{env('APP_ASSET_MEMBER_URL')}}/images/menu.png"></a>
 </div>
 <div class="card header-card shape-rounded" data-card-height="150">
