@@ -69,6 +69,15 @@ class DynamicGrid extends Component
             $this->data[$arrayId][0]['value'] = $si->id;
             //dd($this->data);
             
+            $pvr = new PackageVariantRule;
+            $pvr->events = 'OnBeforeOrderSave';
+            $pvr->apply4 = 'New Booking';
+            $pvr->rule_id = 1;
+            $pvr->status_document = 'draft';
+            $pvr->created_by = 1;
+            $pvr->updated_by = 1;
+            $pvr->save();
+            
         } else {
             // Find and update an existing package variant
             $variant = $package->PackageVariant()->find($packageVariantId);

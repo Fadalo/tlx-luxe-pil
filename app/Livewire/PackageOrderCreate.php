@@ -44,6 +44,16 @@ class PackageOrderCreate extends Component
         ->where('package_variant.id',$id)
         ->where('batch.start_datetime','>=',$dStartDate)
         ->where('batch.end_datetime','<=',$dEndDate)
+        ->selectRaw(
+            '
+            batch.id as id,
+            concat(batch.name,"<br>",batch_session.name) as name,
+            batch.start_datetime as start_datetime,
+            batch.end_datetime as end_datetime,
+            
+
+            '
+        )
         ->get();
     }
     public function updateList(){
