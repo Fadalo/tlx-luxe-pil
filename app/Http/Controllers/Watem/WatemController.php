@@ -19,7 +19,7 @@ class WatemController extends Controller
         ['data' => 'action', 'width' => '5%'],
         ['data' => 'module', 'width' => '25%'],
         ['data' => 'name', 'width' => '25%'],
-        ['data' => 'templete', 'width' => '50%'],
+       // ['data' => 'templete', 'width' => '50%'],
         
         ['data' => 'updated_at', 'width' => '10%']
     ];
@@ -38,7 +38,7 @@ class WatemController extends Controller
     public $listShow = [
         'module'=>[], 
         'name'=>[], 
-        'templete'=>[], 
+       // 'templete'=>[], 
         
         
         //'status_document'=>['enum'=>['draft','lock'],'enum_default'=>'draft'],

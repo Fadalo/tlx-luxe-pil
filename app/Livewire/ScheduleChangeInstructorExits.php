@@ -22,6 +22,7 @@ class ScheduleChangeInstructorExits extends Component
         $BatchSession = BatchSession::find($this->batch_session_id);
         $BatchSession->instructor_id = $this->selected_instructor;
         $p = $BatchSession->save();
+        $this->triggerAlert('Berhasil di update');
         $this->dispatch('doUpdateList',['BatchSession'=>$p]);
         //dd($BatchSession);
     }
@@ -53,6 +54,15 @@ class ScheduleChangeInstructorExits extends Component
             return [];
         }
        
+    }
+    public function triggerAlert($msg,$title='Success!',$icon='success')
+    {
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
     }
     public function render()
     {

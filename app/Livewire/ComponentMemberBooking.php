@@ -9,7 +9,7 @@ use App\Models\Batch\BatchSession;
 use App\Models\Instructor\InstructorContract;
 use Illuminate\Support\Facades\Auth;
 
-class ComponentCalendar extends Component
+class ComponentMemberBooking extends Component
 {
     public $month;
     public $year;
@@ -22,7 +22,7 @@ class ComponentCalendar extends Component
     {
         $this->month = date('m');
         $this->year = date('Y');
-        $this->instructor_id = Auth::guard('instructor')->User()->id;
+        $this->instructor_id = 1;
         $this->getEventsForDate(date('Y-m-d'));
     }
 
@@ -103,7 +103,7 @@ class ComponentCalendar extends Component
             $startOfCalendar->addDay();
         }
         $calendar[] = $days;
-        return view('livewire.component-calendar', [
+        return view('livewire.component-member-booking', [
             'calendar' => $calendar,
             'selectedDate' => $this->selectedDate,
             'events' => $this->events,

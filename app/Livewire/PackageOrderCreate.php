@@ -17,6 +17,9 @@ class PackageOrderCreate extends Component
     public $package_variant_id ='';
     public $select = [];
     public $data = [];
+    public $dStartDate = '';
+    public $dEndDate = '';
+    
     public function mount(){
 
         $this->select = PackageVariant::all()->toArray();
@@ -30,6 +33,18 @@ class PackageOrderCreate extends Component
        // exit();
        $this->data = [];
        $this->data = Batch::where('package_id',$PackObj->package_id)->get();
+    }
+    public function doSearch(){
+        $id = $this->package_variant_id;
+        $dStartDate = $this->dStartDate;
+        $dEndDate = $this->dEndDate;
+       
+        $this->data = [];
+        $this->data = Batch::join('package_variant','package_variant.package_id','=','batch.package_id')
+        ->where('package_variant.id',$id)
+        ->where('batch.start_datetime','>=',$dStartDate)
+        ->where('batch.end_datetime','<=',$dEndDate)
+        ->get();
     }
     public function updateList(){
         $PackObj = PackageVariant::find($this->package_variant_id);

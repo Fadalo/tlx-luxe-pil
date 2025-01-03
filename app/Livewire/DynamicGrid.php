@@ -89,7 +89,9 @@ class DynamicGrid extends Component
                 ['name' => 'No','type'=>'span','source'=>'n','value'=> $this->counterL ],
                 ['name' => 'Name','type'=>'text','value'=> '' ],
                 ['name' => 'Description','type'=>'textarea','value'=> '' ],
-                ['name' => 'Qty Ticket','type'=>'number','value'=>'' ]
+                ['name' => 'Qty Ticket','type'=>'number','value'=>'' ],
+                ['name' => 'Qty Used','type'=>'number','value'=>'' ]
+                
             ];
         $this->counterL = $this->counterL + 1;
        
@@ -105,8 +107,10 @@ class DynamicGrid extends Component
         $this->head = [
             ['name' => 'No','type'=>'span','width' =>'col-md-1' ],
             ['name' => 'Name','type'=>'text','width' =>'col-md-2' ],
-            ['name' => 'Description','type'=>'textarea','width' =>'col-md-5' ],
-            ['name' => 'Qty Ticket','type'=>'number','width' =>'col-md-2' ]
+            ['name' => 'Description','type'=>'textarea','width' =>'col-md-3' ],
+            ['name' => 'Qty Ticket','type'=>'number','width' =>'col-md-2' ],
+            ['name' => 'Qty Used','type'=>'number','width' =>'col-md-2' ]
+            
         ];
         
        
@@ -124,7 +128,8 @@ class DynamicGrid extends Component
                     ['name' => 'No','type'=>'span','source'=>'db', 'value'=> $packageVariant->id ],
                     ['name' => 'Name','type'=>'text','value'=> $packageVariant->name ],
                     ['name' => 'Description','type'=>'textarea','value'=> $packageVariant->desc ],
-                    ['name' => 'Qty Ticket','type'=>'number','value'=>$packageVariant->package_qty_ticket ]
+                    ['name' => 'Qty Ticket','type'=>'number','value'=>$packageVariant->package_qty_ticket ,'field'=>'package_qty_ticket'],
+                    ['name' => 'Qty Used','type'=>'number','value'=>$packageVariant->package_qty_used_book ,'field'=>'package_qty_used_book']
             ];
             }
           

@@ -23,7 +23,8 @@ class BatchController extends Controller
 {
     public $columns = [
         ['data' => 'action', 'width' => '5%'],
-        ['data' => 'name', 'width' => '35%'],
+        ['data' => 'id2', 'width' => '5%'],
+        ['data' => 'name', 'width' => '30%'],
        // ['data' => 'remark', 'width' => '30%'],
         ['data' => 'instructor_id', 'width' => '10%'],
         ['data' => 'package_id', 'width' => '10%'],
@@ -36,6 +37,7 @@ class BatchController extends Controller
  
     public  $meta = [ 
         'id'            => ['type'=> 'hidden','label'=> 'ID'],
+        'id2'            => ['type'=> 'text','label'=> 'ID'],
         'name'          => ['type'=> 'text','label'=> 'Batch'],
         'remark'        => ['type'=> 'textarea','label'=> 'Remark'],
         'status'        => ['type'=> 'dropdown','label'=> 'Status'],
@@ -54,7 +56,7 @@ class BatchController extends Controller
 ];
 
 public $listShow = [
-
+    'id2' => [],
     'name'                => [],
    // 'remark'              => [],
    // 'status'              => [],
@@ -78,7 +80,7 @@ public $createShow=[
     'package_id'         => ['width'=>'col-md-6','related_table'=>'App\Models\Package\Package','related_value'=>'name'],
     'start_datetime'      => ['width'=>'col-md-6'],
     'end_datetime'        => ['width'=>'col-md-6'],
-    'qty_book'        => ['width'=>'col-md-6'],
+  //  'qty_book'        => ['width'=>'col-md-6'],
     'qty_max'              => ['width'=>'col-md-6'],
     //'status_document'=>['width'=>'col-md-4','enum'=>['draft','locked'],'enum_default'=>'draft'],
 ];
@@ -91,9 +93,9 @@ public $detailShow=[
     'remark'              => ['width'=>'col-md-12'],
     //'status'              => [],
     'instructor_id'      => ['width'=>'col-md-6','related_table'=>'App\Models\Instructor\Instructor','related_value'=>'first_name'],
-    'package_id'         => ['width'=>'col-md-6','related_table'=>'App\Models\Package\Package','related_value'=>'name'],
-    'qty_book'              => ['width'=>'col-md-6'],
-    'qty_max'              => ['width'=>'col-md-6'],
+    'package_id'         => ['width'=>'col-md-3','related_table'=>'App\Models\Package\Package','related_value'=>'name'],
+  //  'qty_book'              => ['width'=>'col-md-6'],
+    'qty_max'              => ['width'=>'col-md-3'],
     
     //'status_document'     => ['width'=>'col-md-4','enum'=>['draft','locked'],'enum_default'=>'draft'],
     'created_at'     => ['width'=>'col-md-3'],  
@@ -113,6 +115,7 @@ public $detailShow=[
        // $members = Member::all(); // Adjust according to your needs
         $batchs = Batch::select([
             'id',
+            'id as id2',
             'name',                
             'remark',              
             'status' ,             

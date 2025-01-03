@@ -19,15 +19,21 @@ class InstructorController extends Controller
 {
     public $columns = [
         ['data' => 'action', 'width' => '5%'],
-        ['data' => 'name', 'width' => '25%'],
+        ['data' => 'id2', 'width' => '5%'],
+        
+        ['data' => 'type', 'width' => '15%'],
+        
+        ['data' => 'name', 'width' => '45%'],
         ['data' => 'phone_no', 'width' => '10%'],
         ['data' => 'birthday', 'width' => '10%'],
-        ['data' => 'join_date', 'width' => '10%'],
-        ['data' => 'actived_date', 'width' => '10%'],
         ['data' => 'updated_at', 'width' => '10%']
     ];
     public  $meta = [ 
             'id'              => ['type'=> 'hidden','label'=>'ID'],
+            'id2'             => ['type'=> 'text','label'=>'ID'],
+            
+            'type'      => ['type'=> 'dropdown','label'=>'Type'],
+            
             'first_name'      => ['type'=> 'text','label'=>'First Name'],
             'last_name'       => ['type'=> 'text','label'=>'Last Name'],
             'phone_no'        => ['type'=> 'phone','label'=>'Phone No'],
@@ -44,10 +50,9 @@ class InstructorController extends Controller
             'updated_by' => ['type'=> 'select2','label'=>'Updated By']
     ];
 
-    
-
     public $listShow = [
-        //'id'=>[] ,
+        'id2'=>[] ,
+        'type'=>[],
         'name'=>['label'=>'Name','type'=>'custom','call_m'=> 'name_callback' ,'callback_execute'=>'name_callback($item)','callback_function'=>'function name_callback($item)
         {
             return $item["first_name"].\' \'.$item["last_name"];
@@ -57,8 +62,8 @@ class InstructorController extends Controller
         //'last_name'=>[], 
         'phone_no'=>[], 
         'birthday'=>[], 
-        'join_date'=>[],
-        'actived_date'=>[],
+       // 'join_date'=>[],
+    //    'actived_date'=>[],
         //'status_document'=>['enum'=>['draft','lock'],'enum_default'=>'draft'],
         'updated_at'=>[],
         //'updated_by'=>['related_table'=>'user','related_value'=>'name']
@@ -66,6 +71,7 @@ class InstructorController extends Controller
 
     public $createShow=[
        // 'id'=>['width'=>'col-md-0'] ,
+        'type'=>['width'=>'col-md-12','enum'=>['permanent','temporary'],'enum_default'=>'permanent'], 
         'first_name'=>['width'=>'col-md-6'], 
         'last_name'=>['width'=>'col-md-6'] , 
         'phone_no'=>['width'=>'col-md-8'],  
@@ -78,6 +84,7 @@ class InstructorController extends Controller
 
     public $detailShow=[
         'id'=>['width'=>'col-md-0'] ,
+        'type'=>['width'=>'col-md-12','enum'=>['permanent','temporary'],'enum_default'=>'permanent'], 
         'first_name'=>['width'=>'col-md-6'], 
         'last_name'=>['width'=>'col-md-6'] , 
         
@@ -105,6 +112,8 @@ class InstructorController extends Controller
        // $members = Member::all(); // Adjust according to your needs
         $Instructors = Instructor::select([
             'id',
+            'id as id2',
+            'type',
             DB::raw("CONCAT(first_name, ' ', last_name) AS name"), // Combine first and last name
             'phone_no',
             'join_date',

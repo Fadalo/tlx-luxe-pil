@@ -62,6 +62,7 @@
             width: 100%;
             margin-bottom: 1rem;
             border-collapse: collapse;
+            font-size:0.5em;
         }
 
         .table th, .table td {
@@ -116,7 +117,19 @@
     <div class="card">
         <div class="card-body">
             <div class="invoice-title">
-                <h4 class="float-end font-size-16"><strong>{{ $data['title'] }} </strong></h4>
+                <?php
+                    $dStartDate = (!empty($_GET['dStartDate'])?$_GET['dStartDate']:'');
+                    $dEndDate = (!empty($_GET['dEndDate'])?$_GET['dEndDate']:'');
+               
+                    if ($dStartDate != '' and $dEndDate != ''){
+                        $showDate = true;
+                    }
+                    else{
+                        $showDate = false;
+                    }
+                ?>
+                <h4 class="float-end font-size-16"><strong>{{ strtoupper($data['title']) }}  </strong><span style="float:right">@if($showDate) [ {{date('d-M-Y',strtotime($dStartDate))}} s/d {{date('d-M-Y',strtotime($dEndDate))}} ] @endif</span></h4>
+                
                 <span style="color:green;font-size:30px;font-wight:700px;position:absolute;top:60px;right:0px"></span>
                 <h3>
                     <img src="assets/images/logo-sm.png" alt="LUXE PILATES">

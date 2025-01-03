@@ -20,6 +20,15 @@ class routeMemberHelper{
                 return view('PanelMember.page.listPackage');
         })->name('member.listPackage');
 
+        Route::get('/member/booking', function () {
+            return view('PanelMember.page.booking');
+        })->name('member.booking');
+
+        Route::get('/member/detailBooking', function () {
+            return view('PanelMember.page.detailBooking');
+        })->name('member.detailBooking');
+        
+
         Route::get('/member/profile', function () {
             return view('PanelMember.page.profile');
         })->name('member.profile');

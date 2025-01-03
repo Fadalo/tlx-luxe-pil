@@ -16,7 +16,8 @@ table>td {
 ?>
 @if (!empty($data))
 <div class="row mb-2">
-<div class="col-md-6 " id="custom-buttons-container"></div> <!-- Button container -->
+        
+<div class="col-md-6 " id="custom-buttons-container"><a id="btnShowData" style="padding:7px" class="btn-sm btn-info rounded-0">SHOW DATA</a></div> <!-- Button container -->
     <div class="col-md-6 text-end">
         <a id="btnSearch" class="ri-search-line absolute-element position-absolute" style="display:block;top: 10px; right: 20px;"></a>
         
@@ -161,6 +162,12 @@ $(document).ready(function() {
                     $('#btnClose').show();
                 }
                 
+            });
+            $('#btnShowData').on('click', function () {
+                $('#customSearch').val('');
+                a.search('').draw();
+                $('#btnSearch').show();
+                $('#btnClose').hide();
             });
             $('#btnClose').on('click', function () {
                 $('#customSearch').val('');

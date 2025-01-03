@@ -59,15 +59,24 @@ class ScheduleChangeInstructorNew extends Component
                     }
                 }
             }
+            $this->triggerAlert('Berhasil di update');
             $this->dispatch('doUpdateList',[]);
         }
         catch(Exception $e){
-            dd($e);
+            $this->triggerAlert('Terjadi Kesalah Input Silahkan di Coba ulang','Error!!','error');
         }
     
     }
 
-    
+    public function triggerAlert($msg,$title='Success!',$icon='success')
+    {
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
+    }
     
     public function doClear(){
         $this->form = [

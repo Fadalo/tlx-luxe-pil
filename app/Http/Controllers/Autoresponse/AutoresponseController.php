@@ -20,7 +20,7 @@ class AutoresponseController extends Controller
         ['data' => 'key', 'width' => '15%'],
         ['data' => 'module', 'width' => '15%'],
         ['data' => 'name', 'width' => '25%'],
-        ['data' => 'templete', 'width' => '30%'],
+       // ['data' => 'templete', 'width' => '30%'],
         
         ['data' => 'updated_at', 'width' => '10%']
     ];
@@ -42,7 +42,7 @@ class AutoresponseController extends Controller
         'key'=>[], 
         'module'=>[], 
         'name'=>[], 
-        'templete'=>[], 
+      //  'templete'=>[], 
         //'status_document'=>['enum'=>['draft','lock'],'enum_default'=>'draft'],
         'updated_at'=>[],
         //'updated_by'=>['related_table'=>'user','related_value'=>'name']

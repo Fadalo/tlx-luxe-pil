@@ -1,4 +1,3 @@
-<div>
 <div class="calendar bg-theme shadow-xl rounded-m">
 
 <div class="cal-header">
@@ -40,15 +39,6 @@
     @endforeach
     <div class="clearfix"></div>
 </div>
-</div>
-<div class="calendar bg-theme shadow-xl rounded-m">
-    
-<div class="cal-header">
-    <h4 class="cal-title text-center text-uppercase font-700 font-15 bg-theme color-theme">SESSION ON SCHEDULE [{{date('d-M-Y',strtotime($selectedDate))}}]</h4>
-   
-</div>
-<div class="clearfix"></div>
-<div class="divider mb-1"></div>
 <div class="cal-footer">
     @foreach($events as $key => $value)
     <div class="cal-schedule">
@@ -57,6 +47,5 @@
         <span><i class="fa fa-building"></i>LUXE PILATES</span>
     </div>
     @endforeach
-</div>
 </div>
 </div>

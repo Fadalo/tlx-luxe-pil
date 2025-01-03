@@ -16,12 +16,16 @@ class PackageController extends Controller
 {            
     public $columns = [
         ['data' => 'action', 'width' => '5%'],
+        ['data' => 'id2', 'width' => '5%'],
+        
         ['data' => 'name', 'width' => '25%'],
-        ['data' => 'desc', 'width' => '50%'],
+        ['data' => 'desc', 'width' => '45%'],
         ['data' => 'updated_at', 'width' => '10%']
     ];
     public  $meta = [ 
         'id'        => ['type'=> 'hidden','label'=>'ID' ],
+        'id2'        => ['type'=> 'text','label'=>'ID' ],
+        
         'name'      => ['type'=> 'text','label'=>'Name' ],
         'desc'      => ['type'=> 'textarea','label'=>'Desc' ],
         'status_document' => ['type'=> 'dropdown','label'=>'Status Document' ],
@@ -32,6 +36,7 @@ class PackageController extends Controller
     ];
 
     public $listShow = [
+        'id2'=>[],
         'name'=>[], 
         'desc'=>[], 
         //'status_document'=>['enum'=>['draft','lock'],'enum_default'=>'draft'],
@@ -72,6 +77,8 @@ class PackageController extends Controller
        // $members = Member::all(); // Adjust according to your needs
         $packages = Package::select([
             'id',
+            'id as id2',
+            
             'name', // Combine first and last name
             'desc',
             'created_at',
@@ -143,24 +150,33 @@ class PackageController extends Controller
     {
         //print_r(Auth::user()->id);
         //exit();
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'desc' => 'max:255',
-           
-        ]);
+        try{
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255'
+               
+            ]);
+            
+            $package = Package::create([
+                'name' => $validatedData['name'],
+                'desc' => $validatedData['desc'],
+                'updated_by'=> Auth::User()->id,
+                'created_by'=> Auth::User()->id
+            ]);
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Package created successfully!',
+                'package' => $package,
+            ]);
+        }
+        catch(Exeption $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Error !!!',
+                'package' => $package,
+            ]);
+        }
         
-        $package = Package::create([
-            'name' => $validatedData['name'],
-            'desc' => $validatedData['desc'],
-            'updated_by'=> Auth::User()->id,
-            'created_by'=> Auth::User()->id
-        ]);
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'Package created successfully!',
-            'package' => $package,
-        ]);
     }
     public function create(request $request,response $response){
        // $PackageResource = PackageResource::collection(Package::find($id)->get())->toArray($request);

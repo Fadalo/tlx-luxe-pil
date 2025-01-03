@@ -28,8 +28,8 @@ class FormReports extends Component
     public $ListInstructor = [];
     public function mount(){
         
-        $this->ListMember = Member::All()->toArray();
-        $this->ListInstructor = Instructor::All()->toArray();
+        $this->ListMember = Member::orderBy('first_name','asc')->get()->toArray();
+        $this->ListInstructor = Instructor::orderBy('first_name','asc')->get()->toArray();
         
     }
     public function changeShowControl(){
@@ -107,43 +107,53 @@ class FormReports extends Component
         case 'QtyTicketAvailableLeftMember':
                      $param['dStartDate']  = $this->form['dStartDate'];
                      $param['dEndDate']    = $this->form['dEndDate'];
-                     $param['member_id']   =  $this->form['member_id'];
-                     
-                     $this->render_result = env('APP_URL').'/report/QtyTicketAvailableLeftMember';
+                     $param['timestamp']   = now()->toString();
+                     $query = http_build_query($param);
+                     $this->render_result = env('APP_URL').'/report/QtyTicketAvailableLeftMember?'.$query;
                 break;
 
         case 'MemberAttandence':
                     $param['member_id']   =  $this->form['member_id'];
                     $param['dStartDate']  = $this->form['dStartDate'];
                     $param['dEndDate']    = $this->form['dEndDate'];
-                    $this->render_result = env('APP_URL').'/report/MemberAttandence';
+                    $param['timestamp']   = now()->toString();
+                    $query = http_build_query($param);
+                    $this->render_result = env('APP_URL').'/report/MemberAttandence?'.$query;
                break;        
 
         case 'Insentif':
                     $param['instructor_id'] =  $this->form['instructor_id'];
                     $param['dStartDate']    = $this->form['dStartDate'];
                     $param['dEndDate']      = $this->form['dEndDate'];
-                    $this->render_result = env('APP_URL').'/report/Insentif';
+                    $param['timestamp']   = now()->toString();
+                    $query = http_build_query($param);
+                    $this->render_result = env('APP_URL').'/report/Insentif?'.$query;
                break;        
         case 'TodaySchedule':
                     $param['instructor_id'] =  $this->form['instructor_id'];
-                    $param['dStartDate']    = now();
+                    $param['dStartDate']    = now()->toString();
                     $param['dEndDate'] =  now();
-                    $this->render_result =  env('APP_URL').'/report/TodaySchedule';
+                    $query = http_build_query($param);
+                    $this->render_result =  env('APP_URL').'/report/TodaySchedule?'.$query;
                 break;
         case 'Member':
                     $param['dStartDate']    = $this->form['dStartDate'];
                     $param['dEndDate'] = $this->form['dEndDate'];
-                    $this->render_result =  env('APP_URL').'/report/Member';
+                    $param['timestamp']   = now()->toString();
+                    $query = http_build_query($param);
+                    $this->render_result =  env('APP_URL').'/report/Member?'.$query;
                 break;
         case 'Instructor':
                     $param['dStartDate']    = $this->form['dStartDate'];
                     $param['dEndDate'] = $this->form['dEndDate'];
-                     $this->render_result =  env('APP_URL').'/report/Instructor';
+                    $param['timestamp']   = now()->toString();
+                    $query = http_build_query($param);
+                     $this->render_result =  env('APP_URL').'/report/Instructor?'.$query;
                 break;
         case 'Package':
-                    
-                    $this->render_result =  env('APP_URL').'/report/Package';
+                    $param['timestamp']   = now()->toString();
+                    $query = http_build_query($param);
+                    $this->render_result =  env('APP_URL').'/report/Package?'.$query;
                 break;
           
       }

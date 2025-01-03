@@ -35,6 +35,7 @@
                 @endphp
                 <tr>
                     @foreach($rows as $keyCol => $col)
+                   
                     @if($loop->first)
                     <td >
                     @else
@@ -72,13 +73,13 @@
                         @case('number')
                         @if($rows[0]['source']== 'db')
                         <input class="form-control rounded-0 " style="height:61px;" type="{{$col['type']}}" 
-                            wire:model.lazy="data.{{$keyRow}}.3.value"
-                            wire:change="updateField({{ $keyRow }},{{ $packageId  }}, {{$packageVariantId}} ,'package_qty_ticket', $event.target.value)"
+                            wire:model.lazy="data.{{$keyRow}}.{{$keyCol}}.value"
+                            wire:change="updateField({{ $keyRow }},{{ $packageId  }}, {{$packageVariantId}} ,'{{$col['field']}}', $event.target.value)"
                             value="{{$col['value']}}" />
                         @else
                         <input class="form-control rounded-0 " style="height:61px;" type="{{$col['type']}}"
-                            wire:model.lazy="data.{{$keyRow}}.3.value"
-                            wire:change="updateField({{ $keyRow }},{{ $packageId  }}, 'n' ,'package_qty_ticket', $event.target.value)"
+                            wire:model.lazy="data.{{$keyRow}}.{{$keyCol}}.value"
+                            wire:change="updateField({{ $keyRow }},{{ $packageId  }}, 'n' ,'{{$col['field']}}'', $event.target.value)"
                             value="{{$col['value']}}" />
                         @endif
                         @break

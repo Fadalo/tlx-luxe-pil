@@ -7,8 +7,8 @@
             <!-- end row -->
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Package</label>
-                <div class="col-sm-10">
-                    <select wire:model="package_variant_id" wire:change="onChangeSelect($event.target.value)"  wire:change="onChangeSelect()" class="form-select" aria-label="Default select example">
+                <div class="col-sm-10"> <?php /*wire:change="onChangeSelect($event.target.value)"  wire:change="onChangeSelect()"*/?>
+                    <select wire:model="package_variant_id"  class="form-select" aria-label="Default select example">
                         <option selected="">Open this select menu</option>
                         @foreach($select as $key => $value)
                         <?php 
@@ -19,6 +19,25 @@
                         @endforeach
                     </select>
                 </div>
+
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10" style="display: flex">
+                    <div class="col-sm-4">
+                        <input type="date" wire:model='dStartDate' class="form-control" placeholder=""  
+                            required="">
+                    </div>
+                    <div>&nbsp; S/D &nbsp;</div>
+                            <div class="col-sm-4"> 
+                        <input type="date" wire:model='dEndDate' class="form-control"  placeholder=""  
+                            required="">
+                            </div>
+                </div>
+              
+            </div>
+            <div class="row mb-3">
+                <button wire:click='doSearch' class="btn btn-info rounded-0">SEARCH</button>
             </div>
 
             <!-- end row -->
@@ -31,7 +50,6 @@
                                 <th>#</th>
                                 <th>Scheadule Batch</th>
                                 <th>Instructor</th>
-                                
                                 <th>Date</th>
                                 <th>Available Qty</th>
                                 
@@ -41,12 +59,12 @@
                         <tbody>
                             @foreach($data as $key =>$value)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{($loop->iteration)}}</th>
                                 <td>{{$value['name']}}</td>
                                 <?php
                                    // print_r($value);
                                     $insObj = new App\Models\Instructor\Instructor; 
-                                    $l = $insObj->find(1);
+                                    $l = $insObj->find($value['instructor_id']);
                                   //  print_r($l->first_name);
                                 ?>
                                 <td>{{$l->first_name.' '.$l->last_name}}</td>

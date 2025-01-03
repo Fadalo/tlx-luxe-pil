@@ -25,6 +25,8 @@ class PackageVariant extends Model
         'package_id',
         'desc',
         'package_qty_ticket',
+        'package_qty_used_book',
+        
         'status_document',
         'created_by',
         'updated_by'

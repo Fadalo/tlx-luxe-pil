@@ -19,7 +19,7 @@ class PanelInstructorSlide extends Component
     public function doGetData()
     {
         $BatchSession = BatchSession::join('batch','batch.id','=','batch_session.batch_id')
-        ->where('instructor_id',$this->instructor_id)
+        ->where('batch_session.instructor_id',$this->instructor_id)
         ->where('status_session','running')
         ->whereRaw('DATE(`batch_session`.`start_datetime`) > DATE(\''.date('Y-m-d').'\')')
         ->selectRaw('
