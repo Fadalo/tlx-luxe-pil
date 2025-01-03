@@ -49,7 +49,7 @@ class PackageOrderCreate extends Component
             '
             batch.id as id,
             batch.instructor_id as instructor_id,
-            concat(batch.name,"<br>",package_variant.name) as name,
+            concat(batch.name," - ",package_variant.name) as name,
             batch.start_datetime as start_datetime,
             batch.end_datetime as end_datetime,
             package_variant.package_qty_ticket as package_qty_ticket,
