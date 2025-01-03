@@ -79,7 +79,7 @@
                         @else
                         <input class="form-control rounded-0 " style="height:61px;" type="{{$col['type']}}"
                             wire:model.lazy="data.{{$keyRow}}.{{$keyCol}}.value"
-                            wire:change="updateField({{ $keyRow }},{{ $packageId  }}, 'n' ,'{{$col['field']}}'', $event.target.value)"
+                            wire:change="updateField({{ $keyRow }},{{ $packageId  }}, 'n' ,'{{$col['field']}}', $event.target.value)"
                             value="{{$col['value']}}" />
                         @endif
                         @break
