@@ -14,7 +14,7 @@
                             <select id="report" name="report" wire:model='selectedReport' wire:change='changeShowControl' class="form-select">
                                 <option selected value="QtyTicketAvailableLeftMember">Qty Ticket Available Left Member</option>
                                 <option value="MemberAttandence">Member Attendance</option>
-                                <option value="TodaySchedule">Today Schedule</option>
+                           <!--     <option value="TodaySchedule">Today Schedule</option> -->
                                 <option  value="Package">Package</option>
                                 
                                 <option  value="Member">Member</option>

@@ -3,6 +3,8 @@
 namespace App\Helpers;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
+use App\Models\Package\Rule;
+
 
 class H1BHelper
 {
@@ -119,6 +121,23 @@ class H1BHelper
         
         // Return the captured output as a string
         return $output;
+    }
+
+    function   func_H1_T_less_than_18h(){
+        $result = false;
+        $Rule = Rule::find(1);
+        $condition = json_decode($Rule->formula,true);
+
+        return $result;
+    }
+
+    function   func_T_more_equal_10m(){
+
+        $result = false;
+        $Rule = Rule::find(2);
+        $condition = json_decode($Rule->formula,true);
+        
+        return $result;
     }
 
     function callback($item){

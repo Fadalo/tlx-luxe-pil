@@ -30,7 +30,7 @@
 </div>
 
 
-
+<!--
 <div class="splide single-slider slider-no-arrows slider-no-dots homepage-slider" id="single-slider-1">
     <div class="splide__track">
         <div class="splide__list">
@@ -64,6 +64,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 @endsection
