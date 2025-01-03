@@ -89,8 +89,8 @@ class DynamicGrid extends Component
                 ['name' => 'No','type'=>'span','source'=>'n','value'=> $this->counterL ],
                 ['name' => 'Name','type'=>'text','value'=> '' ],
                 ['name' => 'Description','type'=>'textarea','value'=> '' ],
-                ['name' => 'Qty Ticket','type'=>'number','value'=>'' ],
-                ['name' => 'Qty Used','type'=>'number','value'=>'' ]
+                ['name' => 'Qty Ticket','type'=>'number','value'=>'' ,'field'=>'package_qty_ticket'],
+                ['name' => 'Qty Used','type'=>'number','value'=>'' ,'field'=>'package_qty_used_book']
                 
             ];
         $this->counterL = $this->counterL + 1;
