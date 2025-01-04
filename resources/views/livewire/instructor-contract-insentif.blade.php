@@ -43,18 +43,21 @@
                             <thead>
                                     <tr>
                                         
-                                        <td width="20%" class="text-center">Qty</td>
-                                        <td width="60%" class="text-center">Insentif Amount</td>
+                                        <td width="15%" class="text-center">From Qty</td>
+                                        <td width="15%" class="text-center">To Qty</td>
+                                        <td width="50%" class="text-center">Insentif Amount</td>
                                         <td width="20%" class="text-center">Action</td>
                                     </tr>
                              </thead>
                              <tbody>
                                 @foreach($listMultiInsentif as $key => $value)
                                 <tr>
-                                    
                                     <td>
-                                        <input wire:model='listMultiInsentif.{{$key}}.qty' class="form-control " style="text-align: right;" 
-                                        type="number" value="{{$value['qty']}}" /></td>
+                                        <input wire:model='listMultiInsentif.{{$key}}.start_qty' class="form-control " style="text-align: right;" 
+                                        type="number" value="{{$value['start_qty']}}" /></td>
+                                    <td>
+                                        <input wire:model='listMultiInsentif.{{$key}}.end_qty' class="form-control " style="text-align: right;" 
+                                        type="number" value="{{$value['end_qty']}}" /></td>
                                     <td>
 
                                         <div class="mb-3">

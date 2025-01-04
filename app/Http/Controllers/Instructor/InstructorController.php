@@ -182,6 +182,26 @@ class InstructorController extends Controller
             ], 404);
         }
     }
+    public function edit_pin(request $request,response $response,$id){
+        $param = $request->input();
+        unset($param['_token']);
+        $param['id'] = $id;
+        $param['updated_by']=Auth::User()->id;
+        $instructor = Instructor::find($id);
+        
+        if ($instructor) {
+            // Update the instructor's attributes
+            $instructor->update($param);
+            return response()->json([
+                'success' => true,
+                'message' => 'field update successfully!'
+               
+            ]);
+        } else {
+            return response()->json(['success'=>false,'message' => 'field failed']);
+        }
+        
+    }
     public function edit(request $request,response $response,$id){
         $param = $request->input();
         unset($param['_token']);

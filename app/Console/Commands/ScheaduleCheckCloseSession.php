@@ -40,18 +40,22 @@ class ScheaduleCheckCloseSession extends Command
     {
        
         $oBS = new BatchSession;
-        $listBS = $oBS->where('is_absen','=','1')->get();
+        $listBS = $oBS->where('is_absen','=','1')
+        ->where('end_datetime','=',date('Y-m-d H:i:00'))
+        ->get();
         if($listBS){
             
-            $InstructorContract = InstructorContract::where('instructor_id','=',$oBS->instructor_id)
-            ->where('package_id','=',$oBS->package_id)
-            ->get();
-            if($InstructorContract){
-                    $InsentifRule = json_decode($InstructorContract->insentif_rule,true);
+            foreach($listBS as $key => $value){
+                $oBS2 =  BatchSession::find($value->id);
+                $oBS2->status_session = 'done';
+                $oBS2->save();
+                 
             }
-
         }
-
+       // $p = print_r($listBS->toArray());
+       // $p = print_r(date('Y-m-d H:i:00'));
+        $p = 'Schedule:CheckCloseSession Running';
+        $this->info($p);
     }
     
 }

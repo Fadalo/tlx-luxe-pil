@@ -29,7 +29,7 @@
             <a href="#">
                 <i class="fa fa-user rounded-xl shadow-s bg-blue-dark"></i>
                 <span>Pilates Earnings</span>
-                <strong>Comission Payment Salary</strong>
+                <strong>{{$value['name']}}</strong>
                 <span class="badge bg-green-dark font-11">{{'Rp. '.number_format($value['amount'],2,'.',',')}}</span>
                 <i class="fa fa-angle-right"></i>
             </a>    

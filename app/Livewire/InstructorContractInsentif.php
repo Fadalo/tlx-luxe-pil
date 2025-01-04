@@ -28,7 +28,9 @@ class InstructorContractInsentif extends Component
     }
     public function doAddList(){
         $data = [
-            'qty'             => 0,
+            'start_qty'             => 0,
+            'end_qty'             => 0,
+            
             'amount' => 0,
         ];
         
@@ -71,7 +73,9 @@ class InstructorContractInsentif extends Component
         $i= 0;
         foreach($list as $key => $value){
             $data[$i] = [
-                'qty' =>$value['qty'],
+                'start_qty' =>$value['start_qty'],
+                'end_qty' =>$value['end_qty'],
+                
                 'amount' =>$value['amount'],
                 
             ];
