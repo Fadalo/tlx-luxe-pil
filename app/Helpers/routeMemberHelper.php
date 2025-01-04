@@ -28,6 +28,10 @@ class routeMemberHelper{
             return view('PanelMember.page.detailBooking');
         })->name('member.detailBooking');
         
+        Route::get('/member/changeSchedule', function () {
+            return view('PanelMember.page.changeSchedule');
+        })->name('member.changeSchedule');
+        
 
         Route::get('/member/profile', function () {
             return view('PanelMember.page.profile');

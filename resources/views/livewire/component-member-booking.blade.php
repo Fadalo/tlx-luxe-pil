@@ -77,7 +77,7 @@
         position: relative;
         bottom: 80px;
     ">
-        <a href="#" wire:click='"doChangeSchedule({{$value['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:5px">Book</a>
+        <a href="#" wire:click='doBooking({{$value['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:5px">Book</a>
         
         
        </div>

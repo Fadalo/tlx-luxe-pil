@@ -21,6 +21,7 @@ class ComponentMemberDetailBooking extends Component
     public $events = [];
     public $member_id = '';
     public $member_package_order_id = '';
+    
     public $member_package_order__order_id = '';
     
     public function mount()
@@ -35,7 +36,15 @@ class ComponentMemberDetailBooking extends Component
         $this->getData();
         //$this->getEventsForDate(date('Y-m-d'));
     }
-
+    public function doDelete($id){
+       // dd($id);
+        $MemberPackageOrderSession = MemberPackageOrderSession::find($id)->delete();
+        $this->getData();
+    }
+    public function doChangeSchedule($id){
+       //dd($id);
+       return redirect('/member/changeSchedule?id='.$id.'&mposid='.$this->member_package_order_id);
+    }
     public function getData()
     {
         $MemberPackageOrderSession = MemberPackageOrderSession::where('member_package_order_id',$this->member_package_order_id);

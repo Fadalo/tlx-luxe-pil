@@ -39,9 +39,9 @@
                 position: relative;
                 bottom: 80px;
             ">
-                <a href="#" wire:click='"doChangeSchedule({{$value['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:5px">Delete</a>
+                <a href="#" wire:click='doDelete({{$value['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:5px">Delete</a>
                 
-                <a href="#" wire:click='doDelete({{$value['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:3px">Change Schedule</a>
+                <a href="#"  wire:click='doChangeSchedule({{$value['id']}})'  class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:3px">Change Schedule</a>
                </div>
             </div>
             <?php } ?>

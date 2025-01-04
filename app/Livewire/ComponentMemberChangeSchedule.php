@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Livewire;
-
 use Livewire\Component;
 use Carbon\Carbon;
 use App\Models\Batch\Batch;
@@ -14,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-
-class ComponentMemberBooking extends Component
+class ComponentMemberChangeSchedule extends Component
 {
+
     public $month;
     public $year;
     public $events = [];
@@ -24,30 +23,28 @@ class ComponentMemberBooking extends Component
     public $member_id = '';
     public $member_package_order_id = '';
     public $cc='';
+    public $old_member_package_order_session_id ='';
 
     public function mount()
     {
         $this->month = date('m');
         $this->year = date('Y');
+        $this->old_member_package_order_session_id = $_GET['id'];
+        $this->member_package_order_id = $_GET['mposid'];
         $this->member_id = Auth::guard('member')->User()->id;
        // dd($this->member_package_order_id);
         $this->getEventsForDate(date('Y-m-d'));
     }
 
-    public function doBooking(Request $request,Response $response,$id){
+    public function doChange($nid){
       //  dd($id);
         if (!Auth::guard('member')->check()) {
             return redirect('/member/login');
         }
         //dd($value);
-        $MemberPackageOrderSession = new MemberPackageOrderSession;
-        $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
-        $MemberPackageOrderSession->batch_session_id = $id;
-        $MemberPackageOrderSession->status_session = 'book';
-        $MemberPackageOrderSession->qty_ticket_used = 1;
-        $MemberPackageOrderSession->is_member_created = 1;
-        $MemberPackageOrderSession->created_by = 1;
-        $MemberPackageOrderSession->updated_by = 1;
+        $MemberPackageOrderSession =  MemberPackageOrderSession::find($this->old_member_package_order_session_id );
+        $MemberPackageOrderSession->batch_session_id  = $nid;
+      
         $MemberPackageOrderSession->save();
         return redirect('/member/detailBooking?id='.$this->member_package_order_id);
     }
@@ -154,7 +151,7 @@ class ComponentMemberBooking extends Component
             $startOfCalendar->addDay();
         }
         $calendar[] = $days;
-        return view('livewire.component-member-booking', [
+        return view('livewire.component-member-change-schedule', [
             'calendar' => $calendar,
             'selectedDate' => $this->selectedDate,
             'events' => $this->events,
@@ -162,5 +159,4 @@ class ComponentMemberBooking extends Component
     }
    
 }
-
 
