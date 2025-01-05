@@ -56,13 +56,58 @@
             </div>
         </div>
     </div>
+    <?php /*@vite(['resources/js/calendar/calendar.js']) */ ?>
     <script >
         window.eventP = @JSON($events);
         window.instuctor_id =  '{{$instructor_id}}';
         // console.log(eventP)
-    
+   
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            let eventP  = window.eventP;
+            document.getElementById('tavb_my-schedule').addEventListener('shown.bs.tab', function() {
+            
+            
+            console.log(eventP);
+            let calendar = '';
+            let calendarEl = document.getElementById('full-calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+          
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek'
+            },
+            //events: eventP,
+            });
+        
+            calendar.render();
+        
+            //alert(eventP);
+            setTimeout(function() {
+                console.log(eventP);
+            //  calendar.removeAllEvents(); 
+                //calendar.refetchEvents()
+                
+                calendar.addEventSource(eventP); 
+                
+                calendar.updateSize(); // Update the calendar size when tab is shown
+            },1000);
+                
+            });
+        
+            document.addEventListener('refreshCalendar', (event) => {
+            eventP = JSON.parse(event.detail[0].event1);
+            console.log(eventP);
+        
+            });
+        
+        
+        });
         
     </script>
     
- @vite(['resources/js/calendar/calendar.js'])
+    
 </div>

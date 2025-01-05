@@ -49,11 +49,8 @@
     </div>
 </div>
 
-
+@push('script_ext')
 <script type="text/javascript">
-  
-  
-
 document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener to the document
     const saveButton = document.querySelector('#formUser button[name="btnSave"]');
@@ -98,3 +95,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 </script>
+@endpush
