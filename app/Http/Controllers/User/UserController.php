@@ -47,6 +47,7 @@ class UserController extends Controller
 
     public $createShow=[
         //'id' =>['width'=> 'col-md-0'],
+        'role_id'=>['width'=> 'col-md-12','related_table'=>'App\Models\Role\Role','related_value'=>'role_name'],
         'name'=>['width'=>'col-md-8'] , 
         'phoneno'=>['width'=>'col-md-4'],
         'password'=>['width'=>'col-md-6'],
