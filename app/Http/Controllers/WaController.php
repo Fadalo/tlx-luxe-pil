@@ -21,10 +21,15 @@ class WaController extends Controller
         foreach($Autoresponse as $keyAuto => $valAuto){
             if($key == $valAuto['key']){
 
+                $this>doCallbackAction($phone_no,$valAuto['key']);
                 $this->doSendMessage($phone_no,$valAuto['templete']);
             }
         }
 
+    }
+    public function doCallbackAction($phoneNo,$key){
+
+        
     }
     public static function doSend(Request $request)
     {

@@ -159,7 +159,7 @@ class UserController extends Controller
             'email' => 'required|email',
         ]);
         
-        $instructor = Instructor::create([
+        $User = User::create([
             'name' => $validatedData['name'],
             'phoneno' => $validatedData['phoneno'],
             'password' => $validatedData['password'],

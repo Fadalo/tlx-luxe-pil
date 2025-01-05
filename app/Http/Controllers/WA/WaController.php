@@ -25,7 +25,11 @@ class WaController extends Controller
 
         return view('PanelAdmin.WA.settings',compact('config'));
     }
-    
+    public function callback(request $request, response $response)
+    {
+        print_r($_POST);
+        print_r($_GET);
+    }
     public function sendMessage(request $request, response $response)
     {
         // Get inputs from the request
