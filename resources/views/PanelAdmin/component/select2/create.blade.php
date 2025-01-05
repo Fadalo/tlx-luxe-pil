@@ -21,8 +21,3 @@ $restricted = ['created_at','created_by','updated_at','updated_by'];
         Looks good!
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-       alert('sss');
-    });
-</script>

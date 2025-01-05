@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     editButton_{{$MetaKey}}.addEventListener('click',function(){
         //alert('edit{{$MetaKey}}');
         //select_{{ $MetaKey}}.removeAttribute('disabled');
-        input_{{ $MetaKey}}.value = select_{{ $MetaKey}}.options[select_{{ $MetaKey}}.value].text
+        input_{{ $MetaKey}}.value = select_{{ $MetaKey}}.options[select_{{ $MetaKey}}.selectedIndex ].text
         input_{{ $MetaKey}}.style.display='none';
         select_{{ $MetaKey}}.style.display='block';
         
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     saveButton_{{$MetaKey}}.addEventListener('click',function(){
         //alert('save{{$MetaKey}}');
-        input_{{ $MetaKey}}.val
+        input_{{ $MetaKey}}.value = select_{{ $MetaKey}}.options[select_{{ $MetaKey}}.selectedIndex ].text
         form_{{ $MetaKey}}.dispatchEvent(new Event('submit', { cancelable: true }));
         input_{{ $MetaKey}}.style.display='block';
         select_{{ $MetaKey}}.style.display='none';

@@ -6,13 +6,13 @@
 ?>
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasUser" aria-labelledby="offcanvasUserLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasUserLabel">Create Package</h5>
+        <h5 class="offcanvas-title" id="offcanvasUserLabel">Create User</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
         <hr>
         <div>
-            Fill form below to create new Package
+            Fill form below to create new User
         </div>
         <hr>
         <form id="formUser" method="POST" action="{{ route('admin.user.create') }}" >
@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             var result = JSON.parse(params.req.response);
             $('#offcanvasUser .btn-close').click();
+            console.log(result);
             Swal.fire({
                 title: 'Success',
                 text: result.message,

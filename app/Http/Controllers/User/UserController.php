@@ -152,28 +152,39 @@ class UserController extends Controller
     }
     public function store(request $request,response $response)
     {
+        try{
+            $validatedData = $request->validate([
+                'role_id' => 'required',
+                'name' => 'required|string|max:255',
+                'phoneno' => 'required|string|max:255',
+                'password' => 'required|integer|min:4', // Adjust max length as needed
+                'email' => 'required|email',
+            ]);
+            
+            $User = User::create([
+                'role_id' => $validatedData['role_id'],
+                'name' => $validatedData['name'],
+                'phoneno' => $validatedData['phoneno'],
+                'password' => $validatedData['password'],
+                'email' => $validatedData['email'],
+                'updated_by'=> Auth::user()->id,
+                'created_by'=> Auth::user()->id
+            ]);
+            //dd($User);
+            return response()->json([
+                'success' => true,
+                'message' => 'User created successfully!',
+                'user' => $User,
+            ]);
+        } catch(Exception $e){
+            
+            return response()->json([
+                'success' => false,
+                'message' => 'Please Check Again Due error or data duplicate',
+                'user' => $User,
+            ]);
+        }
         
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'phoneno' => 'required|string|max:255',
-            'password' => 'required|integer|min:4', // Adjust max length as needed
-            'email' => 'required|email',
-        ]);
-        
-        $User = User::create([
-            'name' => $validatedData['name'],
-            'phoneno' => $validatedData['phoneno'],
-            'password' => $validatedData['password'],
-            'email' => $validatedData['email'],
-            'updated_by'=> Auth::user()->id,
-            'created_by'=> Auth::user()->id
-        ]);
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'User created successfully!',
-            'member' => $member,
-        ]);
     }
 
     public function create(request $request,response $response,$id=''){
