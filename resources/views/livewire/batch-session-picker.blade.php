@@ -1,8 +1,13 @@
 <div>
     @if($showContent['showList'] == true)
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-    <button class="btn btn-info rounded-0 mt-3 mb-3" style="float:right" wire:click='doShowAddSession'>Add Session</button>
-    <table class="table table-striped table-bordered">
+    <div class="row">
+        
+    <button class="btn btn-info rounded-0 mt-3 mb-3" style="float:right;width:150px" wire:click='doShowAddSession'>Add Session</button>
+    </div>
+    <div class="row">
+        
+   <table {{$idtable}} wire:key='aaa' class="table table-striped table-bordered" width="100%">
         <thead>
                 <tr>
                     <th width="5%"  style="text-align:center">No</th>
@@ -33,6 +38,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
     @elseif($showContent['showAdd'] == true)
    
          @include('PanelAdmin.Batch.Component.Tab.view-session-add')
@@ -42,3 +48,6 @@
          @include('PanelAdmin.Batch.Component.Tab.view-session-changeInstructor')
     @endif
 </div>
+@push('script_ext')
+
+@endpush

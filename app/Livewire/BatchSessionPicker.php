@@ -21,6 +21,7 @@ class BatchSessionPicker extends Component
     public  $batch_session_id = '';
     public  $listSession = [];
     public  $list = [];
+    public $idtable = 'id=tblSession';
 
     public  $selectedCheckALL = false;
     public  $session_name_prefix = '';
@@ -38,11 +39,13 @@ class BatchSessionPicker extends Component
     public $listAvailableSC = [];
     protected $listeners = ['doUpdateList'];
     public function mount(){
+
         $this->doShowList();
         $this->listSession = $this->doGetData();
        // $this->listAvailableSC = $this->filterAvailableSC($this->doGetScheduleInstructor(),$this->listSession);
         //$this->listAvailableSC = $this->doGetScheduleInstructor();
        // dd($this->listAvailableSC);
+       $this->dispatch('batchsession:datatable_session',['sss'=>'']);
     }
 
     public function filterAvailableSC($a,$b){
@@ -293,13 +296,14 @@ class BatchSessionPicker extends Component
         ] ;
     }
     public function doShowList(){
-
+       
         
         $this->showContent = [
             'showList' => true,
             'showAdd' => false,
             'showChangeInstructor' => false
         ] ;
+        $this->dispatch('batchsession:datatable_session',['sss'=>'']);
     }
     public function doShowChangeInstructor($id){
         //dd($id);

@@ -110,7 +110,8 @@ class DynamicGrid extends Component
                 ['name' => 'Name','type'=>'text','value'=> '' ],
                 ['name' => 'Description','type'=>'textarea','value'=> '' ],
                 ['name' => 'Qty Ticket','type'=>'number','value'=>'' ,'field'=>'package_qty_ticket'],
-                ['name' => 'Qty Used','type'=>'number','value'=>'' ,'field'=>'package_qty_used_book']
+                ['name' => 'Qty Used','type'=>'number','value'=>'' ,'field'=>'package_qty_used_book'],
+                ['name' => 'Max Days','type'=>'number','value'=>'' ,'field'=>'package_max_days']
                 
             ];
         $this->counterL = $this->counterL + 1;
@@ -129,8 +130,9 @@ class DynamicGrid extends Component
             ['name' => 'Name','type'=>'text','width' =>'col-md-2' ],
             ['name' => 'Description','type'=>'textarea','width' =>'col-md-3' ],
             ['name' => 'Qty Ticket','type'=>'number','width' =>'col-md-2' ],
-            ['name' => 'Qty Used','type'=>'number','width' =>'col-md-2' ]
-            
+            ['name' => 'Qty Used','type'=>'number','width' =>'col-md-2' ],
+            ['name' => 'Max Days','type'=>'number','width' =>'col-md-2' ]
+
         ];
         
        
@@ -149,7 +151,8 @@ class DynamicGrid extends Component
                     ['name' => 'Name','type'=>'text','value'=> $packageVariant->name ],
                     ['name' => 'Description','type'=>'textarea','value'=> $packageVariant->desc ],
                     ['name' => 'Qty Ticket','type'=>'number','value'=>$packageVariant->package_qty_ticket ,'field'=>'package_qty_ticket'],
-                    ['name' => 'Qty Used','type'=>'number','value'=>$packageVariant->package_qty_used_book ,'field'=>'package_qty_used_book']
+                    ['name' => 'Qty Used','type'=>'number','value'=>$packageVariant->package_qty_used_book ,'field'=>'package_qty_used_book'],
+                    ['name' => 'Max Days','type'=>'number','value'=>$packageVariant->package_max_days ,'field'=>'package_max_days']
             ];
             }
           

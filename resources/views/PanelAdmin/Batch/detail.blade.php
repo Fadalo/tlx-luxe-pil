@@ -35,4 +35,14 @@
 </div>
 @endsection
 @section('script')
+@stack('script_ext')
+<script>
+    
+    window.addEventListener('batchsession:datatable_session', event => {
+       // alert('ss');
+        $(document).ready(function() {
+        var a = $("#tblSession").DataTable();
+    });
+     });
+</script>
 @endsection

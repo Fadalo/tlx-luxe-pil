@@ -45,7 +45,7 @@ class ScheduleInput extends Component
     {
         $this->schedules[] = [
             'days' => [
-                ['name' => 'MO', 'time_ranges' => [['start' => '', 'end' => '']]],
+                ['name' => 'MO', 'time_ranges' => [['theme'=>'','start' => '', 'end' => '']]],
             ],
         ];
     }
@@ -56,7 +56,7 @@ class ScheduleInput extends Component
         {
             $this->schedules[$weekIndex]['days'][] = [
                 'name' => '',
-                'time_ranges' => [['start' => '', 'end' => '']],
+                'time_ranges' => [['theme'=>'','start' => '', 'end' => '']],
             ];
             $this->iCountDay++;
         }
@@ -65,7 +65,7 @@ class ScheduleInput extends Component
 
     public function addTimeRange($weekIndex, $dayIndex)
     {
-        $this->schedules[$weekIndex]['days'][$dayIndex]['time_ranges'][] = ['start' => '', 'end' => ''];
+        $this->schedules[$weekIndex]['days'][$dayIndex]['time_ranges'][] = ['theme'=>'','start' => '', 'end' => ''];
     }
 
     public function removeTimeRange($weekIndex, $dayIndex, $rangeIndex)
@@ -73,6 +73,12 @@ class ScheduleInput extends Component
         unset($this->schedules[$weekIndex]['days'][$dayIndex]['time_ranges'][$rangeIndex]);
     }
 
+    public function removeDay($weekIndex, $dayIndex){
+        
+        if($dayIndex > 0){        
+        unset($this->schedules[$weekIndex]['days'][$dayIndex]);
+        }
+    }
     public function triggerAlert($msg,$title='Success!',$icon='success')
     {
         // Emit event to frontend to trigger SweetAlert

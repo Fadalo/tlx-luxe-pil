@@ -15,6 +15,12 @@
 
                         @foreach ($day['time_ranges'] as $rangeIndex => $timeRange)
                             <div class="time-range-section d-flex mb-2">
+                                
+                                <select wire:model="schedules.{{ $weekIndex }}.days.{{ $dayIndex }}.time_ranges.{{ $rangeIndex }}.theme" class="form-control me-2">
+                                    <option>-- select theme --</option>
+                                    <option>Thema 1</option>
+                                    <option>Thema 2</option>
+                                </select>
                                 <input type="time" 
                                        wire:model="schedules.{{ $weekIndex }}.days.{{ $dayIndex }}.time_ranges.{{ $rangeIndex }}.start" 
                                        class="form-control me-2">
@@ -38,6 +44,10 @@
                         wire:click="addDay({{ $weekIndex }})">
                     Add Day
                 </button>
+                        <button type="button" class="btn btn-danger rounded-0" 
+                            wire:click="removeDay({{ $weekIndex }}, {{ $dayIndex }})">
+                        Remove Day
+                        </button>
                     </div>
                 @endforeach
 

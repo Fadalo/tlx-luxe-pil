@@ -158,7 +158,7 @@ class PackageController extends Controller
             
             $package = Package::create([
                 'name' => $validatedData['name'],
-                'desc' => $validatedData['desc'],
+                'desc' => $request->input('desc'),
                 'updated_by'=> Auth::User()->id,
                 'created_by'=> Auth::User()->id
             ]);
