@@ -5,9 +5,12 @@ export default defineConfig({
     server: {
         port: 5174, // update the port number
         //host: '103.56.148.122', // set to allow connections from all interfaces
-        host: 'localhost',
-        https: false,
+        host: 'vite.luxepilates.co.id',
         open: false,
+        https: {
+            key: fs.readFileSync('../ssl/luxepilates.co.id.key'),
+            cert: fs.readFileSync('../ssl/star_luxepilates_co_id.crt'),
+          },
       },
     plugins: [
         laravel({
