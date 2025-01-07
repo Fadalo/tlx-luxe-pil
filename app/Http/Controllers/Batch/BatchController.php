@@ -345,7 +345,13 @@ public $detailShow=[
         $BatchResourse = BatchResource::collection(Batch::All())->toArray($request);
         $prevMonthCount = Batch::where('created_at','<', Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = Batch::All()->count();
-        $percentageBatch = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        if ($totalCount == 0){
+            $percentageBatch = 0;
+        }
+        else{
+            $percentageBatch = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        }
+       
         $data = $BatchResourse;
         $config = [
                     'page'   => [
