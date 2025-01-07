@@ -20,7 +20,7 @@ class ScheduleInput extends Component
         'WE'=> 'Wednesday',
         'TH'=> 'Thursday',
         'FR'=> 'Friday',
-        'ST'=> 'Saturday',
+        'SA'=> 'Saturday',
         'SU'=> 'Sunday'
     ];
     public $instructor_id = '';
