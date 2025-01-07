@@ -251,7 +251,14 @@ class UserController extends Controller
         $UserResourse = UserResource::collection(User::All())->toArray($request);
         $prevMonthCount = User::where('created_at','<', Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = User::All()->count();
-        $percentageUser = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        if($totalCount == 0){
+            $percentageUser = 0;
+        }
+        else
+        {
+            $percentageUser = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        }
+      
         $data = $UserResourse;
         $config = [
                     'page'   => [

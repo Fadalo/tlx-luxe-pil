@@ -235,7 +235,14 @@ class WatemController extends Controller
         $WatemResource = WatemResource::collection(Watem::All())->toArray($request);
         $prevMonthCount = Watem::where('created_at','<', Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = Watem::All()->count();
-        $percentageWatem = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        if ($totalCount == 0){
+            $percentageWatem = 0;
+        }
+        else
+        {
+            $percentageWatem = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        }
+       
         $data = $WatemResource;
         $config = [
                     'page'   => [

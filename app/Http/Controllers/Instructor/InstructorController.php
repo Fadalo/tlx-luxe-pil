@@ -331,7 +331,13 @@ class InstructorController extends Controller
         $InstructorResourse = InstructorResource::collection(Instructor::All())->toArray($request);
         $prevMonthCount = Instructor::where('created_at','<',Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = Instructor::All()->count();
-        $percentageInstructor = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        if($totalCount == 0){
+            $percentageInstructor = 0;
+        }
+        else{
+            $percentageInstructor = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        }
+       
         $data = $InstructorResourse;
         $config = [
                     'page'   => [

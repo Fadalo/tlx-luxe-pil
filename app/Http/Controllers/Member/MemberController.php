@@ -431,6 +431,13 @@ class MemberController extends Controller
         $prevMonthCount = Member::where('created_at','<',Carbon::now()->subMonthsNoOverflow()->endOfMonth()->toDateString())->count();
         $totalCount = Member::All()->count();
         $percentageMember = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        if($totalCount == 0)
+        {
+            $percentageMember = 0;
+        }
+        else{
+            $percentageMember = (($totalCount-$prevMonthCount)/$totalCount)*100;
+        }
         $data = $MemberResourse;
         $config = [
                     'page'   => [
