@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Instructor\InstructorContract;
 use App\Models\Package\Package;
 use App\Models\Package\PackageVariant;
+use App\Models\Theme\Theme;
 
 
 
@@ -23,6 +24,7 @@ class ScheduleInput extends Component
         'SA'=> 'Saturday',
         'SU'=> 'Sunday'
     ];
+    public $list_theme = [];
     public $instructor_id = '';
     public $contract_id = '';
     public $config = [];
@@ -37,10 +39,17 @@ class ScheduleInput extends Component
         }else{
             $this->addWeek();
         }
+        $this->getListTheme();
         // Initialize with one week and one day
        
     }
-
+    public function getListTheme(){
+        $themes = Theme::get();
+       if($themes){
+          $this->list_theme = $themes->toArray();
+       }
+      
+    }
     public function addWeek()
     {
         $this->schedules[] = [

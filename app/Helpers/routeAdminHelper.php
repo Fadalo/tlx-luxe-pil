@@ -18,7 +18,8 @@ class routeAdminHelper
         'rule', 
         'RoleRule',
         'watem',
-        'autoresponse'
+        'autoresponse',
+        'theme'
     ];
 
     public  function getRoute(){

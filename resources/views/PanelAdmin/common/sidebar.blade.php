@@ -48,11 +48,16 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.theme.list') }}" class="waves-effect">
+                        <i class="ri-contacts-book-fill"></i>
+                        <span>Manage Theme</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.package.list') }}" class="waves-effect">
                         <i class="ri-contacts-book-fill"></i>
                         <span>Manage Package</span>
                     </a>
-                    
                 </li>
                 
                 <li>

@@ -18,8 +18,9 @@
                                 
                                 <select wire:model="schedules.{{ $weekIndex }}.days.{{ $dayIndex }}.time_ranges.{{ $rangeIndex }}.theme" class="form-control me-2">
                                     <option>-- select theme --</option>
-                                    <option>Thema 1</option>
-                                    <option>Thema 2</option>
+                                    @foreach($list_theme as $key => $value)
+                                    <option value={{ $value['name']}}>{{$value['name']}}</option>
+                                    @endforeach
                                 </select>
                                 <input type="time" 
                                        wire:model="schedules.{{ $weekIndex }}.days.{{ $dayIndex }}.time_ranges.{{ $rangeIndex }}.start" 
