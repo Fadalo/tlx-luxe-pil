@@ -45,7 +45,8 @@ class ScheaduleCheckInstructorInsentif extends Command
         $oBS = new BatchSession;
         $iCountMemberBatch = '';
         $listBS = $oBS->where('is_absen','=','1')
-        ->where('end_datetime','=',date('Y-m-d H:i:00'))
+        -where('status_session','=','done')
+       // ->where('end_datetime','=',date('Y-m-d H:i:00'))
         ->get();
         if($listBS){
             

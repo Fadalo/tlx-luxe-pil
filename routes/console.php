@@ -9,6 +9,8 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote')->hourly();
 */
 
-Schedule::command('luxe:scheadule-check-auto-activated')->daily()->runInBackground();
-Schedule::command('luxe:scheadule-check-instructor-insentif')->everyTenSeconds()->runInBackground();
+
 Schedule::command('luxe:scheadule-check-close-session')->everyTenSeconds()->runInBackground();
+Schedule::command('luxe:scheadule-check-auto-activated')->daily()->runInBackground();
+Schedule::command('luxe:scheadule-check-instructor-insentif')->daily()->runInBackground();
+Schedule::command('luxe:scheadule-check-auto-burn-ticket')->daily()->runInBackground();

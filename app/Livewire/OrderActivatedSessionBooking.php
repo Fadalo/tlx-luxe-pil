@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Member\MemberPackageOrderSession;
 use App\Models\Member\MemberPackageOrder;
 use App\Models\Batch\BatchSession;
+use App\Models\Batch\Batch;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -22,10 +23,20 @@ class OrderActivatedSessionBooking extends Component
     
     public function mount()
     {
-        //dd($this->member_package_order_id);
+        $this->updateList();
+
+    }
+    /*
+    //dd($this->member_package_order_id);
         $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
-        $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
-       // dd($MemberPackageOrderSession);
+        $MemberPackageOrderSession = [];
+        if ($MemberPackageOrder){
+            $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')
+            ->where('member_package_order_id',$this->member_package_order_id)
+            ->get()->toArray();
+      
+        }
+        // dd($MemberPackageOrderSession);
         $bookId = [];
         foreach($MemberPackageOrderSession as $key => $value){
             $bookId[] = $value['batch_session_id'];
@@ -35,22 +46,26 @@ class OrderActivatedSessionBooking extends Component
         ->whereNotIn('id',$bookId);
        
         $this->items = $BatchSession->get()->toArray();
-
-    }
+    */
     public function updateList(){
 
         $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
-        $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
-       // dd($MemberPackageOrderSession);
-        $bookId = [];
-        foreach($MemberPackageOrderSession as $key => $value){
-            $bookId[] = $value['batch_session_id'];
-        }
-      // dd($bookId);
-        $BatchSession = BatchSession::where('batch_id',$MemberPackageOrder->batch_id)
-        ->whereNotIn('id',$bookId);
+        if ($MemberPackageOrder){
+            $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')
+               ->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
+            // dd($MemberPackageOrderSession);
+             $bookId = [];
+             foreach($MemberPackageOrderSession as $key => $value){
+                  $bookId[] = $value['batch_session_id'];
+             }
+             // dd($bookId);
+              $BatchSession = BatchSession::where('batch_id',$MemberPackageOrder->batch_id)
+              ->where('start_datetime','>=',date('Y-m-d 00:00:00'))
+               ->whereNotIn('id',$bookId);
        
-        $this->items = $BatchSession->get()->toArray();
+             $this->items = $BatchSession->get()->toArray();
+        }
+        
         
     }
     public function doCheckAll()
@@ -84,11 +99,35 @@ class OrderActivatedSessionBooking extends Component
         //dd($this->selected);
         //dd($selectedItems);
         $selectedItems = $this->getChecked();
+        
         foreach($selectedItems as $key => $value)
         {
             $this->doAddSession($value);
         }
         // Debugging or further processing
+    }
+    public function doCheckQtyMax($key,$id){
+      //  dd($key);
+       
+        $BatchSession =  BatchSession::find($id);
+        if($BatchSession){
+            $Batch = Batch::find($BatchSession->batch_id);
+            if ($Batch){
+                if ( $BatchSession->qty_reserved >= $Batch->qty_max){
+                    unset($this->selected[$key]);
+                    $this->triggerAlert('Qty Already Max 8','Error !!!','error');
+                }
+            }
+        }
+    }
+    public function triggerAlert($msg,$title='Success!',$icon='success')
+    {
+        // Emit event to frontend to trigger SweetAlert
+        $this->dispatch('swal:alert', [
+            'icon' => $icon,
+            'title' => $title,
+            'text' => $msg,
+        ]);
     }
     public function doAddSession($value){
 
@@ -96,15 +135,31 @@ class OrderActivatedSessionBooking extends Component
             return redirect('/login-new');
         }
         //dd($value);
-        $MemberPackageOrderSession = new MemberPackageOrderSession;
-        $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
-        $MemberPackageOrderSession->batch_session_id = $value['id'];
-        $MemberPackageOrderSession->status_session = 'book';
-        $MemberPackageOrderSession->qty_ticket_used = 1;
-        $MemberPackageOrderSession->created_by = Auth::User()->id;
-        $MemberPackageOrderSession->updated_by = Auth::User()->id;
-        $MemberPackageOrderSession->save();
-        $this->dispatch('showModalDetail',['member_package_order_id'=>$this->member_package_order_id]);
+        $BatchSession =  BatchSession::find($value['id']);
+
+        if($BatchSession){
+            $Batch = Batch::find($BatchSession->batch_id);
+            if ($Batch){
+                if ( $BatchSession->qty_reserved < $Batch->qty_max){
+                    $MemberPackageOrderSession = new MemberPackageOrderSession;
+                    $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
+                    $MemberPackageOrderSession->batch_session_id = $value['id'];
+                    $MemberPackageOrderSession->status_session = 'book';
+                    $MemberPackageOrderSession->qty_ticket_used = 1;
+                    $MemberPackageOrderSession->created_by = Auth::User()->id;
+                    $MemberPackageOrderSession->updated_by = Auth::User()->id;
+                    $MemberPackageOrderSession->save();
+            
+                    $BatchSession->qty_reserved =  $BatchSession->qty_reserved  + 1;
+                    $BatchSession->save();
+            
+                    $this->dispatch('showModalDetail',['member_package_order_id'=>$this->member_package_order_id]);
+                }
+                
+            }
+           
+        }
+       
  
     }
     public function render()

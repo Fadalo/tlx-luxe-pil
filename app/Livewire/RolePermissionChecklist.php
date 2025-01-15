@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Config;
 use App\Models\Role\Role;
 
+use Illuminate\Support\Facades\Auth;
 class RolePermissionChecklist extends Component
 {
     public $data =  '';

@@ -32,12 +32,13 @@ class PackageOrderActivated extends Component
     public function mount(){
         $this->data  = MemberPackageOrder::where('member_id',$this->member_id)
         ->where('status_package','activated')
+        ->orderBy('activated_package_started_datetime','asc')
         ->get()->toArray();
     }
-    public function update()
+    public function updateList()
     {
         $memberPackageOrderObj = MemberPackageOrder::where('member_id',$this->member_id);
-        $this->data = $memberPackageOrderObj->where('status_package','activated')->get()->toArray();
+        $this->data = $memberPackageOrderObj->where('status_package','activated')->orderBy('activated_package_started_datetime','asc')->get()->toArray();
     }
     public function showModalBooking($param){
        // dd($param['member_package_order_id']);

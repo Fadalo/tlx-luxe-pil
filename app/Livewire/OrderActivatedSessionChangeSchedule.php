@@ -21,7 +21,11 @@ class OrderActivatedSessionChangeSchedule extends Component
     public $items =[]; 
     public function mount()
     {
-        //dd($this->member_package_order_id);
+        $this->updateList();
+
+    }
+    /*
+    //dd($this->member_package_order_id);
         $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
         $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
        
@@ -34,23 +38,23 @@ class OrderActivatedSessionChangeSchedule extends Component
         ->whereNotIn('id',$bookId);
        
         $this->items = $BatchSession->get()->toArray();
-
-    }
+    */
     public function updateList(){
 
         $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
-        $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
+        if($MemberPackageOrder){
+            $MemberPackageOrderSession = MemberPackageOrderSession::select('batch_session_id')->where('member_package_order_id',$this->member_package_order_id)->get()->toArray();
        
-        $bookId = [];
-        foreach($MemberPackageOrderSession as $key => $value){
-            $bookId[] = $value['batch_session_id'];
+            $bookId = [];
+            foreach($MemberPackageOrderSession as $key => $value){
+                $bookId[] = $value['batch_session_id'];
+            }
+            // dd($bookId);
+            $BatchSession = BatchSession::where('batch_id',$MemberPackageOrder->batch_id)
+            ->whereNotIn('id',$bookId);
+           
+            $this->items = $BatchSession->get()->toArray();
         }
-      // dd($bookId);
-        $BatchSession = BatchSession::where('batch_id',$MemberPackageOrder->batch_id)
-        ->whereNotIn('id',$bookId);
-       
-        $this->items = $BatchSession->get()->toArray();
-        
     }
     
     public function triggerAlert($msg,$title='Success!',$icon='success',)

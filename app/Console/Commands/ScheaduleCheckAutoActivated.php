@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Member\Member;
 use App\Models\Member\MemberPackageOrder;
+use App\Models\Package\PackageVariant;
 
 
 
@@ -36,18 +37,25 @@ class ScheaduleCheckAutoActivated extends Command
         ->where('available_package_due_date','>',0)->get()->toArray();
         foreach($MemberPackageOrder as $key=> $value){
             $MemberPackageOrderP = MemberPackageOrder::find($value['id']);
-            if ($MemberPackageOrderP->available_package_due_date == 1){
-                $MemberPackageOrderP->status_package = 'activated';
-                $MemberPackageOrderP->activated_package_started_datetime = now();
-                $MemberPackageOrderP->activated_package_due_date =  (45*$MemberPackageOrderP->qty_ticket_available);
-                $MemberPackageOrderP->available_package_due_date = 0;
-                $MemberPackageOrderP->updated_at = now();
+            if($MemberPackageOrderP){
+                $PackageVariant = PackageVariant::find($MemberPackageOrderP->package_variant_id);
+                if($PackageVariant){
+                    if ($MemberPackageOrderP->available_package_due_date == 1){
+                        $MemberPackageOrderP->status_package = 'activated';
+                        $MemberPackageOrderP->activated_package_started_datetime = now();
+                        $MemberPackageOrderP->activated_package_due_date = $PackageVariant->package_qtypackage_max_days;
+                        $MemberPackageOrderP->available_package_due_date = 0;
+                        $MemberPackageOrderP->updated_at = now();
+                    }
+                    else{
+                        $MemberPackageOrderP->available_package_due_date = $MemberPackageOrderP->available_package_due_date - 1;
+                        $MemberPackageOrderP->updated_at = now();
+                    }
+                    $MemberPackageOrderP->save();
+                }
+                
             }
-            else{
-                $MemberPackageOrderP->available_package_due_date = $MemberPackageOrderP->available_package_due_date - 1;
-                $MemberPackageOrderP->updated_at = now();
-            }
-            $MemberPackageOrderP->save();
+            
         }
      
 

@@ -4,6 +4,8 @@
         <tr>
             <td>No</td> 
             <td>Session</td>
+            <td>Theme</td>
+            
             <td>Schedule</td>
             <td>Action</td>
         </tr>
@@ -15,6 +17,7 @@
         <tr>
             <td>{{$loop->iteration}}</td> 
             <td>{{ $listSession['name']}}</td>
+            <td>{{ $listSession['theme']}}</td>
             <td>{{ date('F ,d Y  [ H:i - ',strtotime($listSession['start_datetime'])).date('H:i ] ',strtotime($listSession['end_datetime']))}}</td>
             <td><div class="btn-group">
                 

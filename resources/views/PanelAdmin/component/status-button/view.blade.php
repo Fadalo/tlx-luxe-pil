@@ -3,6 +3,25 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-grid mb-1"><?php //href="{{ route('admin.'.strtolower($config['module']).'.create') }}" ?>
+                    @auth
+                    <?php
+                        $oR = new App\Models\Role\Role;
+                        $role = $oR->find(Auth::User()->role_id);
+                        if($role){
+                            $role_rule = json_decode($role->role_permission,true);
+                        }
+                     //   print_r($role_rule['Dashboard']['view']);
+                     $user_access_arr = ['Watem','Autoresponse','Role','User','WaSettings'];
+                         if(in_array(ucfirst($config['module']),$user_access_arr)){
+                            $module = 'Settings';
+                         }
+                         else{
+                            $module = 'Manage '.ucfirst($config['module']);
+                         }
+                        
+                    ?>
+                    @if(!empty($role_rule[$module]))
+                    @if($role_rule[$module]['create'] == 1 )
                     <a 
                         class="btn btn-primary rounded-0 waves-effect waves-light text-center "
                         
@@ -16,7 +35,10 @@
                             echo $config['module'] ;
                         }?>
                         </a>
-                       
+                    @endif
+                    @endif
+                    
+                    @endauth
                 </div>
                 <!--<div class="d-grid">
 

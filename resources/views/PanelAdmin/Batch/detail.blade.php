@@ -41,8 +41,9 @@
     window.addEventListener('batchsession:datatable_session', event => {
        // alert('ss');
         $(document).ready(function() {
-        var a = $("#tblSession").DataTable();
+        //var a = $("#tblSession").DataTable();
+        });
     });
-     });
+    
 </script>
 @endsection

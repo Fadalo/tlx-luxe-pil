@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Member\MemberPackageOrder;
+use App\Models\Package\PackageVariant;
+use App\Models\Package\Package;
+
 
 class PackageOrderAvailable extends Component
 {
@@ -23,10 +26,18 @@ class PackageOrderAvailable extends Component
     public function doActivation($id)
     {
         $MemberPackageOrder = MemberPackageOrder::find($id);
-        $MemberPackageOrder->activated_package_started_datetime = now();
-        $MemberPackageOrder->activated_package_due_date = (45*$MemberPackageOrder->qty_ticket_available);
-        $MemberPackageOrder->status_package = 'activated';
-        $MemberPackageOrder->save();
+        if ($MemberPackageOrder){
+            $PackageVariants = PackageVariant::find($MemberPackageOrder->package_variant_id);
+            if($PackageVariants){
+                $MemberPackageOrder->activated_package_started_datetime = now();
+               // $MemberPackageOrder->activated_package_due_date = (45*$MemberPackageOrder->qty_ticket_available);
+                $MemberPackageOrder->activated_package_due_date = ($PackageVariants->package_max_days);
+                $MemberPackageOrder->status_package = 'activated';
+                //$MemberPackageOrder->updated_at = now();
+                $MemberPackageOrder->save();
+            }
+        }
+       
         
     }
     public function render()

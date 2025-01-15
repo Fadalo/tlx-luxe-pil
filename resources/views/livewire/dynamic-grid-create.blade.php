@@ -104,8 +104,8 @@
                                 </button>
                                 <div class="dropdown-menu rounded-0" style="">
                                     
-                                    <a  wire:click="createRule({{$rows[0]['value']}})" class="dropdown-item" >Rule</a>
-                                    <div class="dropdown-divider"></div>
+                                  <?php /*  <a  wire:click="createRule({{$rows[0]['value']}})" class="dropdown-item" >Rule</a>  <div class="dropdown-divider"></div>*/ ?>
+                                    
                                     <form name="">
                                         <a wire:click="decrease({{ $keyRow }},{{$rows[0]['value']}})"
                                             class="dropdown-item" name="btnDelete" data-id="">Delete</a>

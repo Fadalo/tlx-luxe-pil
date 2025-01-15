@@ -15,7 +15,7 @@
                             $packageVariantName = $g->name .' '. $l->name;
                             echo $packageVariantName;
 
-                            $duration = 45*$value['qty_ticket_available'];
+                            $duration =   $l->package_max_days;
                             $helper = new App\Helpers\H1BHelper;
                             $LastUpdate = $helper->lastUpdated($value['updated_at']);
                             ?></h5>

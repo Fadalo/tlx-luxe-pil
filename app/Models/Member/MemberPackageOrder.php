@@ -29,6 +29,7 @@ class MemberPackageOrder extends Model
         'is_member_created',
         'status_document',
         'created_by',
+        'updated_at',
         'updated_by',
         
         

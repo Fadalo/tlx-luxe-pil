@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Package\PackageVariant;
 use App\Models\Batch\Batch;
 use App\Models\Member\MemberPackageOrder;
+use App\Models\Instructor\Instructor;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,8 @@ class PackageOrderCreate extends Component
 {
     public $config;
     public $member_id;
+    public $selectInstructor = [];
+    public $instructor_id = '';
     public $package_variant_id ='';
     public $select = [];
     public $data = [];
@@ -23,6 +26,7 @@ class PackageOrderCreate extends Component
     public function mount(){
 
         $this->select = PackageVariant::all()->toArray();
+        $this->selectInstructor = Instructor::get()->toArray();
         $this->data = [];
     }
     public function onChangeSelect($id){
@@ -36,16 +40,24 @@ class PackageOrderCreate extends Component
     }
     public function doSearch(){
         $id = $this->package_variant_id;
+        $instructor_id = $this->instructor_id;
         $dStartDate = $this->dStartDate;
         $dEndDate = $this->dEndDate;
        
         $this->data = [];
-        $this->data = Batch::join('package_variant','package_variant.package_id','=','batch.package_id')
+       
+        $this->data = Batch::join('package_variant','package_variant.package_id','=','batch.package_id');
         
-        ->where('package_variant.id',$id)
-        ->where('batch.start_datetime','>=',$dStartDate)
-        ->where('batch.end_datetime','<=',$dEndDate)
-        ->selectRaw(
+        if ($id != ''){
+                 $this->data = $this->data->where('package_variant.id',$id);
+        }
+        if ($instructor_id != ''){
+            $this->data = $this->data->where('instructor_id',$instructor_id);
+        }
+       // ->where('package_variant.id',$id)
+      // ->where('batch.start_datetime','>=',$dStartDate)
+      //  ->where('batch.end_datetime','<=',$dEndDate)
+      $this->data = $this->data->selectRaw(
             '
             batch.id as id,
             batch.instructor_id as instructor_id,
@@ -57,7 +69,12 @@ class PackageOrderCreate extends Component
 
             '
         )
+      //  ->orderBy('package_variant.package_qty_ticket','asc')
+        ->orderBy('name','asc')
+       
+        
         ->get();
+      
     }
     public function updateList(){
         $PackObj = PackageVariant::find($this->package_variant_id);
@@ -71,7 +88,7 @@ class PackageOrderCreate extends Component
        //print_r($this->member_id);
        //exit();
         $BatchObj = Batch::find($id);
-        if ($BatchObj->qty_book < $BatchObj->qty_max){
+       // if ($BatchObj->qty_book < $BatchObj->qty_max){
         $PackObj = PackageVariant::find($this->package_variant_id);
         $param = [
             'member_id' => $this->member_id,
@@ -95,7 +112,7 @@ class PackageOrderCreate extends Component
         $this->data = Batch::where('package_id',$PackObj->package_id)->get();
         
         $this->triggerAlert( 'Berhasil Booking','Berhasil di booking !!!','success');
-        }
+      //  }
 
     }
     public function triggerAlert($msg,$title='Success!',$icon='success',)

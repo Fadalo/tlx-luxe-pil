@@ -1,4 +1,4 @@
-<div class="row"  >
+<div class="row" >
     @if($view['viewGrid'] == true)
     
     @foreach($data as $key => $value)
@@ -17,7 +17,7 @@
                             $packageVariantName = $g->name .' '. $l->name;
                             echo $packageVariantName;
 
-                            $duration = 45*$value['qty_ticket_available'];
+                            //$duration = 45*$value['qty_ticket_available'];
                             
                             $helper = new App\Helpers\H1BHelper;
                             $LastUpdate = $helper->lastUpdated($value['updated_at']);
@@ -37,7 +37,9 @@
                 <div class="col-md-4">
                     <div style="height:200px">
                         <div class="mt-3" style="display: flex;justify-content: flex-end;margin-right: 10px;">
-                           <livewire:PackageOrderActivatedGrid :id="$value['id']" :member_package_order_id="$value['id']">
+                            @if($loop->first)
+                            <livewire:PackageOrderActivatedGrid :id="$value['id']" :member_package_order_id="$value['id']">
+                            @endif
                         </div>
                     </div>
                 </div>

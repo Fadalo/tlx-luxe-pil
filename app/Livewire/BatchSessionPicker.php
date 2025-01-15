@@ -262,6 +262,7 @@ class BatchSessionPicker extends Component
             batch_session.id as id,
             batch_session.instructor_id as instructor_id,
             batch_session.name as name,
+            batch_session.theme as theme,
             batch.name as batch_name,
             batch_session.start_datetime as start_datetime,
             batch_session.end_datetime as end_datetime
@@ -278,6 +279,8 @@ class BatchSessionPicker extends Component
             batch_session.id as id,
             batch_session.instructor_id as instructor_id,
             batch_session.name as name,
+            batch_session.theme as theme,
+            
             batch.name as batch_name,
             batch_session.start_datetime as start_datetime,
             batch_session.end_datetime as end_datetime
