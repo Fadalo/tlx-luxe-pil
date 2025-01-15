@@ -5,7 +5,7 @@
     $field = $field;
     $class = $MetaValue['related_table'];
     $obj =  new $class;
-    $result = $obj->find($id)->first();
+    $result = $obj->find($id);
     //print_r($result);
     //exit();
 @endphp
