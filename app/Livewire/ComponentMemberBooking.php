@@ -9,6 +9,7 @@ use App\Models\Batch\BatchSession;
 use App\Models\Member\MemberPackageOrderSession;
 use App\Models\Member\Member;
 use App\Models\Member\MemberPackageOrder;
+use App\Models\Package\PackageVariant;
 use App\Models\Instructor\InstructorContract;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -40,16 +41,33 @@ class ComponentMemberBooking extends Component
             return redirect('/member/login');
         }
         //dd($value);
-        $MemberPackageOrderSession = new MemberPackageOrderSession;
-        $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
-        $MemberPackageOrderSession->batch_session_id = $id;
-        $MemberPackageOrderSession->status_session = 'book';
-        $MemberPackageOrderSession->qty_ticket_used = 1;
-        $MemberPackageOrderSession->is_member_created = 1;
-        $MemberPackageOrderSession->created_by = 1;
-        $MemberPackageOrderSession->updated_by = 1;
-        $MemberPackageOrderSession->save();
-        return redirect('/member/detailBooking?id='.$this->member_package_order_id);
+
+        $memberPackageOrder =  MemberPackageOrder::find($this->member_package_order_id);
+        if ($memberPackageOrder){
+          if ($MemberPackageOrder->qty_ticket_used <= $MemberPackageOrder->qty_ticket_available){
+          
+            $packageVariant = PackageVariant::find($MemberPackageOrder->package_variant_id);
+            if($packageVariant){
+              $memberPackageOrder->qty_ticket_used = $memberPackageOrder->qty_ticket_used + $packageVariant->package_qty_used_book;
+              $memberPackageOrder->save();
+  
+  
+              $MemberPackageOrderSession = new MemberPackageOrderSession;
+              $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
+              $MemberPackageOrderSession->batch_session_id = $id;
+              $MemberPackageOrderSession->status_session = 'book';
+              $MemberPackageOrderSession->qty_ticket_used = $packageVariant->package_qty_used_book;
+              
+              $MemberPackageOrderSession->is_member_created = 1;
+              $MemberPackageOrderSession->created_by = 1;
+              $MemberPackageOrderSession->updated_by = 1;
+              $MemberPackageOrderSession->save();
+              return redirect('/member/detailBooking?id='.$this->member_package_order_id);
+            }
+           
+          }
+        }
+       
     }
     public function getEventsForDate($date)
     {

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Member\MemberPackageOrder;
 use App\Models\Member\MemberPackageOrderSession;
+use App\Models\Package\PackageVariant;
 
 class PackageOrderActivated extends Component
 {
@@ -79,23 +80,26 @@ class PackageOrderActivated extends Component
         ];
     }
     public function btnSaveBookingSession($id){
-        dd($id);
+        //dd($id);
         $session = new MemberPackageOrderSession;
         $MemberPackageOrder =  MemberPackageOrder::find($id);
-
-        if ($MemberPackageOrder->qty_ticket_used <= $MemberPackageOrder->qty_ticket_available){
-            $MemberPackageOrder->qty_ticket_used =  $MemberPackageOrder->qty_ticket_used + 1;
-            $MemberPackageOrder->save();
-
-            $session->member_package_order_id = $MemberPackageOrder->id;
-            $session->session_date = '';
-          //  $session->session_duration = '';
-           // $session->qty_ticket_used = '';
-          //  $session->qty_ticket_available = '';
-            $session->status_session = 'book'; // book, running, cancel, burn
-            $session->is_member_created = 0;
-            $session->status_document = 'draft';
+        if ($MemberPackageOrder){
+            $packageVariant = PackageVariant::find($MemberPackageOrder->package_variant_id);
+            if ($MemberPackageOrder->qty_ticket_used <= $MemberPackageOrder->qty_ticket_available){
+                $MemberPackageOrder->qty_ticket_used =  $MemberPackageOrder->qty_ticket_used +  $packageVariant->package_qty_used_book;
+                $MemberPackageOrder->save();
+    
+                $session->member_package_order_id = $MemberPackageOrder->id;
+                $session->session_date = now();
+             
+                $session->qty_ticket_used = $packageVariant->package_qty_used_book;
+         
+                $session->status_session = 'book'; // book, running, cancel, burn
+                $session->is_member_created = 0;
+                $session->status_document = 'draft';
+            }
         }
+        
         
      
     }

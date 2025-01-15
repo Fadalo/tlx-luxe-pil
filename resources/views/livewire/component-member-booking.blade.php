@@ -75,7 +75,9 @@
         <span><i class="fa-solid fa-cube"></i>Instructor - {{ $Instructor->first_name.' '.$Instructor->last_name}}</span>
         <div style="
         position: relative;
-        bottom: 80px;
+        bottom: 5px;
+        right: 5px;
+        
     ">
         <a href="#" wire:click='doBooking({{$value['id']}})' class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="margin-right:5px">Book</a>
         

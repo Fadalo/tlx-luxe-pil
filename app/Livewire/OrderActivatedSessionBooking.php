@@ -141,19 +141,27 @@ class OrderActivatedSessionBooking extends Component
             $Batch = Batch::find($BatchSession->batch_id);
             if ($Batch){
                 if ( $BatchSession->qty_reserved < $Batch->qty_max){
-                    $MemberPackageOrderSession = new MemberPackageOrderSession;
-                    $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
-                    $MemberPackageOrderSession->batch_session_id = $value['id'];
-                    $MemberPackageOrderSession->status_session = 'book';
-                    $MemberPackageOrderSession->qty_ticket_used = 1;
-                    $MemberPackageOrderSession->created_by = Auth::User()->id;
-                    $MemberPackageOrderSession->updated_by = Auth::User()->id;
-                    $MemberPackageOrderSession->save();
-            
-                    $BatchSession->qty_reserved =  $BatchSession->qty_reserved  + 1;
-                    $BatchSession->save();
-            
-                    $this->dispatch('showModalDetail',['member_package_order_id'=>$this->member_package_order_id]);
+                    $MemberPackageOrder = MemberPackageOrder::find($this->member_package_order_id);
+                    if($MemberPackageOrder){
+                        $packageVariant = PackageVariant::find($MemberPackageOrder->package_variant_id);
+                        if($packageVariant ){
+                            $MemberPackageOrderSession = new MemberPackageOrderSession;
+                            $MemberPackageOrderSession->member_package_order_id  = $this->member_package_order_id;
+                            $MemberPackageOrderSession->batch_session_id = $value['id'];
+                            $MemberPackageOrderSession->status_session = 'book';
+                            $MemberPackageOrderSession->qty_ticket_used = $packageVariant->package_qty_used_book;
+                            $MemberPackageOrderSession->created_by = Auth::User()->id;
+                            $MemberPackageOrderSession->updated_by = Auth::User()->id;
+                            $MemberPackageOrderSession->save();
+                    
+                            $BatchSession->qty_reserved =  $BatchSession->qty_reserved  +  $packageVariant->package_qty_used_book;
+                            $BatchSession->save();
+                    
+                            $this->dispatch('showModalDetail',['member_package_order_id'=>$this->member_package_order_id]);
+                        }
+                       
+                    }
+                 
                 }
                 
             }
