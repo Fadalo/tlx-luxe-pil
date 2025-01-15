@@ -46,7 +46,7 @@
             <a href="#">
                 <i class="fa font-14 fa-check rounded-sm shadow-m bg-green-dark"></i>
                 <span># {{$value['order_id']}} -
-             PAID at ( {{date('F ,d-Y',strtotime($value['available_package_started_datetime'])) }} )</span>
+             PAID</span>
                 <div>
                 <a target="_blank" href="{{env('APP_URL').'/invoice/'.$value['id']}}">
                     <span class="badge bg-green-dark">Download PDF</span>
