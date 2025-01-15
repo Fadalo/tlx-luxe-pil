@@ -62,6 +62,7 @@ class PackageOrderCreate extends Component
             batch.id as id,
             batch.instructor_id as instructor_id,
             concat(batch.name," - ",package_variant.name) as name,
+            package_variant.id as package_variant_id,
             batch.start_datetime as start_datetime,
             batch.end_datetime as end_datetime,
             batch.qty_max as qty_max,
@@ -80,7 +81,7 @@ class PackageOrderCreate extends Component
         $PackObj = PackageVariant::find($this->package_variant_id);
         $this->data = Batch::where('package_id',$PackObj->package_id)->get();
     }
-    public function onBook($id){
+    public function onBook($id,$package_variant_id){
 
         if (!Auth::check()) {
             return redirect('/login-new');
@@ -89,10 +90,10 @@ class PackageOrderCreate extends Component
        //exit();
         $BatchObj = Batch::find($id);
        // if ($BatchObj->qty_book < $BatchObj->qty_max){
-        $PackObj = PackageVariant::find($this->package_variant_id);
+        $PackObj = PackageVariant::find($package_variant_id);
         $param = [
             'member_id' => $this->member_id,
-            'package_variant_id' => $this->package_variant_id,
+            'package_variant_id' => $package_variant_id,
             'batch_id' => $id,
             'qty_ticket_available' => $PackObj->package_qty_ticket,
             'status_package' => 'book',
