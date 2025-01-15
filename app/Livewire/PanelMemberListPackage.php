@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Member\MemberPackageOrder;
+use App\Models\Package\PackageVariant;
 
 class PanelMemberListPackage extends Component
 {
@@ -23,11 +24,21 @@ class PanelMemberListPackage extends Component
     public function doActivated($id){
 
         $MemberPackageOrder = MemberPackageOrder::find($id);
-        $MemberPackageOrder->activated_package_started_datetime = now();
-        $MemberPackageOrder->activated_package_due_date = (45*$MemberPackageOrder->qty_ticket_available);
-        $MemberPackageOrder->status_package = 'activated';
-        $MemberPackageOrder->save();
-        $this->showActivated();
+        if($MemberPackageOrder){
+            $PackageVariant = PackageVariant::find($MemberPackageOrder->package_variant_id);
+            if ($PackageVariant){
+
+                $MemberPackageOrder->activated_package_started_datetime = now();
+                $MemberPackageOrder->activated_package_due_date = $PackageVariant->package_max_days;
+                $MemberPackageOrder->qty_ticket_used =0;
+                $MemberPackageOrder->status_package = 'activated';
+
+                $MemberPackageOrder->save();
+                $this->showActivated();
+            }
+          
+        }
+       
         
     }
     public function showAvailable(){
@@ -46,7 +57,10 @@ class PanelMemberListPackage extends Component
     public function showActivated(){
         $member_id = $this->member_id;
         $MemberPackageOrder = MemberPackageOrder::where('member_id',$member_id)
-        ->where('status_package','activated')->get()->toArray();
+
+        ->where('status_package','activated')
+        ->orderBy('activated_package_started_datetime','asc')
+        ->get()->toArray();
         $this->listActivated =  $MemberPackageOrder;
         $this->showTab =  [
             'tabAvailable' => false,

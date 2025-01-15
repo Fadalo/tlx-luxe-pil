@@ -73,6 +73,7 @@
         <strong>{{$value['name']}}</strong>
         <span><i class="fa-solid fa-cube"></i>{{$Package->name}}</span>
         <span><i class="fa-solid fa-cube"></i>Instructor - {{ $Instructor->first_name.' '.$Instructor->last_name}}</span>
+        
         <div style="
         position: relative;
         bottom: 5px;

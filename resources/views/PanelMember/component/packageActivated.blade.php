@@ -33,6 +33,8 @@
         <p class="font-10 opacity-80 mb-n1"><i class="far fa-calendar"></i> Last updated {{$LastUpdate}} </p>
         <p class="font-10 opacity-80"><i class="fa fa-map-marker-alt"></i> LUXE-PILATES</p>
     </div>
+    @if($loop->first)
     <a  href="{{route('member.booking')}}?id={{$list['id']}}" class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2">Booking</a>
     <a href="{{route('member.detailBooking')}}?id={{$list['id']}}" class="float-end btn btn-s bg-highlight rounded-s shadow-xl text-uppercase font-900 font-11 mt-2" style="    margin-right: 6px;">Detail</a>
+    @endif
 </div>

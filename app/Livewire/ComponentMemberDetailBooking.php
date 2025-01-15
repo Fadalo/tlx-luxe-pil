@@ -62,7 +62,7 @@ class ComponentMemberDetailBooking extends Component
 
           ->where('member_package_order.member_id',$this->member_id)
           ->where('member_package_order.id',$this->member_package_order_id)
-          
+        
           ->where('batch_session.status_session','running')
          
           //->whereRaw('DATE(`batch_session`.`start_datetime`) = DATE(\''.$date.'\')')
