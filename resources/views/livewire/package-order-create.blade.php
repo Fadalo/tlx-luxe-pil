@@ -85,7 +85,7 @@
                                 <td>{{$l->first_name.' '.$l->last_name}}</td>
                                 
                               
-                                <td><button wire:click="onBook({{$value['id']}},{{$value['package_variant_id']}},)"  class="btn btn-primary">Book</button></td>
+                                <td><button wire:click="onBook({{$value['id']}},{{$value['package_variant_id']}})"  class="btn btn-primary">Book</button></td>
                             </tr>
                             @endforeach
                         </tbody>
