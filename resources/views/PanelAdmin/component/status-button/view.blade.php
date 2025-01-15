@@ -11,13 +11,14 @@
                             $role_rule = json_decode($role->role_permission,true);
                         }
                      //   print_r($role_rule['Dashboard']['view']);
-                     $config['module'] = ($config['module']=='batch')?'Schedule':$config['module'];
+                    
                      $user_access_arr = ['Watem','Autoresponse','Role','User','WaSettings'];
                          if(in_array(ucfirst($config['module']),$user_access_arr)){
                             $module = 'Settings';
                          }
                          else{
                             $module = 'Manage '.ucfirst($config['module']);
+                            $module = ($config['module']=='batch')?'Manage Schedule': 'Manage '.ucfirst($config['module']);
                          }
                         
                     ?>
