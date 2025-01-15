@@ -93,18 +93,27 @@ class PackageOrderBook extends Component
     public function payment($id){
 
         $memberOrder = MemberPackageOrder::find($id);
-        $packageVariant = PackageVariant::find($memberOrder->package_variant_id);
-        $package = Package::find($packageVariant->id);
-        $this->dispatch('swal:payment', [
-            'icon' => 'success',
-            'title' => 'payment',
-            'text' => 'payment text',
-            'member'=> $memberOrder,
-            'packageVariant' => $packageVariant,
-            'package'=> $package,
-            'paymentType'=> ['cash','transfer'],
-
-        ]);
+        if($memberOrder){
+            $packageVariant = PackageVariant::find($memberOrder->package_variant_id);
+            if($packageVariant){
+                $package = Package::find($packageVariant->id);
+                if($package){
+                    $this->dispatch('swal:payment', [
+                        'icon' => 'success',
+                        'title' => 'payment',
+                        'text' => 'payment text',
+                        'member'=> $memberOrder,
+                        'packageVariant' => $packageVariant,
+                        'package'=> $package,
+                        'paymentType'=> ['cash','transfer'],
+            
+                    ]);
+                }
+                
+            }
+     
+        }
+        
     }
     public function triggerAlert($msg,$title='Success!',$icon='success')
     {
