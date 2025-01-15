@@ -79,7 +79,36 @@ class PackageOrderCreate extends Component
     }
     public function updateList(){
         $PackObj = PackageVariant::find($this->package_variant_id);
-        $this->data = Batch::where('package_id',$PackObj->package_id)->get();
+      //  $this->data = Batch::where('package_id',$PackObj->package_id)->get();
+        $this->data = Batch::join('package_variant','package_variant.package_id','=','batch.package_id');
+        if ($id != ''){
+            $this->data = $this->data->where('package_variant.id',$id);
+   }
+   if ($instructor_id != ''){
+       $this->data = $this->data->where('instructor_id',$instructor_id);
+   }
+      
+       // ->where('package_variant.id',$id)
+      // ->where('batch.start_datetime','>=',$dStartDate)
+      //  ->where('batch.end_datetime','<=',$dEndDate)
+      $this->data = $this->data->selectRaw(
+            '
+            batch.id as id,
+            batch.instructor_id as instructor_id,
+            concat(batch.name," - ",package_variant.name) as name,
+            package_variant.id as package_variant_id,
+            batch.start_datetime as start_datetime,
+            batch.end_datetime as end_datetime,
+            batch.qty_max as qty_max,
+            batch.qty_book as qty_book
+
+            '
+        )
+      //  ->orderBy('package_variant.package_qty_ticket','asc')
+        ->orderBy('name','asc')
+       
+        
+        ->get();
     }
     public function onBook($id,$package_variant_id){
 
