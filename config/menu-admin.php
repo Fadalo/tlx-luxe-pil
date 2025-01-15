@@ -33,6 +33,15 @@ return [
                              'delete' => [ 'name' => 'delete' ]
                            ]
         ],
+        'Manage Theme' => [
+            'name' => 'Manage Theme',
+            'permission' =>[
+                             'view'   => [ 'name' => 'view' ],
+                             'create' => [ 'name' => 'create' ],
+                             'edit'   => [ 'name' => 'edit' ],
+                             'delete' => [ 'name' => 'delete' ]
+                           ]
+        ],
         'Manage Package' => [
             'name' => 'Manage Package',
             'permission' =>[
