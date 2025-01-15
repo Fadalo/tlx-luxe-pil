@@ -44,7 +44,7 @@ class ComponentMemberBooking extends Component
 
         $memberPackageOrder =  MemberPackageOrder::find($this->member_package_order_id);
         if ($memberPackageOrder){
-          if ($MemberPackageOrder->qty_ticket_used <= $MemberPackageOrder->qty_ticket_available){
+          if ($MemberPackageOrder->qty_ticket_used < $MemberPackageOrder->qty_ticket_available){
           
             $packageVariant = PackageVariant::find($MemberPackageOrder->package_variant_id);
             if($packageVariant){

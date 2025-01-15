@@ -38,11 +38,17 @@ class H1BHelper
 
         // Calculate the total difference in minutes
         $totalMinutes = $startDate->diffInMinutes($endDate);
-
+        //dd($totalMinutes);
         // Convert to days, hours, and minutes
+        if($totalMinutes > 1440 ){
         $days = intdiv($totalMinutes, 1440); // 1440 minutes in a day
         $remainingMinutesAfterDays = $totalMinutes % 1440;
-
+        }   
+        else
+        {
+            $days = 0;
+            $remainingMinutesAfterDays = $totalMinutes ;
+        }
         $hours = intdiv($remainingMinutesAfterDays, 60);
         $minutes = $remainingMinutesAfterDays % 60;
 

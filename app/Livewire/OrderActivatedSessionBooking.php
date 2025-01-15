@@ -7,7 +7,7 @@ use App\Models\Member\MemberPackageOrderSession;
 use App\Models\Member\MemberPackageOrder;
 use App\Models\Batch\BatchSession;
 use App\Models\Batch\Batch;
-
+use App\Models\Package\PackageVariant;
 use Illuminate\Support\Facades\Auth;
 
 class OrderActivatedSessionBooking extends Component
@@ -154,6 +154,9 @@ class OrderActivatedSessionBooking extends Component
                             $MemberPackageOrderSession->updated_by = Auth::User()->id;
                             $MemberPackageOrderSession->save();
                     
+                            $MemberPackageOrder->qty_ticket_used = $MemberPackageOrder->qty_ticket_used +   $packageVariant->package_qty_used_book;
+                            $MemberPackageOrder->save();
+                            
                             $BatchSession->qty_reserved =  $BatchSession->qty_reserved  +  $packageVariant->package_qty_used_book;
                             $BatchSession->save();
                     

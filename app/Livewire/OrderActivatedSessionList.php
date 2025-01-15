@@ -4,6 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Member\MemberPackageOrderSession;
+use App\Models\Member\MemberPackageOrder;
+use App\Models\Batch\BatchSession;
+
+
 
 class OrderActivatedSessionList extends Component
 {
@@ -23,7 +27,25 @@ class OrderActivatedSessionList extends Component
     public function doCancelSchedule($id){
 
 
-        $MemberPackageOrderSession = MemberPackageOrderSession::find($id)->delete();
+        $MemberPackageOrderSession = MemberPackageOrderSession::find($id);
+        if($MemberPackageOrderSession){
+            $MemberPackageOrder = MemberPackageOrder::find( $MemberPackageOrderSession->member_package_order_id);
+            if($MemberPackageOrder){
+                $BatchSession = BatchSession::find($MemberPackageOrderSession->batch_session_id);
+                if($BatchSession){
+                    $BatchSession->qty_reserved = $BatchSession->qty_reserved - $MemberPackageOrderSession->qty_ticket_used;
+                    $BatchSession->save();
+
+                    $MemberPackageOrder->qty_ticket_used =  $MemberPackageOrder->qty_ticket_used - $MemberPackageOrderSession->qty_ticket_used;
+                    $MemberPackageOrder->save();
+    
+                    $MemberPackageOrderSession->delete();
+                }
+              
+            }
+          
+        }
+      
         
         $this->updateList();
     }
