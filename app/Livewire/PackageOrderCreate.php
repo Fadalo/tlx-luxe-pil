@@ -88,6 +88,7 @@ class PackageOrderCreate extends Component
         }
        //print_r($this->member_id);
        //exit();
+        $this->package_variant_id = $package_variant_id;
         $BatchObj = Batch::find($id);
        // if ($BatchObj->qty_book < $BatchObj->qty_max){
         $PackObj = PackageVariant::find($package_variant_id);
