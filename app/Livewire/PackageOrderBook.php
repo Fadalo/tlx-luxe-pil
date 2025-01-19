@@ -98,7 +98,7 @@ class PackageOrderBook extends Component
          
             if($packageVariant){
                 $package = Package::find($packageVariant->id);
-                dd($package);
+                dd($packageVariant->id);
                 if($package){
                     $this->dispatch('swal:payment', [
                         'icon' => 'success',
