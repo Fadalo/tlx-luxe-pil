@@ -95,6 +95,7 @@ class PackageOrderBook extends Component
         $memberOrder = MemberPackageOrder::find($id);
         if($memberOrder){
             $packageVariant = PackageVariant::find($memberOrder->package_variant_id);
+            dd($packageVariant);
             if($packageVariant){
                 $package = Package::find($packageVariant->id);
                 if($package){
